@@ -1,0 +1,45 @@
+{
+  "name": "hkm",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "keystone": "~0.2.40",
+    "resty-stone": "0.0.32-alpha",
+    "mongoose": "3.8.21",
+    "async": "~0.9.0",
+    "underscore": "~1.7.0",
+    "dotenv": "~0.4.0",
+    "keystone-utils": "^0.1.13",
+    "crypto": "0.0.3",
+    "connect-mongo": "^0.4.1",
+    "moment": "^2.6.0",
+    "passport": "^0.2.0",
+    "passport-facebook": "^1.0.2",
+    "passport-github": "^0.1.5",
+    "passport-google-oauth": "^0.1.5",
+    "passport-twitter": "^1.0.2",
+    "request": "^2.34.0",
+    "check-update": "^0.0.5",
+    "csv": "0.3.6",
+    "hkm-simple-vercheck": "^0.0.6"
+  },
+  "devDependencies": {
+    "gulp": "~3.6.2",
+    "gulp-jshint": "~1.6.1",
+    "jshint-stylish": "~0.1.3",
+    "gulp-watch": "~0.6.5",
+    "gulp-concat": "~2.4.2",
+    "gulp-less": "~2.0.1",
+    "gulp-uglify": "~1.0.2",
+    "gulp-nodemon": "~1.0.4"
+  },
+  "engines": {
+    "node": ">=0.10.22",
+    "npm": ">=1.3.14"
+  },
+  "scripts": {
+    "start": "nodemon keystone.js",
+    "netstart": "nohup nodemon keystone.js &"
+  },
+  "main": "keystone.js"
+}

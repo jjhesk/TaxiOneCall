@@ -1,0 +1,25 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Gallery
+	
+block content
+	.container
+		if galleries.length
+			each gal in galleries
+				h2= gal.name
+					if gal.publishedDate
+						.pull-right.text-muted= gal._.publishedDate.format('Do MMM YYYY')
+				
+				.row.gal-images
+					if gal.heroImage.exists
+						.col-sm-4.col-md-4.gal-image: img(src=gal._.heroImage.limit(680,680)).img-rounded
+						.col-sm-8.col-md-8: .row
+							each image in gal.images
+								.col-xs-4.col-sm-4.col-md-3.gal-image: img(src=image.limit(300,300)).img-rounded
+					else
+						each image in gal.images
+							.col-xs-6.col-sm-4.col-md-3.gal-image: img(src=image.limit(300,300)).img-rounded
+		else
+			h3.text-muted There are no image galleries yet.
