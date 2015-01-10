@@ -8,12 +8,23 @@ var keystone = require('keystone'),
     Call = keystone.list('Call'),
     utils = require('keystone-utils'),
     Types = keystone.Field.Types;
+var getTypeChoice = function (Q) {
+    var out = 'taxi-red';
+    if (Q.type == 'taxi') {
+        if (Q.destination) {
+            out = 'taxi-red';
+        }
+    }
+    return out;
+}
 var newCall = function (Q, next) {
+    var datenow = Date.now();
     var callrecord = new Call.model({
-        calltype: Q.type,
+        calltype: getTypeChoice(),
         callnumber: Q.phonenumber,
-        calltime: Date.now,
+        calltime: datenow,
         dealstatus: 'public',
+        destination: Q.destination,
         position: Q.gps
     });
     callrecord.save(function (err) {
@@ -29,21 +40,14 @@ var newCall = function (Q, next) {
 }
 exports = module.exports = function (req, res) {
 
-    var queue_call = {
-            phonenumber: false,
-            gps: false,
-            type: false,
-            destination: false
-        },
-        isError = false,
-        message = "",
+    var
         Q = {},
         local = {handle: false};
 
     async.series([
         function (next) {
             try {
-                Q = tool.url_param_checker(req.body,
+                Q = tool.url_param_checker(req.query,
                     ['phonenumber', 'gps', 'type', 'destination']);
                 next();
             } catch (e) {

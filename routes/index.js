@@ -49,7 +49,6 @@ exports = module.exports = function (app) {
     app.get('/download/users', routes.download.users);
     app.all('/api/call/new', api.call.new);
 
-
     //  app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
