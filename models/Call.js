@@ -18,7 +18,7 @@ Call.add({
         ],
         default: 'taxi'
     },
-    callnumber: {type: Types.Number, noedit: true, label: "Phone number?"},
+    callnumber: {type: Types.Text, noedit: true, label: "Phone number?"},
     calltime: {type: Date, default: Date.now, noedit: true, label: "Calling time"},
     dealstatus: {
         default: 'public', type: Types.Select,

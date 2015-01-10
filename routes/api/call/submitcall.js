@@ -1,3 +1,76 @@
 /**
  * Created by Hesk on 9/1/2015.
  */
+var keystone = require('keystone'),
+    tool = require('../../../lib/handler/checker'),
+    async = require('async'),
+    _ = require('underscore'),
+    Call = keystone.list('Call'),
+    utils = require('keystone-utils'),
+    Types = keystone.Field.Types;
+var newCall = function (Q, next) {
+    var callrecord = new Call.model({
+        calltype: Q.type,
+        callnumber: Q.phonenumber,
+        calltime: Date.now,
+        dealstatus: 'public',
+        position: Q.gps
+    });
+    callrecord.save(function (err) {
+        if (err) {
+            console.log('[api.new.call]  - Error saving new call.', err);
+            console.log('------------------------------------------------------------');
+            return next({message: 'Sorry, there was an error processing your account, please try again.'});
+        }
+        console.log('[api.new.call]  - Saved new call registration.');
+        console.log('------------------------------------------------------------');
+    });
+    return callrecord;
+}
+exports = module.exports = function (req, res) {
+
+    var queue_call = {
+            phonenumber: false,
+            gps: false,
+            type: false,
+            destination: false
+        },
+        isError = false,
+        message = "",
+        Q = {},
+        local = {handle: false};
+
+    async.series([
+        function (next) {
+            try {
+                Q = tool.url_param_checker(req.body,
+                    ['phonenumber', 'gps', 'type', 'destination']);
+                next();
+            } catch (e) {
+                return next({message: e.message});
+            }
+        },
+        function (next) {
+            local.call = newCall(Q, next);
+            next();
+        },
+        function (next) {
+            return res.apiResponse({
+                success: true,
+                timestamp: new Date().getTime(),
+                calldata: local.call
+            });
+        }
+    ], function (err) {
+        if (err) {
+            console.log('[api.new.call]  - verify your call failed.', err);
+            console.log('------------------------------------------------------------');
+
+            return res.apiResponse({
+                success: false,
+                session: false,
+                message: (err && err.message ? err.message : false) || 'Sorry, there was an error from verifying your license, please try again.'
+            });
+        }
+    });
+};

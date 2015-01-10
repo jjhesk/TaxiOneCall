@@ -13,9 +13,9 @@ User.add({
     email: {type: Types.Email, initial: true, required: true, index: true},
     password: {type: Types.Password, initial: true, required: true},
     cellPhone: {type: Types.Number},
-    vcoinID: {type: Types.Text, label: "vCoin Account UUID"},
     customization: {type: Types.Color},
-    website: {type: String, label: "website URL"}
+    vcoinID: {type: Types.Text, label: "vCoin Account UUID"},
+    licenseID: {type: Types.Text, label: "website URL"}
 }, 'Notification', {
     notifications: {
         posts: {type: String},

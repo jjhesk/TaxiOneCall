@@ -20,7 +20,7 @@ Auto.add({
         ],
         default: 'taxi-red'
     },
-    licensePlate: {type: Types.Number,  label: "License Plate"},
+    licensePlate: {type: Types.Text,  label: "License Plate"},
     driver: {type: Types.Relationship, ref: 'User'}
 });
 
