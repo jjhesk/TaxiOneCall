@@ -33,7 +33,8 @@ var routes = {
     download: importRoutes('./download')
 };
 var api = {
-   // license_processor: importRoutes('./api/license')
+    call: importRoutes('./api/call'),
+    driver: importRoutes('./api/driver')
 }
 // Setup Route Bindings
 exports = module.exports = function (app) {
@@ -46,10 +47,11 @@ exports = module.exports = function (app) {
     app.all('/contact', routes.views.contact);
     app.all('/api/*', keystone.initAPI);
     app.get('/download/users', routes.download.users);
- //   app.all('/api/license/check', api.license_processor.check);
-  //  app.all('/api/license/registration', api.license_processor.registration);
+    app.all('/api/call/new', api.call.new);
+
+
+    //  app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
     // app.get('/protected', middleware.requireUser, routes.views.protected);
-
 };
