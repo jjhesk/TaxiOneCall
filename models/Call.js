@@ -12,11 +12,13 @@ Call.add({
         initial: true, required: true,
         type: Types.Select,
         options: [
-            {value: 'taxi', label: 'Taxi'},
+            {value: 'taxi-blue', label: 'Taxi Blue'},
+            {value: 'taxi-green', label: 'Taxi Green'},
+            {value: 'taxi-red', label: 'Taxi Red'},
             {value: 'van', label: 'Van'},
             {value: 'limo', label: 'Limo'}
         ],
-        default: 'taxi'
+        default: 'taxi-red'
     },
     callnumber: {type: Types.Text, noedit: true, label: "Phone number?"},
     calltime: {type: Date, default: Date.now, noedit: true, label: "Calling time"},

@@ -15,12 +15,15 @@ var getTypeChoice = function (Q) {
             out = 'taxi-red';
         }
     }
+
+    console.log('[api.new.call]  - get call type.', out);
     return out;
 }
 var newCall = function (Q, next) {
     var datenow = Date.now();
+    console.log('[api.new.call]  - get Q.', Q);
     var callrecord = new Call.model({
-        calltype: getTypeChoice(),
+        calltype: getTypeChoice(Q),
         callnumber: Q.phonenumber,
         calltime: datenow,
         dealstatus: 'public',
