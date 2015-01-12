@@ -51,24 +51,14 @@ public class order extends Activity implements FolderSelectorDialog.FolderSelect
         dialog_collection = new Common(this);
         mphone = new Phone(order, this);
         mphone.getPhoneNumber();
-
         call_type = (Button)
                 findViewById(R.id.call_type);
-
         call_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showListTypeVech();
             }
         });
-        findViewById(R.id.button_trigger).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                triggerCall();
-            }
-        });
-
 
         f_number = (SwipeLayout) findViewById(R.id.f_number);
         f_number.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -93,8 +83,6 @@ public class order extends Activity implements FolderSelectorDialog.FolderSelect
                         });
                     }
                 });
-
-
         f_destination = (SwipeLayout) findViewById(R.id.f_destination);
         // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
         //  f_destination.setDragEdge(SwipeLayout.DragEdge.Left);
@@ -134,6 +122,13 @@ public class order extends Activity implements FolderSelectorDialog.FolderSelect
         display_start_loc = (TextView) f_start.findViewById(R.id.display_start_location);
         display_destination = (TextView) f_destination.findViewById(R.id.display_location_destination);
         display_number = (TextView) f_number.findViewById(R.id.display_number);
+
+        ((Button)findViewById(R.id.order_send)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                triggerCall();
+            }
+        });
         mphone.setPhoneNumberDisplay(display_number);
 
     }
