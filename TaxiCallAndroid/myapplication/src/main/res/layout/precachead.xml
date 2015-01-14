@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<Button
+		android:text="Start Download"
+		android:id="@+id/startBtn"
+		android:layout_width="0dp"
+		android:layout_weight="0.5"
+		android:layout_height="wrap_content">
+	</Button>
+	<Button
+		android:text="Stop Download"
+		android:id="@+id/stopBtn"
+		android:layout_width="0dp"
+		android:layout_weight="0.5"
+		android:layout_height="wrap_content">
+	</Button>
+	</LinearLayout>
+	<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<Button
+	    android:id="@+id/stimeBtn"
+	   	android:layout_width="0dp"
+		android:layout_weight="0.5"
+	    android:layout_height="wrap_content"
+	    android:text="Delete Time" />
+	<Button
+	    android:id="@+id/clearBtn"
+	    	android:layout_width="0dp"
+		android:layout_weight="0.5"
+	    android:layout_height="wrap_content"
+	    android:text="Delete all" />
+		</LinearLayout>
+		<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<Button
+	    android:id="@+id/moveBtn"
+	   	android:layout_width="0dp"
+		android:layout_weight="0.5"
+	    android:layout_height="wrap_content"
+	    android:text="Move to SD" />
+	<!--Button
+	    android:id="@+id/clearBtn"
+	    	android:layout_width="0dp"
+		android:layout_weight="0.5"
+	    android:layout_height="wrap_content"
+	    android:text="Delete all" /-->
+		</LinearLayout>
+<EditText
+        android:id="@+id/debugText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.13"
+        android:ems="10"
+        android:gravity="top"   
+        android:inputType="textMultiLine" 
+        android:textSize="7dp" />
+</LinearLayout>

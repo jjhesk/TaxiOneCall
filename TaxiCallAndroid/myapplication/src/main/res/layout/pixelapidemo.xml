@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/headline"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Banner API Demo"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+	<ScrollView
+		android:id="@+id/scrollView1"
+		android:layout_weight="1"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:fillViewport="true">
+	    <TableLayout
+	         android:stretchColumns="0"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" >
+	        <TableRow
+	            android:id="@+id/tableRow1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Standard Banner" />
+	        </TableRow>
+	
+	        <TableRow
+	            android:id="@+id/tableRow2"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:baselineAligned="false" >
+	
+	            <EditText
+	                android:id="@+id/banner_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/banner_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow3"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Fixed Banner" />
+	        </TableRow>
+	
+	        <TableRow
+	            android:id="@+id/tableRow4"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:baselineAligned="false" >
+	
+	            <EditText
+	                android:id="@+id/fixed_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/fixed_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow5"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Splash Banner" />
+	        </TableRow>
+	
+	        <TableRow
+	            android:id="@+id/tableRow6"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" >
+	
+	            <EditText
+	                android:id="@+id/splash_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/splash_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow7"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Crazy Banner" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow8"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" >
+	
+	            <EditText
+	                android:id="@+id/crazy_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/crazy_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow9"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Media Banner" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow10"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" >
+	
+	            <EditText
+	                android:id="@+id/media_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/media_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow>  
+	        <TableRow
+	            android:id="@+id/tableRow11"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Overlay Banner" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow12"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" >
+	
+	            <EditText
+	                android:id="@+id/overlay_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/overlay_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow>  
+	        
+	         <TableRow
+	            android:id="@+id/tableRow13"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Selfie Banner" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow14"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" >
+	
+	            <EditText
+	                android:id="@+id/selfie_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+	
+	            <Button
+	                android:id="@+id/selfie_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+	        </TableRow> 
+	        <TableRow
+	            android:id="@+id/tableRow15"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Precache Test" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow16"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:baselineAligned="false" >
+
+	            <EditText
+	                android:id="@+id/precache_tf"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="10"
+	                android:inputType="number" >
+	            </EditText>
+
+	            <Button
+	                android:id="@+id/precache_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Show" />
+
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow17"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	            <TextView
+	                android:id="@+id/textView1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text=" " />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow18"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:baselineAligned="false" >
+	            <TextView
+	                android:id="@+id/textView2"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="DEBUG MODE"
+	                android:textAppearance="?android:attr/textAppearanceMedium" />
+	            <ToggleButton
+	                android:id="@+id/debugButton"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="ToggleButton" />
+	        </TableRow>
+	        <TableRow
+	            android:id="@+id/tableRow19"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:baselineAligned="false" >
+	            <TextView
+	                android:id="@+id/textView3"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="GPS"
+	                android:textAppearance="?android:attr/textAppearanceMedium" />
+	            <ToggleButton
+	                android:id="@+id/gpsButton"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="ToggleButton" />
+	        </TableRow>
+	        
+	    </TableLayout>
+	</ScrollView>
+</LinearLayout>

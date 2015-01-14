@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/weather_type"
+        android:text="@string/weatherchanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:textColor="@color/abc_background_cache_hint_selector_material_dark"
+        android:textSize="60dp"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/weather_temp"
+        android:text="@string/weatherchanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:textColor="@color/switch_thumb_normal_material_dark"
+        android:textSize="40dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/weather_hum"
+        android:text="@string/weatherchanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:textColor="@color/abc_background_cache_hint_selector_material_dark"
+        android:textSize="20dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/weather_uv"
+        android:text="@string/weatherchanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:textColor="@color/abc_search_url_text"
+        android:textSize="20dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/weather_time"
+        android:text="@string/weatherchanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:textColor="@color/abc_search_url_text_pressed"
+        android:textSize="20dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Standard Banner" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/updateweather"
+        android:text="@string/update_weather"
+        />
+
+</LinearLayout>
