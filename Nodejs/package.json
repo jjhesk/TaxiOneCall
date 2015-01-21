@@ -21,7 +21,9 @@
     "request": "^2.34.0",
     "check-update": "^0.0.5",
     "csv": "0.3.6",
-    "hkm-simple-vercheck": "^0.0.6"
+    "hkm-simple-vercheck": "^0.0.6",
+    "express.io": "^1.1.X",
+    "jwt-simple": "^0.2.X"
   },
   "devDependencies": {
     "gulp": "~3.6.2",

@@ -32,14 +32,19 @@ var routes = {
     views: importRoutes('./views'),
     download: importRoutes('./download')
 };
+
 var api = {
+    token: importRoutes('./api/').token,
     call: importRoutes('./api/call'),
     driver: importRoutes('./api/driver')
-}
+};
+
 // Setup Route Bindings
 exports = module.exports = function (app) {
+
     // Views
     app.get('/', routes.views.index);
+
     //  app.get('/register/machine/', routes.views.blog);
     //app.get('/blog/post/:post', routes.views.post);
     // app.get('/ticket/:tid', routes.views.ticket);
@@ -49,6 +54,9 @@ exports = module.exports = function (app) {
     app.get('/download/users', routes.download.users);
     app.all('/api/call/new', api.call.new);
 
+    // jwt token authentication for socket.io traffic
+    app.all('/token*', middleware.requireUser);
+    app.all('/token', api.token);
     //  app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
