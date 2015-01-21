@@ -7,15 +7,11 @@ var keystone = require('keystone'),
     async = require('async');
 
 exports = module.exports = function(req, res) {
-
     if (req.user) {
         console.log('[token] - fname [' + req.user.name.first + '], lname [' + req.user.name.last + '], id [' + req.user.id + '].');
-
         var jwtTokenSecret = keystone.get('jwtTokenSecret');
-
         var expires = moment().add(7, 'days').valueOf();
         var token = jwt.encode({ iss: req.user.id, exp: expires }, jwtTokenSecret);
         res.json({ token : token, expires: expires, user: req.user.toJSON()	});
     }
-
 }

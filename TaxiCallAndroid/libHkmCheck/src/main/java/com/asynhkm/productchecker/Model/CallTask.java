@@ -33,11 +33,13 @@ public class CallTask extends AsyncTask<Void, Void, String> {
 
         public void beforeStart(CallTask task);
     }
+
     public boolean isSuccess(String str) throws JSONException {
         final JSONObject js = new JSONObject(str);
         final boolean t = js.getBoolean("success");
         return t;
     }
+
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     protected static String TAG = "call.api";
     private Context ctx;
@@ -82,7 +84,12 @@ public class CallTask extends AsyncTask<Void, Void, String> {
                     .build();
             Response response = client.newCall(request).execute();
             out = response.body().string();
-
+            if (!isSuccess(out)) {
+                final JSONObject js = new JSONObject(out);
+                final String error_msg = js.getString("message");
+                setError(error_msg);
+            }
+            if (out.equalsIgnoreCase("")) setError("server no response.");
         } catch (NoClassDefFoundError e) {
             setError(e.getMessage());
         } catch (IOException e) {
@@ -99,12 +106,14 @@ public class CallTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Log.d(TAG, "onPostExecute result == " + result);
-        super.onPostExecute(result);
+
         if (isError) {
             if (mcallback != null) mcallback.onFailure(errorMessage);
         } else {
             if (mcallback != null) mcallback.onSuccess(result);
         }
+
+        super.onPostExecute(result);
     }
 
     @Override

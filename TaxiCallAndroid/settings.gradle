@@ -1,2 +1,1 @@
-include ':app', ':libHkmCheck', ':myapplication'
-include ':rippleView'
+include ':customer_app', ':libHkmCheck', ':rippleView', ':driver_app'

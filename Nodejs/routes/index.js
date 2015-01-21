@@ -41,24 +41,21 @@ var api = {
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
-
     // Views
     app.get('/', routes.views.index);
-
-    //  app.get('/register/machine/', routes.views.blog);
-    //app.get('/blog/post/:post', routes.views.post);
+    // app.get('/register/machine/', routes.views.blog);
+    // app.get('/blog/post/:post', routes.views.post);
     // app.get('/ticket/:tid', routes.views.ticket);
     app.get('/gallery', routes.views.gallery);
     app.all('/contact', routes.views.contact);
     app.all('/api/*', keystone.initAPI);
     app.get('/download/users', routes.download.users);
     app.all('/api/call/new', api.call.new);
-
     // jwt token authentication for socket.io traffic
-    app.all('/driver*', middleware.requireUser);
-    app.all('/driver', api.token);
-    app.all('/driver/call/list', api.call.activelist);
-    //  app.all('/api/license/registration', api.license_processor.registration);
+    app.all('/api/token*', middleware.requireUser);
+    app.all('/api/token', api.token);
+    app.all('/api/call/list', api.call.call_list);
+    // app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
     // app.get('/protected', middleware.requireUser, routes.views.protected);

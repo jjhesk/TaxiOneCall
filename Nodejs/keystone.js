@@ -101,31 +101,55 @@ keystone.set('jwtTokenSecret', '234USDF423HIUE990SD9F9855456460V'); // put in so
 
 // Start Keystone to connect to your database and initialise the web server
 restyStone.start();
+
 keystone.start({
+    // http:
     onHttpServerCreated: function () {
-// Instantiate an express.io app object, tack it on to keystone
+        // Instantiate an express.io app object, tack it on to keystone
         keystone.socketioapp = require('express.io')();
-// The 'server' property is used internally by express.io as the express http or https object, so copy it from keystone
+        // The 'server' property is used internally by express.io as the express http or https object, so copy it from keystone
         keystone.socketioapp.server = keystone.httpServer;
-// Since the http(s) object has already been created by keystone just before this callback, we call express.io's socket.io instantiator rather than creating another server with: keystone.socketioapp.http().io(); This allows socket.io to use the same port as keystone.
+        // Since the http(s) object has already been created by keystone just before this callback, we call express.io's socket.io instantiator rather than creating another server with: keystone.socketioapp.http().io(); This allows socket.io to use the same port as keystone.
         keystone.socketioapp.io();
+
         var socketio = keystone.socketioapp.io;
         keystone.set('socketio', socketio);
+
         var port = keystone.get('port');
-// 'listen' will share the port with keystone
+        // 'listen' will share the port with keystone
         keystone.socketioapp.server.listen(port ? port : 3000);
+
         socketio.set('heartbeat timeout', 20);
         socketio.set('heartbeat interval', 10);
         socketio.enable('heartbeats');
 
-        var checkToken = require('./lib/handler/checkToken');
         socketio.on('connection', function (socket) {
-            socket.on('connected', function (token) {
-                var user = checkToken(token);
-                if (typeof user == 'object') {
-                    socket.user = user;
-                }
+            console.log(socket);
+            socket.on('connect', function (token) {
+                console.log(token);
             });
+
+            socket.on('ordered', function (number) {
+                //the number
+                console.log(number);
+            });
+            socket.on('connected', function (token) {
+                console.log(token);
+            });
+            socket.on('disconnect', function (token) {
+                console.log(token);
+            });
+
+        });
+    },
+    // https:
+    onHttpsServerCreated: function () {
+        keystone.app.server = keystone.httpsServer;
+        keystone.app.io();
+        var io = keystone.app.io;
+        // Setup your routes here. 'listen' is called right after this function returns.
+        io.route('ready', function (req) {
+            req.io.emit('talk', {message: 'io event from an io route on the server'})
         });
     }
 });

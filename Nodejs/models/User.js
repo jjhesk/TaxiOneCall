@@ -45,7 +45,6 @@ User.schema.virtual('canAccessKeystone').get(function () {
  */
 //User.relationship({ref: 'Maker', path: 'makerName'});
 
-
 /**
  * Registration
  */

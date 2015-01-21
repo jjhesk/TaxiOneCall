@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TaxiCallAndroid.iml" filepath="$PROJECT_DIR$/TaxiCallAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customer_app/customer_app.iml" filepath="$PROJECT_DIR$/customer_app/customer_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/driver_app/driver_app.iml" filepath="$PROJECT_DIR$/driver_app/driver_app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" filepath="$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/rippleView/rippleView.iml" filepath="$PROJECT_DIR$/rippleView/rippleView.iml" />
     </modules>
   </component>

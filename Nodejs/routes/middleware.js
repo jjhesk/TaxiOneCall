@@ -63,3 +63,62 @@ exports.requireUser = function (req, res, next) {
         next();
     }
 };
+
+/**
+ socket IO
+ **/
+/*
+exports.socketiostream = {
+
+
+    // http:
+    onHttpServerCreated: function () {
+        keystone.app.server = keystone.httpServer;
+        keystone.app.io();
+
+        // Setup your routes here. 'listen' is called right after this function returns.
+        keystone.app.io.route('ready', function (req) {
+            req.io.emit('talk', {message: 'io event from an io route on the server'})
+        });
+    },
+
+
+    // https:
+    onHttpsServerCreated: function () {
+        keystone.app.server = keystone.httpsServer;
+        keystone.app.io();
+
+        // Setup your routes here. 'listen' is called right after this function returns.
+        keystone.app.io.route('ready', function (req) {
+            req.io.emit('talk', {message: 'io event from an io route on the server'})
+        });
+    },
+
+
+    onHttpServerCreated: function () {
+// Instantiate an express.io app object, tack it on to keystone
+        keystone.socketioapp = require('express.io')();
+// The 'server' property is used internally by express.io as the express http or https object, so copy it from keystone
+        keystone.socketioapp.server = keystone.httpServer;
+// Since the http(s) object has already been created by keystone just before this callback, we call express.io's socket.io instantiator rather than creating another server with: keystone.socketioapp.http().io(); This allows socket.io to use the same port as keystone.
+        keystone.socketioapp.io();
+        var socketio = keystone.socketioapp.io;
+        keystone.set('socketio', socketio);
+        var port = keystone.get('port');
+// 'listen' will share the port with keystone
+        keystone.socketioapp.server.listen(port ? port : 3000);
+        socketio.set('heartbeat timeout', 20);
+        socketio.set('heartbeat interval', 10);
+        socketio.enable('heartbeats');
+
+        var checkToken = require('./lib/handler/checkToken');
+        socketio.on('connection', function (socket) {
+            socket.on('connected', function (token) {
+                var user = checkToken(token);
+                if (typeof user == 'object') {
+                    socket.user = user;
+                }
+            });
+        });
+    }
+}*/

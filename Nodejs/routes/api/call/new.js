@@ -20,13 +20,14 @@ var getTypeChoice = function (Q) {
 }
 var newCall = function (Q, next) {
     var datenow = Date.now();
-   // console.log('[api.new.call]  - get Q.', Q);
+    // console.log('[api.new.call] - get Q.', Q);
     var callrecord = new Call.model({
         calltype: getTypeChoice(Q),
         callnumber: Q.phonenumber,
         calltime: datenow,
         dealstatus: 'public',
         destination: Q.destination,
+        pickup: Q.mylocation,
         position: Q.gps
     });
     callrecord.save(function (err) {
@@ -49,8 +50,8 @@ exports = module.exports = function (req, res) {
     async.series([
         function (next) {
             try {
-                Q = tool.url_param_checker(req.query,
-                    ['phonenumber', 'gps', 'type', 'destination']);
+                Q = tool.url_param_checker(req.body,
+                    ['phonenumber', 'gps', 'type', 'destination', 'mylocation']);
                 next();
             } catch (e) {
                 return next({message: e.message});

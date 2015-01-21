@@ -34,7 +34,8 @@ Call.add({
     customer: {type: Types.Boolean, default: false},
     position: {type: Types.Text, noedit: true, label: "Position GPS"},
     estimate: {type: Types.Text, noedit: true, label: "The estimation of the Address"},
-    passengers: {type: Types.Number, noedit: true, label: "How many people?"},
+    passengers: {type: Types.Number, noedit: true, label: "How many people?", default: 1},
+    pickup: {type: Types.Text, noedit: true, label: "Pick Up Location"},
     destination: {type: Types.Text, noedit: true, label: "Location to go?"}
 }, 'Deal', {
     costconfirm: {type: Types.Number, default: 0, label: "Final cost"}
