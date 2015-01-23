@@ -28,6 +28,7 @@ dependencies {
     compile 'com.afollestad:material-dialogs:0.5.9'
     compile 'com.daimajia.swipelayout:library:1.1.7@aar'
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
+    compile 'com.koushikdutta.async:androidasync:2.+'
     compile 'com.pnikosis:materialish-progress:1.2'
     compile project(':libHkmCheck')
     compile project(':rippleView')

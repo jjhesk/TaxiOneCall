@@ -17,7 +17,15 @@ import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.schema.ConfirmCall;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
+import com.koushikdutta.async.http.AsyncHttpClient;
+import com.koushikdutta.async.http.socketio.Acknowledge;
+import com.koushikdutta.async.http.socketio.ConnectCallback;
+import com.koushikdutta.async.http.socketio.EventCallback;
+import com.koushikdutta.async.http.socketio.JSONCallback;
+import com.koushikdutta.async.http.socketio.SocketIOClient;
+import com.koushikdutta.async.http.socketio.StringCallback;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
@@ -46,45 +54,89 @@ public class WaitingForRide extends Activity {
         edtv.setText(rawjson);
         from.setText(CCdata.pickup);
         to.setText(CCdata.destination);
-        socketIOInit();
+        // socketIOInit();
+        getSocketWorking();
     }
 
     @Override
     protected void onDestroy() {
-        if (socket != null)
-            socket.disconnect();
+      /*  if (socket != null)
+            socket.disconnect();*/
         super.onDestroy();
     }
 
+    private void socketIOInitOff() {
+
+
+    }
+
+    private void getSocketWorkingOff() {
+
+    }
+
+    //https://github.com/koush/AndroidAsync
+    private void getSocketWorking() {
+        SocketIOClient.connect(AsyncHttpClient.getDefaultInstance(), Config.domain, new ConnectCallback() {
+            @Override
+            public void onConnectCompleted(Exception ex, SocketIOClient client) {
+                if (ex != null) {
+                    ex.printStackTrace();
+                    return;
+                }
+                client.setStringCallback(new StringCallback() {
+                    @Override
+                    public void onString(String string, Acknowledge acknowledge) {
+                        System.out.println(string);
+                    }
+                });
+                client.on("ordered", new EventCallback() {
+                    @Override
+                    public void onEvent(JSONArray argument, Acknowledge acknowledge) {
+                        System.out.println("args: " + argument.toString());
+                    }
+                });
+                client.setJSONCallback(new JSONCallback() {
+                    @Override
+                    public void onJSON(JSONObject json, Acknowledge acknowledge) {
+                        System.out.println("args: " + json.toString());
+                    }
+                });
+            }
+        });
+
+    }
+
     private void socketIOInit() {
+        IO.Options opts = new IO.Options();
+        opts.forceNew = true;
+        opts.reconnection = false;
+
         try {
-            socket = IO.socket(Config.domain);
+            socket = IO.socket(Config.domain, opts);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
-        socket
-                .on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 Log.d("MainActivity: ", "socket connected");
                 socket.emit("ordered", Config.current_order.getnumber());
                 socket.disconnect();
             }
-        })
-                .on("ordered", new Emitter.Listener() {
+        }).on("ordered", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 JSONObject obj = (JSONObject) args[0];
                 Log.d("MainActivity: ", "message back: " + obj.toString());
             }
-        })
-                .on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+        }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
 
             }
         });
+
         socket.connect();
     }
 }

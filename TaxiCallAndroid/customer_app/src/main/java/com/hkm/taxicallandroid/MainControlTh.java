@@ -274,8 +274,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
 
 
             order.checkComplete();
-            if (!calltriggered) calltriggered = true;
-            else throw new Exception("triggered");
+            if (!calltriggered) calltriggered = true; else throw new Exception("triggered");
 
             Call mCall = new Call(getApplicationContext(), new CallTask.callback() {
                 @Override

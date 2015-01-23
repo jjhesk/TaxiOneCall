@@ -26,7 +26,7 @@ exports = module.exports = function (req, res) {
     async.series([
         function (next) {
             //  try {
-            var q = Call.model.find().where('dealstatus', 'public').sort('-calltime').limit('4');
+            var q = Call.model.find().where('dealstatus', 'public').sort('-calltime').limit('100');
             //  .populate('calltype')
             q.exec(function (err, results) {
                 dataholder.posts = results;

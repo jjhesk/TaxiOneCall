@@ -124,13 +124,14 @@ keystone.start({
         socketio.enable('heartbeats');
 
         socketio.on('connection', function (socket) {
-            console.log(socket);
+            //console.log(socket);
             socket.on('connect', function (token) {
                 console.log(token);
             });
 
             socket.on('ordered', function (number) {
                 //the number
+                console.log("order number is now on this now");
                 console.log(number);
             });
             socket.on('connected', function (token) {
@@ -139,7 +140,6 @@ keystone.start({
             socket.on('disconnect', function (token) {
                 console.log(token);
             });
-
         });
     },
     // https:
