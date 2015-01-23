@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.asynhkm.productchecker.Util.Tool;
 import com.daimajia.swipe.SwipeLayout;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -67,7 +68,6 @@ public class WaitingForRide extends Activity {
 
     private void socketIOInitOff() {
 
-
     }
 
     private void getSocketWorkingOff() {
@@ -81,8 +81,11 @@ public class WaitingForRide extends Activity {
             public void onConnectCompleted(Exception ex, SocketIOClient client) {
                 if (ex != null) {
                     ex.printStackTrace();
+
                     return;
                 }
+
+
                 client.setStringCallback(new StringCallback() {
                     @Override
                     public void onString(String string, Acknowledge acknowledge) {
@@ -92,26 +95,36 @@ public class WaitingForRide extends Activity {
                 client.on("ordered", new EventCallback() {
                     @Override
                     public void onEvent(JSONArray argument, Acknowledge acknowledge) {
-                        System.out.println("args: " + argument.toString());
+                        // System.out.println("args: " + argument.toString());
+                        Tool.trace(getApplicationContext(), argument.toString());
                     }
                 });
                 client.setJSONCallback(new JSONCallback() {
                     @Override
                     public void onJSON(JSONObject json, Acknowledge acknowledge) {
-                        System.out.println("args: " + json.toString());
+                        //  System.out.println("args: " + json.toString());
+                        Tool.trace(getApplicationContext(), json.toString());
                     }
                 });
+
+
+
+
+                client.emit("ordered");
+
+
             }
         });
-
     }
 
+
     private void socketIOInit() {
-        IO.Options opts = new IO.Options();
-        opts.forceNew = true;
-        opts.reconnection = false;
 
         try {
+            IO.Options opts = new IO.Options();
+            opts.forceNew = true;
+            opts.reconnection = false;
+
             socket = IO.socket(Config.domain, opts);
         } catch (URISyntaxException e) {
             e.printStackTrace();
