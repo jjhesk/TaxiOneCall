@@ -1,1 +1,2 @@
 include ':customer_app', ':libHkmCheck', ':rippleView', ':driver_app'
+include ':library'

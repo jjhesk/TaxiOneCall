@@ -62,6 +62,7 @@ exports = module.exports = function (req, res) {
             next();
         },
         function (next) {
+            console.log('[api.new.call]  - verify your call failed.', local.call);
             return res.apiResponse({
                 success: true,
                 timestamp: new Date().getTime(),

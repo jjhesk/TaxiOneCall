@@ -7,7 +7,6 @@
     <string name="current_position">My Current Position</string>
     <string name="action_settings">Settings</string>
     <string name="about">About</string>
-
     <string name="agree">Agree</string>
     <string name="disagree">Disagree</string>
     <string name="more_info">More Info</string>
@@ -35,11 +34,14 @@
     <string name="useGoogleLocationServicesPrompt">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</string>
     <string name="socialNetworks">Social Networks</string>
     <string name="choose">Choose</string>
+    <string name="confirm_choices">confirm additional</string>
     <string name="speedBoost">Turn on speed boost now!</string>
     <string name="noThanks">No thanks</string>
     <string name="googleWifi">Google Wifi</string>
     <string name="connect">Connect</string>
     <string name="making_calls">The call is making now...</string>
+    <string name="wait">one moment.</string>
+    <string name="add_on">Additionals.</string>
 
 
     <string name="about_body"><![CDATA[
@@ -52,6 +54,7 @@
     ]]></string>
     <string name="dismiss">Dismiss</string>
     <string name="call_type">Transportation</string>
+    <string name="extra_requirement">Extra</string>
     <string name="call_type_title">Transportation Type</string>
     <string name="number_field">Order Number</string>
     <string name="shareLocationPrompt">This app wants to access your location.</string>
@@ -75,11 +78,42 @@
     <string name="ssidLit">Material Dialogs</string>
     <string name="color_chooser">Color Chooser</string>
 
+    <string name="prefer_locations">Collections</string>
+
+
+    <string name="round_trip">Round Trip</string>
+    <string name="five_ppl">five people</string>
+    <string name="pets">Bring pets</string>
+    <string name="extra_tips">extra tips</string>
+
+
+    <string name="map_hospital">Hospitals</string>
+    <string name="map_police">Police Stations</string>
+    <string name="map_parks">Parks</string>
+    <string name="map_mtr">MTR stations</string>
+
     <string-array name="AutoType">
         <item>Taxi</item>
-        <item>Van</item>
-        <item>Limo</item>
+        <!--        <item>Van</item>
+                <item>Limo</item>-->
     </string-array>
+
+
+
+    <string-array name="Remarks">
+        <item>@string/round_trip</item>
+        <item>@string/five_ppl</item>
+        <item>@string/pets</item>
+        <item>@string/extra_tips</item>
+    </string-array>
+
+    <string-array name="Pin">
+        <item>@string/map_hospital</item>
+        <item>@string/map_police</item>
+        <item>@string/map_parks</item>
+        <item>@string/map_mtr</item>
+    </string-array>
+
 
     <string-array name="socialNetworks">
         <item>Twitter</item>
@@ -146,4 +180,6 @@
         <item>Wisconsin</item>
         <item>Wyoming</item>
     </string-array>
+
+
 </resources>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/spacgg"
+    android:paddingTop="@dimen/spacing"
+    android:background="@drawable/lisa">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/order_from"
+            style="?android:textAppearanceMedium"
+            android:textColor="?android:textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="FROM" />
+
+        <TextView
+
+            style="?android:textAppearanceMedium"
+            android:textColor="?android:textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text=" to " />
+
+
+        <TextView
+            android:textStyle="bold"
+            android:text="place"
+            android:id="@+id/order_to"
+            style="?android:textAppearanceMedium"
+            android:textColor="?android:textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/spacing"
+            android:paddingRight="@dimen/spacing"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+
+    <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:tag="Bottom1"
+            android:background="#66ddff00"
+            android:id="@+id/bottom_wrapper"
+            android:layout_width="160dp"
+            android:weightSum="1"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/call_customer"
+                android:src="@android:drawable/sym_action_call"
+                android:layout_width="@dimen/button_width"
+                android:background="#ffcd7aff"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/view_history"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:layout_width="@dimen/button_width"
+                android:background="#FF3B30"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="remarks"
+                android:id="@+id/remarks"
+                style="?android:textAppearanceMedium"
+                android:textColor="?android:textColorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+
+        </LinearLayout>
+    </com.daimajia.swipe.SwipeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+
+        android:textColor="@color/white_color"
+        android:text="demotime" />
+</LinearLayout>

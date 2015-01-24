@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.asynhkm.productchecker.Util.Tool;
 import com.hkm.taxicallandroid.R;
 
 /**
@@ -175,6 +176,68 @@ public class DialogTools {
                 .positiveText(R.string.choose)
 
                 .show();
+    }
+
+    private Integer[] add_remarks_selected;
+
+    public void pin_azure() {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.prefer_locations)
+                .items(R.array.Pin)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
+                        sub_pin();
+
+                    }
+                })
+                .positiveText(R.string.confirm_choices)
+                .show();
+    }
+
+    private void sub_pin() {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.prefer_locations)
+                .items(R.array.Pin)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
+
+
+                    }
+                })
+                .positiveText(R.string.confirm_choices)
+                .show();
+    }
+
+    public void add_remarks() {
+        if (add_remarks_selected == null) {
+            add_remarks_selected = new Integer[]{1};
+        }
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.add_on)
+                .items(R.array.Remarks)
+                .itemsCallbackMultiChoice(add_remarks_selected, new MaterialDialog.ListCallbackMulti() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                        StringBuilder str = new StringBuilder();
+                        for (int i = 0; i < which.length; i++) {
+                            str.append(which[i]);
+                            str.append(": ");
+                            str.append(text[i]);
+                            str.append('\n');
+
+                        }
+                        add_remarks_selected = which;
+                        Tool.trace(__ctx, str.toString());
+                    }
+                })
+                .positiveText(R.string.confirm_choices)
+                .show();
+
+
     }
 
 

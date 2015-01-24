@@ -11,12 +11,14 @@ public class Config {
     public static class control {
         public final static String newcall = "/api/call/new/";
         public final static String login = "/api/account/login/";
-        public final static String getcalllist = "/api/call/list/";
+        public final static String check = "/api/call/check/";
+        public final static String confirm_order = "/api/call/confirm/";
     }
 
     public static DataCallOrder current_order;
 
     public static class _default {
+        public final static int setlooptimer = 5000;
     }
 
 }

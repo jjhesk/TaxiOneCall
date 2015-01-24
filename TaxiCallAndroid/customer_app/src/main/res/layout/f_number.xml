@@ -8,34 +8,26 @@
         android:tag="Bottom1"
         android:background="#66ddff00"
         android:id="@+id/bottom_wrapper"
-        android:layout_width="160dp"
+        android:layout_width="80dp"
         android:weightSum="1"
         android:layout_height="match_parent">
 
 
         <ImageView
             android:id="@+id/change_number"
-            android:src="@drawable/magnifier"
+            android:src="@drawable/f0ad128"
             android:layout_width="@dimen/button_width"
             android:background="#ffcd7aff"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
             android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/logout"
-            android:src="@drawable/magnifier"
-            android:layout_width="@dimen/button_width"
-            android:background="#FF3B30"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:layout_height="match_parent" />
+
 
     </LinearLayout>
 
     <LinearLayout
         android:padding="10dp"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

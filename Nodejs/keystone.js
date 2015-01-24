@@ -129,7 +129,6 @@ keystone.start({
                 console.log(token);
             });
             socket.on('add user', function (usernamr) {
-                //the number
                 console.log("order number is now on this now");
                 console.log(usernamr);
                 console.log("add user connected");
@@ -145,9 +144,9 @@ keystone.start({
             });
             socket.on('disconnect', function (token) {
                 console.log(token);
+                console.log("disconnect disconnect");
             });
-            socket.emit('ordered', "hi");
-
+           //socket.emit('ordered', "hi");
         });
     },
     // https:

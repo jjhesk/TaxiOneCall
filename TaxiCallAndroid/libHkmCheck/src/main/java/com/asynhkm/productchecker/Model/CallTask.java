@@ -26,12 +26,22 @@ import java.io.IOException;
  * Created by hesk on 1/11/2015.
  */
 public class CallTask extends AsyncTask<Void, Void, String> {
+
+    protected boolean isError = false;
+    protected String errorMessage, submission_body_json, url;
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    protected static String TAG = "call.api";
+    private Context ctx;
+    protected HttpParams httpParams;
+    protected OkHttpClient client = new OkHttpClient();
+    protected callback mcallback;
+
     public interface callback {
-        public void onSuccess(String data);
+        public void onSuccess(final String data);
 
-        public void onFailure(String message);
+        public void onFailure(final String message);
 
-        public void beforeStart(CallTask task);
+        public void beforeStart(final CallTask task);
     }
 
     public boolean isSuccess(String str) throws JSONException {
@@ -39,13 +49,6 @@ public class CallTask extends AsyncTask<Void, Void, String> {
         final boolean t = js.getBoolean("success");
         return t;
     }
-
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    protected static String TAG = "call.api";
-    private Context ctx;
-    protected HttpParams httpParams;
-    protected OkHttpClient client = new OkHttpClient();
-    protected callback mcallback;
 
     public CallTask(Context ccc, callback cb) {
         httpParams = new BasicHttpParams();
@@ -64,9 +67,6 @@ public class CallTask extends AsyncTask<Void, Void, String> {
         url = e;
         return this;
     }
-
-    protected boolean isError = false;
-    protected String errorMessage, submission_body_json, url;
 
     private void setError(String e) {
         isError = true;
@@ -105,24 +105,25 @@ public class CallTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        super.onPostExecute(result);
         Log.d(TAG, "onPostExecute result == " + result);
-
         if (isError) {
-            if (mcallback != null) mcallback.onFailure(errorMessage);
+            //if (mcallback != null) mcallback.onFailure(errorMessage);
         } else {
-            if (mcallback != null) mcallback.onSuccess(result);
+            //if (mcallback != null) mcallback.onSuccess(result);
         }
 
-        super.onPostExecute(result);
     }
 
     @Override
     protected void onPreExecute() {
+        super.onPreExecute();
         if (Tool.isOnline(ctx)) {
-            super.onPreExecute();
             if (mcallback != null) mcallback.beforeStart(this);
         } else {
-            if (mcallback != null) mcallback.onFailure("no internet available");
+            //if (mcallback != null) mcallback.onFailure("no internet available");
         }
+
+
     }
 }

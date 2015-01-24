@@ -21,6 +21,7 @@ import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 
 public class MainControlTh extends Activity implements FolderSelectorDialog.FolderSelectCallback {
     private DataCallOrder order;
-    private Button position_button, call_type, speak_button;
+    private Button position_button, call_type, speak_button, additional_button;
     private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
     private SwipeLayout f_destination, f_number, f_start;
     private Phone mphone;
@@ -58,17 +59,24 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 showListTypeVech();
             }
         });
-
+        additional_button = (Button)
+                findViewById(R.id.additional_button);
+        additional_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_collection.add_remarks();
+            }
+        });
         f_number = (SwipeLayout) findViewById(R.id.f_number);
         f_number.setShowMode(SwipeLayout.ShowMode.PullOut);
-        f_number
+       /* f_number
                 .findViewById(R.id.logout)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         showToastMessage("logout");
                     }
-                });
+                });*/
         f_number
                 .findViewById(R.id.change_number)
                 .setOnClickListener(new View.OnClickListener() {
@@ -95,6 +103,14 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                         speak();
                     }
                 });
+        f_destination.findViewById(R.id.pin)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                     dialog_collection.pin_azure();
+                    }
+                });
+
 
         f_start = (SwipeLayout) findViewById(R.id.f_setstart);
         // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -128,9 +144,10 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 triggerCall();
             }
         });
-        mphone.setPhoneNumberDisplay(display_number);
 
+        mphone.setPhoneNumberDisplay(display_number);
     }
+
 
     private TextView display_number, display_destination, display_start_loc;
 
@@ -152,7 +169,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, myLanguage);
         intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, myLanguage);
         // If number of Matches is not selected then return show toast message
-    /*    if (msTextMatches.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
+        /* if (msTextMatches.getSelectedItemPosition() == AdapterView.INVALID_POSITION) {
             showToastMessage("Please select No. of Matches from spinner");
             return;
         }*/
@@ -271,14 +288,13 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                     }
                 }
             });*/
-
-
             order.checkComplete();
-            if (!calltriggered) calltriggered = true; else throw new Exception("triggered");
+            if (!calltriggered) calltriggered = true;
+            else throw new Exception("triggered");
 
             Call mCall = new Call(getApplicationContext(), new CallTask.callback() {
                 @Override
-                public void onSuccess(String data) {
+                public void onSuccess(final String data) {
                     dialog_collection.progress_bar_dismiss();
                     // if (calltriggered)
                     // dialog_collection.showSimpleMessage(data);
@@ -287,7 +303,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 }
 
                 @Override
-                public void onFailure(String message) {
+                public void onFailure(final String message) {
                     dialog_collection.progress_bar_dismiss();
                     // if (calltriggered)
                     dialog_collection.showSimpleMessage(message);
@@ -295,7 +311,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 }
 
                 @Override
-                public void beforeStart(CallTask task) {
+                public void beforeStart(final CallTask task) {
                     dialog_collection.progress_bar_start(R.string.making_calls);
 
                 }
@@ -321,6 +337,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
         b.putString("json_order", raw);
         intent.putExtras(b);
         startActivity(intent);
+        //check
     }
 
     private void showListTypeVech() {

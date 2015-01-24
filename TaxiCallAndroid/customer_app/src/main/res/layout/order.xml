@@ -9,45 +9,41 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".order">
 
-    <RelativeLayout
+
+
+
+    <LinearLayout
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout">
+        android:orientation="horizontal"
+        android:layout_height="80dp"
+        >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/call_type"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/call_type"
+            />
 
-            <TextView
-                android:text="@string/message_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/numberd"
-                android:padding="10dp"
-                android:gravity="center" />
+        <Button
+            android:id="@+id/additional_button"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="@string/extra_requirement"
+            />
 
+        <include
+            android:id="@+id/f_number"
+            layout="@layout/f_number"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
 
-            <TextView
-                android:layout_below="@+id/numberd"
-                android:text="checking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/colorView"
-                android:padding="10dp" />
-
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <include
-        android:id="@+id/f_number"
-        layout="@layout/f_number"
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
-
+    </LinearLayout>
 
     <include
         android:id="@+id/f_setstart"
-        android:layout_below="@+id/f_number"
+        android:layout_below="@+id/topbar"
         layout="@layout/f_setstart"
         android:layout_width="match_parent"
         android:layout_height="80dp" />
@@ -60,18 +56,6 @@
         layout="@layout/f_destination"
         android:layout_width="match_parent"
         android:layout_height="80dp" />
-
-
-    <Button
-
-        android:id="@+id/call_type"
-        android:layout_below="@+id/f_destination"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="@string/call_type"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
 
 
     <com.indris.material.RippleView

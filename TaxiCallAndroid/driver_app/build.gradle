@@ -29,6 +29,8 @@ dependencies {
     compile 'com.pnikosis:materialish-progress:1.2'
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
     compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //compile 'com.android.support:cardview-v7:21.0.0-rc1'
     compile project(':libHkmCheck')
     compile project(':rippleView')
 }

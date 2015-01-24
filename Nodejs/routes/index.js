@@ -54,7 +54,11 @@ exports = module.exports = function (app) {
     // jwt token authentication for socket.io traffic
     app.all('/api/token*', middleware.requireUser);
     app.all('/api/token', api.token);
-    app.all('/api/call/list', api.call.call_list);
+    // app.all('/api/call/list', api.call.call_list);
+    app.all('/api/call/confirm', api.call.confirm_order);
+    app.all('/api/call/check', api.call.check_order);
+    app.all('/api/driver/list', api.driver.mylist);
+    app.all('/api/driver/inquiry', api.driver.inquiry);
     // app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

@@ -18,18 +18,22 @@ public class Call extends CallTask {
         TAG = "call.api.taxi";
     }
 
+    public Call setDataObject(final String txt) {
+        data_object = txt;
+        return this;
+    }
+
     @Override
     protected void onPostExecute(String resultString) {
 
         try {
             if (isError) {
                 if (mcallback != null) mcallback.onFailure(errorMessage);
-            }else{
+            } else {
                 final JSONObject Jr = new JSONObject(resultString);
                 JSONObject data = Jr.getJSONObject(data_object);
                 if (mcallback != null) mcallback.onSuccess(data.toString());
             }
-
         } catch (JsonParseException e) {
             if (mcallback != null) mcallback.onFailure(e.getMessage());
         } catch (JSONException e) {

@@ -1,4 +1,4 @@
-package com.hkm.driverview;
+package com.hkm.driverview.testIo;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -27,6 +27,9 @@ import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
 import com.github.nkzawa.emitter.Emitter;
+import com.hkm.driverview.common.Config;
+import com.hkm.driverview.LoginActivity;
+import com.hkm.driverview.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +41,7 @@ import java.util.List;
 /**
  * Created by hesk on 1/23/2015.
  */
-public class FragmentV extends Fragment {
+public class FragmentIo extends Fragment {
 
     private static final int REQUEST_LOGIN = 0;
 
@@ -60,7 +63,7 @@ public class FragmentV extends Fragment {
         }
     }
 
-    public FragmentV() {
+    public FragmentIo() {
         super();
     }
 
@@ -200,7 +203,8 @@ public class FragmentV extends Fragment {
     }
 
     private void addLog(String message) {
-        mMessages.add(new Message.Builder(Message.TYPE_LOG)
+        mMessages.add(
+                new Message.Builder(Message.TYPE_LOG)
                 .message(message).build());
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();

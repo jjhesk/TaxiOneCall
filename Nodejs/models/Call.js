@@ -25,10 +25,12 @@ Call.add({
     dealstatus: {
         default: 'public', type: Types.Select,
         options: [
-            {value: 'public', label: 'New Public'},
+            {value: 'public', label: 'New Fresh Public Request'},
+            {value: 'stage1', label: 'Driver Accept'},
+            {value: 'stage2', label: 'Customer Accept'},
             {value: 'taken', label: 'Taken'},
             {value: 'paid', label: 'Paid'}
-        ], noedit: true, label: "Calling Status"
+        ], noedit: false, label: "Calling Status"
     }
 }, 'Call Data', {
     customer: {type: Types.Boolean, default: false},
