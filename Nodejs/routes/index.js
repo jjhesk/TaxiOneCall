@@ -36,7 +36,8 @@ var routes = {
 var api = {
     token: importRoutes('./api/').token,
     call: importRoutes('./api/call'),
-    driver: importRoutes('./api/driver')
+    driver: importRoutes('./api/driver'),
+    account: importRoutes('./api/me')
 };
 
 // Setup Route Bindings
@@ -59,8 +60,11 @@ exports = module.exports = function (app) {
     app.all('/api/call/check', api.call.check_order);
     app.all('/api/driver/list', api.driver.mylist);
     app.all('/api/driver/inquiry', api.driver.inquiry);
+    app.all('/api/driver/login', api.account.logindriver);
+    app.all('/api/driver/new', api.account.newdriver);
     // app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
     // app.get('/protected', middleware.requireUser, routes.views.protected);
+
 };

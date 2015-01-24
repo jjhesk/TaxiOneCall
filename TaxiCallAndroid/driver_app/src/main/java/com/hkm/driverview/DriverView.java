@@ -1,5 +1,6 @@
 package com.hkm.driverview;
 
+import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +14,10 @@ import android.util.Log;
 
 import com.asynhkm.productchecker.Model.CallTask;
 import com.asynhkm.productchecker.Model.GetTask;
+import com.asynhkm.productchecker.Util.Tool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.hkm.driverview.ListOrderes.FragmentX;
 import com.hkm.driverview.common.APIHelper;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.OrderListQ;
@@ -28,6 +31,7 @@ public class DriverView extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         dialog_collection = new DialogTools(this);
         setContentView(R.layout.act_main);
+
        /* SystemBarTintManager tintManager = new SystemBarTintManager(this);
         // enable status bar tint
         tintManager.setStatusBarTintEnabled(true);
@@ -59,6 +63,30 @@ public class DriverView extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Config.INTENT_CODE_LOGIN) {
+           // if (resultCode == RESULT_OK) {
+                // A contact was picked.  Here we will just display it
+                // to the user.
+                // startActivity(new Intent(Intent.ACTION_VIEW, data));
+                fragmentx.runagain();
+            //}
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    private FragmentX fragmentx;
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        // TODO Auto-generated method stub
+        super.onAttachFragment(fragment);
+      //  Tool.trace(this, fragment.getClass().getName());
+        if (fragment.getClass().getName().equalsIgnoreCase("com.hkm.driverview.ListOrderes.FragmentX")) {
+            fragmentx = (FragmentX) fragment;
+        }
     }
 
 

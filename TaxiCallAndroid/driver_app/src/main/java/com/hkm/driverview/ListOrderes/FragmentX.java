@@ -3,6 +3,7 @@ package com.hkm.driverview.ListOrderes;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +18,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.hkm.driverview.R;
+import com.hkm.driverview.RegLogin;
 import com.hkm.driverview.common.Config;
+import com.hkm.driverview.common.Identity;
 import com.hkm.driverview.common.OrderListQ;
 import com.hkm.driverview.ui.DialogTools;
 
@@ -38,14 +41,18 @@ public class FragmentX extends Fragment {
 
     private static final String TAG = "FragmentX";
 
+    private Context _ctx;
+    private boolean returnfailure = false;
+    private DialogTools dialog_collection;
     private OrderAdapter mAdapter;
-
+    private Identity logininfo;
     private List<OrderCustomer> mMessages = new ArrayList<OrderCustomer>();
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mAdapter = new OrderAdapter(activity, mMessages);
+        logininfo = new Identity(activity);
     }
 
     @Override
@@ -56,9 +63,16 @@ public class FragmentX extends Fragment {
 
     private RecyclerView mMessagesView;
 
+
     private void scrollToBottom() {
         mMessagesView.scrollToPosition(mAdapter.getItemCount() - 1);
     }
+
+    private void startRegLogin() {
+        Intent intent = new Intent(getActivity(), RegLogin.class);
+        getActivity().startActivityForResult(intent, Config.INTENT_CODE_LOGIN);
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -66,7 +80,14 @@ public class FragmentX extends Fragment {
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
+        if (logininfo.hasAuthen()) {
+            run();
+        } else {
+            startRegLogin();
+        }
+    }
 
+    public void runagain() {
         run();
     }
 
@@ -78,8 +99,9 @@ public class FragmentX extends Fragment {
     }
 
     private void addLog(String message) {
-        mMessages.add(new OrderCustomer.Builder(OrderCustomer.TYPE_LOG)
-                .message(message).build());
+        mMessages.add(
+                new OrderCustomer.Builder(OrderCustomer.TYPE_LOG).message(message).build()
+        );
         mAdapter.notifyItemInserted(mMessages.size() - 1);
         scrollToBottom();
     }
@@ -102,9 +124,6 @@ public class FragmentX extends Fragment {
         scrollToBottom();
     }
 
-    private Context _ctx;
-    private boolean returnfailure = false;
-    private DialogTools dialog_collection;
 
     private final ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
     private final Runnable maintask = new Runnable() {
@@ -138,9 +157,9 @@ public class FragmentX extends Fragment {
             Tool.trace(getActivity(), e.getMessage());
         }
     }
+
     private void request() {
         final String Q = Config.domain + Config.control.getcalllist;
-
         final OrderListQ mCall = new OrderListQ(getActivity(), new GetTask.callback() {
             @Override
             public void onSuccess(final String data) {
@@ -179,16 +198,7 @@ public class FragmentX extends Fragment {
                 });
             }
         });
-
-
         mCall.setURL(Q).execute();
-
-       /* getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mCall.setURL(Q).setBody("{}").execute();
-            }
-        });*/
     }
 
 }

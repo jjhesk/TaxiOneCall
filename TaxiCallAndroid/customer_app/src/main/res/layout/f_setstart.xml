@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/loc"
-            android:src="@drawable/ic_target"
+            android:src="@drawable/timehistory"
             android:layout_width="@dimen/button_width"
             android:background="@color/ripple_material_dark"
             android:paddingLeft="25dp"

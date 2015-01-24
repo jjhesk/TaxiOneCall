@@ -1,9 +1,0 @@
-int anim in_animation 0x7f020000
-int anim out_animation 0x7f020001
-int attr scrollBarPanel 0x7f010000
-int attr scrollBarPanelInAnimation 0x7f010001
-int attr scrollBarPanelOutAnimation 0x7f010002
-int[] styleable ExtendedListView { 0x7f010000, 0x7f010001, 0x7f010002 }
-int styleable ExtendedListView_scrollBarPanel 0
-int styleable ExtendedListView_scrollBarPanelInAnimation 1
-int styleable ExtendedListView_scrollBarPanelOutAnimation 2

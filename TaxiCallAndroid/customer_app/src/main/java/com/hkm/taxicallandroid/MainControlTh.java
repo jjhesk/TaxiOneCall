@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
@@ -19,6 +18,7 @@ import com.asynhkm.productchecker.Util.Tool;
 import com.daimajia.swipe.SwipeLayout;
 import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
+import com.hkm.taxicallandroid.memory.Phone;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
 
@@ -98,7 +98,6 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         mspeak_status = speak_status.SET_DESTINATION;
                         speak();
                     }
@@ -107,7 +106,8 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                     dialog_collection.pin_azure();
+                        mspeak_status = speak_status.SET_DESTINATION;
+                        dialog_collection.pin_azure();
                     }
                 });
 
@@ -120,7 +120,6 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         mspeak_status = speak_status.SET_START_LOCATION;
                         speak();
                     }
@@ -130,7 +129,8 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        getLocationCurrent();
+                        // getLocationCurrent();
+                        dialog_collection.loc_history();
                     }
                 });
 
@@ -190,7 +190,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                 ArrayList<String> textMatchList = data
                         .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 if (!textMatchList.isEmpty()) {
-                    showSuggestion(textMatchList.toArray(new String[textMatchList.size()]));
+                    dialog_collection.showSuggestion(textMatchList.toArray(new String[textMatchList.size()]));
                 }
                 //Result code for various error.
             } else if (resultCode == RecognizerIntent.RESULT_AUDIO_ERROR) {
@@ -211,7 +211,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
         display_number.setText(order.getnumber());
     }
 
-    private void updateLocation(String destination) {
+    public void updateLocation(String destination) {
 
         if (mspeak_status == speak_status.SET_DESTINATION) {
             display_destination.setText(destination);
@@ -257,21 +257,6 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
                     }
                 })
                 .show();
-    }
-
-    private void showSuggestion(CharSequence[] arraythis) {
-        new MaterialDialog.Builder(this)
-                .title(R.string.list_suggestion)
-                .items(arraythis)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        updateLocation(text.toString());
-                    }
-                })
-                .positiveText(android.R.string.ok)
-                .show();
-
     }
 
     private int auto_type = 0;

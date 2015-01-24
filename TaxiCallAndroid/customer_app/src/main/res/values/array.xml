@@ -25,4 +25,22 @@
         <item>#FF5722</item>
     </array>
 
+    <array name="remarks">
+        <item>@string/round_trip</item>
+        <item>@string/five_ppl</item>
+        <item>@string/pets</item>
+        <item>@string/extra_tips</item>
+        <item>@string/handicap</item>
+        <item>@string/manyluggage</item>
+    </array>
+
+    <array name="pin">
+        <item>@string/map_hospital</item>
+        <item>@string/map_airport</item>
+        <item>@string/map_parks</item>
+        <item>@string/map_mtr</item>
+        <item>@string/map_police</item>
+    </array>
+
+
 </resources>

@@ -27,7 +27,7 @@ keystone.init({
     'user model': 'User',
     'cookie secret': '4yA`pC]_G=x?r.M%252*fn}i.$=aGsZE~{r~xX-dt!pQ;pOIcUZ(23i9+S79BA$g',
     'auto update': true
-
+    //'jwtTokenSecret': '234Ufs(99#@@#*&@9F9855456460V'
 });
 
 // Load your project's Models
@@ -97,7 +97,7 @@ keystone.set('resty api base address', "/api");
 keystone.set('resty meta location', "./models");
 keystone.set('resty token header', "api-token");
 
-keystone.set('jwtTokenSecret', '234USDF423HIUE990SD9F9855456460V'); // put in something hard to guess
+keystone.set('jwtTokenSecret', '234Ufs(99#@@#*&@9F9855456460V'); // put in something hard to guess
 
 // Start Keystone to connect to your database and initialise the web server
 restyStone.start();
@@ -146,7 +146,7 @@ keystone.start({
                 console.log(token);
                 console.log("disconnect disconnect");
             });
-           //socket.emit('ordered', "hi");
+            //socket.emit('ordered', "hi");
         });
     },
     // https:

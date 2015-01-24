@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">TaxiCallAndroid</string>
 
     <string name="message_check">check this license if this is working now!</string>
@@ -43,6 +45,7 @@
     <string name="wait">one moment.</string>
     <string name="add_on">Additionals.</string>
 
+
     <string name="about_body"><![CDATA[
         material-dialogs, a library  designed by <b>Aidan Follestad</b>.<br/>
         <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
@@ -77,20 +80,19 @@
     <string name="ssidLit">Material Dialogs</string>
     <string name="color_chooser">Color Chooser</string>
     <string name="prefer_locations">Collections</string>
-    <string name="report_issue">Report issues</string>
+
     <string name="note">We do not take out the reported drivers in the database.</string>
-    <string name="issue_1">no driver contact me</string>
-    <string name="issue_2">driver did not take pick me up</string>
-    <string name="issue_3">driver was late</string>
-    <string name="issue_4">other issues</string>
+
+
+    <string name="report_issue">報告問題</string>
+    <string name="issue_1">沒有司機跟我聯繫</string>
+    <string name="issue_2">司機沒有採取接我</string>
+    <string name="issue_3">司機遲到</string>
+    <string name="issue_4">其他問題</string>
 
     <string-array name="AutoType">
         <item>Taxi</item>
         <!--        <item>Van</item>
                 <item>Limo</item>-->
     </string-array>
-
-
-
-
 </resources>

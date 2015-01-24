@@ -11,6 +11,7 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.asynhkm.productchecker.Util.Tool;
+import com.hkm.taxicallandroid.MainControlTh;
 import com.hkm.taxicallandroid.R;
 
 /**
@@ -101,7 +102,7 @@ public class DialogTools {
                 })
                 .show();
     }
-
+/*
     private void showList() {
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.socialNetworks)
@@ -176,39 +177,64 @@ public class DialogTools {
                 .positiveText(R.string.choose)
 
                 .show();
-    }
+    }*/
 
     private Integer[] add_remarks_selected;
+
+    public void loc_history() {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.prefer_locations)
+                .items(R.array.pin)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        //Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
+                        sub_pin(which);
+                    }
+                })
+                .positiveText(android.R.string.ok)
+                .show();
+    }
 
     public void pin_azure() {
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.prefer_locations)
-                .items(R.array.Pin)
+                .items(R.array.pin)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-                        sub_pin();
-
+                        //Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
+                        sub_pin(which);
                     }
                 })
-                .positiveText(R.string.confirm_choices)
+                .positiveText(android.R.string.ok)
                 .show();
     }
 
-    private void sub_pin() {
+    private void sub_pin(final int which_map) {
+        int array_list = R.array.pin;
+        switch (which_map) {
+            case 0:
+                array_list = R.array.public_hospital;
+                break;
+            case 1:
+                array_list = R.array.airport_locations;
+                break;
+            case 2:
+                array_list = R.array.parks_locations;
+                break;
+        }
+        Tool.trace(__ctx, which_map + "");
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.prefer_locations)
-                .items(R.array.Pin)
+                .items(array_list)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-
-
+                        ((MainControlTh) __ctx).updateLocation(text.toString());
+                        dialog.dismiss();
                     }
                 })
-                .positiveText(R.string.confirm_choices)
                 .show();
     }
 
@@ -218,7 +244,7 @@ public class DialogTools {
         }
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.add_on)
-                .items(R.array.Remarks)
+                .items(R.array.remarks)
                 .itemsCallbackMultiChoice(add_remarks_selected, new MaterialDialog.ListCallbackMulti() {
                     @Override
                     public void onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
@@ -241,6 +267,22 @@ public class DialogTools {
     }
 
 
+    public void showSuggestion(CharSequence[] arraythis) {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.list_suggestion)
+                .items(arraythis)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        ((MainControlTh) __ctx).updateLocation(text.toString());
+                    }
+                })
+                .positiveText(android.R.string.ok)
+                .show();
+
+    }
+
+
     private void showCustomWebView() {
         MaterialDialog dialog = new MaterialDialog.Builder(__ctx)
                 .title(R.string.changelog)
@@ -252,7 +294,7 @@ public class DialogTools {
         dialog.show();
     }
 
-
+/*
     private void showThemed() {
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.useGoogleLocationServices)
@@ -268,7 +310,8 @@ public class DialogTools {
                 .dividerColorRes(R.color.material_pink_500)
                 .theme(Theme.DARK)
                 .show();
-    }
+    }*/
+/*
 
     private void showShowCancelDismissCallbacks() {
         new MaterialDialog.Builder(__ctx)
@@ -298,6 +341,7 @@ public class DialogTools {
                 })
                 .show();
     }
+*/
 
 
     private void prepare_progress_bar() {

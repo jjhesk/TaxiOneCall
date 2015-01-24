@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_hospital">醫院</string>
+    <string name="map_police">警處</string>
+    <string name="map_parks">公園</string>
+    <string name="map_mtr">港鐵</string>
+    <string name="map_airport">機場</string>
+
+    <string name="round_trip">往返</string>
+    <string name="five_ppl">五人</string>
+    <string name="pets">寵物</string>
+    <string name="extra_tips">額外小費</string>
+    <string name="handicap">殘疾</string>
+    <string name="manyluggage">沉重的行李</string>
+</resources>

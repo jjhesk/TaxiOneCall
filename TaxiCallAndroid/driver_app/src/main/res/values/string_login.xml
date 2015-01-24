@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_activity_login">Join</string>
+
+    <string name="title_activity_login">Login Driver</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_username">What\'s your nickname?</string>
+    <string name="prompt_email">What\'s your email?</string>
+    <string name="prompt_password">What\'s your password?</string>
+
     <string name="action_sign_in">Join</string>
-    <string name="action_sign_in_short">Join</string>
+    <string name="action_sign_in_short">Set</string>
+    <string name="action_login">Login</string>
+    <string name="action_register">New Driver Registration</string>
 
     <string name="error_field_required">This field is required</string>
+
+
+    <string name="prompt_r_email">Your email</string>
+    <string name="prompt_r_password">Your password</string>
+    <string name="prompt_r_plate">Your license plate</string>
+    <string name="prompt_r_phone">Your phone number</string>
+
+
 </resources>

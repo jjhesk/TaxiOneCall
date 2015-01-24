@@ -15,7 +15,14 @@ public class PostD extends CallTask {
     public PostD(Context ccc, callback cb) {
         super(ccc, cb);
     }
+
     private static String data_object = "holder";
+
+    public PostD setDataObj(String str) {
+        data_object = str;
+        return this;
+    }
+
     @Override
     protected void onPostExecute(String resultString) {
         // super.onPostExecute(resultString);
@@ -28,13 +35,13 @@ public class PostD extends CallTask {
                 if (mcallback != null) mcallback.onSuccess(data);
             }
         } catch (JsonParseException e) {
-            if (mcallback != null) mcallback.onFailure("JsonParseException:" +e.getMessage());
+            if (mcallback != null) mcallback.onFailure("JsonParseException:" + e.getMessage());
         } catch (JSONException e) {
             if (mcallback != null) mcallback.onFailure("JSONException:" + e.getMessage());
         } catch (NullPointerException e) {
-            if (mcallback != null) mcallback.onFailure("NullPointerException:" +e.getMessage());
+            if (mcallback != null) mcallback.onFailure("NullPointerException:" + e.getMessage());
         } catch (Exception e) {
-            if (mcallback != null) mcallback.onFailure("Exception:" +e.getMessage());
+            if (mcallback != null) mcallback.onFailure("Exception:" + e.getMessage());
         }
     }
 }
