@@ -12,7 +12,7 @@ User.add({
     name: {type: Types.Name, required: true, index: true},
     email: {type: Types.Email, initial: true, required: true, index: true},
     password: {type: Types.Password, initial: true, required: true},
-    cellPhone: {type: Types.Number},
+    cellPhone: {type: Types.Text},
     customization: {type: Types.Color},
     vcoinID: {type: Types.Text, label: "vCoin Account UUID"},
     licenseID: {type: Types.Text, label: "website URL"}
@@ -48,5 +48,5 @@ User.schema.virtual('canAccessKeystone').get(function () {
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, roles';
+User.defaultColumns = 'name, cellPhone, email, roles';
 User.register();

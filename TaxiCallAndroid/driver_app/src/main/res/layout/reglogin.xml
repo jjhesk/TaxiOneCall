@@ -5,8 +5,7 @@
     android:background="@drawable/lisadar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipeloginface"
-    >
+    android:id="@+id/swipeloginface">
 
     <LinearLayout
         android:padding="10dp"
@@ -29,10 +28,23 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/r_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/reg_display_name"
+                    android:imeActionId="@+id/register_dr"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textNoSuggestions|text"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
                     android:id="@+id/r_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_r_email"
+                    android:hint="@string/reg_email"
                     android:imeActionId="@+id/register_dr"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -45,11 +57,24 @@
                     android:id="@+id/r_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_r_password"
+                    android:hint="@string/reg_pass"
                     android:imeActionId="@+id/register_dr"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/r_password_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/reg_pass_confirm"
+                    android:imeActionId="@+id/register_dr"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
                     android:maxLength="10"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -58,7 +83,7 @@
                     android:id="@+id/r_license_plate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_r_plate"
+                    android:hint="@string/reg_license_plate"
                     android:imeActionId="@+id/register_dr"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -71,7 +96,7 @@
                     android:id="@+id/r_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_r_phone"
+                    android:hint="@string/reg_phone_number"
                     android:imeActionId="@+id/register_dr"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -92,7 +117,6 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
 
     <LinearLayout
         android:tag="Bottom1"
@@ -119,13 +143,13 @@
                     android:id="@+id/loginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
+                    android:hint="@string/reg_phone_number"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="textEmailAddress"
+                    android:inputType="phone"
                     android:maxLength="50"
-                    android:maxLines="1"
+                    android:textSize="40dp"
                     android:singleLine="true" />
 
                 <EditText
@@ -141,14 +165,13 @@
                     android:maxLines="1"
                     android:singleLine="true" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/sign_in_button"
-                    style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/action_login"
-                    android:textStyle="bold" />
+                    android:layout_height="100dp"
+                    android:src="@drawable/connect_start"
+                    android:scaleType="centerInside" />
+
 
             </LinearLayout>
         </ScrollView>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/card_space"
+    android:paddingTop="@dimen/spacing">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:weightSum="8">
+
+        <TextView
+
+            android:id="@+id/order_from"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/TextDriverPlaces.from"
+            android:text="FROMXX XXXX dsf" />
+
+        <ImageView
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/arrow_p" />
+
+        <TextView
+            android:text="TOXXX XX XXX dfdfsd d"
+            android:id="@+id/order_to"
+            style="@style/TextDriverPlaces.to"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left">
+
+        <TextView
+            style="?android:textAppearanceMedium"
+            android:textColor="?android:textColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/time"
+            android:textColor="@color/white_color"
+            android:text="demotime"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp" />
+
+    </LinearLayout>
+
+    <TextView
+        style="?android:textAppearanceMedium"
+        android:textColor="?android:textColorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:text="Remarks" />
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/remarks"
+        android:textColor="@color/white_color"
+        android:text="demotime" />
+    <!--
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left">
+        </LinearLayout>
+    -->
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/pick_up"
+            android:scaleType="fitCenter"
+            android:layout_width="@dimen/bw_driver_order_view"
+            android:layout_height="150dp"
+            android:src="@drawable/timer" />
+
+        <ImageButton
+            android:id="@+id/call_customer"
+            android:scaleType="fitCenter"
+            android:layout_width="@dimen/bw_driver_order_view"
+            android:layout_height="150dp"
+            android:src="@drawable/phone22" />
+
+        <ImageButton
+            android:id="@+id/start_taxi_now"
+            android:scaleType="fitCenter"
+            android:layout_width="@dimen/bw_driver_order_view"
+            android:layout_height="150dp"
+            android:src="@drawable/goal" />
+
+        <ImageButton
+            android:id="@+id/release_order"
+            android:scaleType="fitCenter"
+            android:layout_width="@dimen/bw_driver_order_view"
+            android:layout_height="150dp"
+            android:src="@drawable/ret" />
+
+    </LinearLayout>
+
+</LinearLayout>

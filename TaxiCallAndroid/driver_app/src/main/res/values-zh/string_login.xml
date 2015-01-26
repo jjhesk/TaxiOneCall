@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_sign_in">Join</string>
+    <string name="action_sign_in_short">Set</string>
+    <string name="action_login">Login</string>
+    <string name="error_field_required">This field is required</string>
+
+    <string name="login_incomplete">你需要完成登錄信息</string>
+    <string name="title_activity_login">司機登錄</string>
+    <string name="action_register">新司機登記</string>
+    <string name="wait">更新中.</string>
+    <string name="reg_email">您的電子郵件。</string>
+    <string name="reg_pass">新密碼</string>
+    <string name="reg_pass_confirm">確認新密碼</string>
+    <string name="reg_license_plate">牌照</string>
+    <string name="reg_phone_number">您的手機號碼</string>
+    <string name="reg_display_name">綽號</string>
+    <string name="prompt_password">密碼</string>
+</resources>

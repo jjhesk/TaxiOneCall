@@ -2,18 +2,23 @@ package com.hkm.driverview.ListOrderes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.hkm.driverview.DriverView;
 import com.hkm.driverview.R;
+import com.nineoldandroids.view.ViewHelper;
 
 
+import java.text.ParseException;
 import java.util.List;
 
 
@@ -58,8 +63,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         viewHolder.setDestin(order.getDestination());
         viewHolder.setFrom(order.getPickUp());
         viewHolder.setCall(order.getCallnumber(), order.getOrderId());
-        viewHolder.setRemark(order.getcalltype());
-        viewHolder.setTime(order.getMoment());
+        viewHolder.setRemark(order.getRemark());
+        viewHolder.setOrder(order);
+        try {
+            viewHolder.setTime(order.getMoment());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -79,6 +89,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         private TextView __time;
         private ImageView callcustomer;
         private View parentView;
+        private SwipeLayout swip;
+        private OrderCustomer morder;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -86,8 +98,28 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             viewTo = (TextView) itemView.findViewById(R.id.order_to);
             remark = (TextView) itemView.findViewById(R.id.remarks);
             __time = (TextView) itemView.findViewById(R.id.time);
-            callcustomer = (ImageView) itemView.findViewById(R.id.call_customer);
+            callcustomer = (ImageView) itemView.findViewById(R.id.hammer);
+            swip = (SwipeLayout) itemView.findViewById(R.id.swipe_remarks);
             parentView = itemView;
+            //swip.setShowMode(SwipeLayout.ShowMode.LayDown);
+            //swip.setDragEdge(SwipeLayout.DragEdge.Top);
+           /* swip.addRevealListener(R.id.bottom_wrapper_child1, new SwipeLayout.OnRevealListener() {
+                @Override
+                public void onReveal(View child, SwipeLayout.DragEdge edge, float fraction, int distance) {
+                    View star = child.findViewById(R.id.hammer);
+                    float d = child.getHeight() / 2 - star.getHeight() / 2;
+                    ViewHelper.setTranslationY(star, d * fraction);
+                    ViewHelper.setScaleX(star, fraction + 0.6f);
+                    ViewHelper.setScaleY(star, fraction + 0.6f);
+                    //  int c = (Integer) evaluate(fraction, Color.parseColor("#dddddd"), Color.parseColor("#4C535B"));
+                    // child.setBackgroundColor(c);
+                }
+            });*/
+            //    sample2.setShowMode(SwipeLayout.ShowMode.LayDown);
+        }
+
+        public void setOrder(OrderCustomer order) {
+            morder = order;
         }
 
         public void setTime(String time) {
@@ -116,7 +148,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             callcustomer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((DriverView)__ctx).inquiryOrder(num, order_id);
+                    ((DriverView) __ctx).inquiryOrder(num, order_id, morder);
                     //triggerInquiry(num, order_id);
                 }
             });
@@ -131,7 +163,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             int index = Math.abs(hash % mUsernameColors.length);
             return mUsernameColors[index];
         }
-
 
 
     }

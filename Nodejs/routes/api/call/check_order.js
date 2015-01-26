@@ -5,8 +5,10 @@ var keystone = require('keystone'),
     jwt = require('jwt-simple'),
     moment = require('moment'),
     async = require('async'),
+    User = keystone.list('User'),
     Call = keystone.list('Call'),
-    tool = require('../../../lib/handler/checker')
+    tool = require('../../../lib/handler/checker'),
+    queries = require('../../../lib/handler/queries')
     ;
 
 exports = module.exports = function (req, res) {
@@ -20,7 +22,8 @@ exports = module.exports = function (req, res) {
 
     var
         Q = {},
-        local = {status: false, taxi_id: false, taxi_license: "", caller: ""};
+        local = {post: false, driver: false},
+        localout = {status: false, taxi_id: false, driver_name: false, taxi_license: "", caller: "", est_time: ""};
 
     async.series([
         function (next) {
@@ -30,31 +33,34 @@ exports = module.exports = function (req, res) {
             } catch (e) {
                 return next({message: e.message});
             }
-        },
-        function (next) {
-            var q = Call.model.findOne()
-                .where('_id', Q._call_id)
-                .exec(function (err, results) {
-                    if (err) {
-                        return next({message: err});
-                    } else {
-                        //update the value of status to taken
-                        if (results.dealstatus == "stage1") {
-                            local.status = true;
-                            console.log('order is checked and the status is -stage1-');
-                        }
-                        return next();
-                    }
-                });
-        },
-        function (next) {
+        }, function (next) {
+            queries.get_call_post_by_Id(local, Q._call_id, next);
+        }, function (next) {
+            var _id_ = local.post.driver;
+            if (_id_ != "") {
+                queries.get_driver_by_Id(local, _id_, next);
+            } else next();
+        }, function (next) {
+            //update the value of status to taken
+            if (local.post.dealstatus == "stage1") {
+                localout.status = true;
+                if (local.driver) {
+                    localout.taxi_id = local.driver._id.toString();
+                    localout.driver_name = local.driver.name.first + " " + local.driver.name.last;
+                    localout.taxi_license = local.driver.licenseID;
+                    localout.caller = local.driver.cellPhone;
+                    localout.est_time = local.post.estimate;
+                    console.log('order is checked and the status is -stage1-');
+                }
+            }
+            next();
+        }, function (next) {
             return res.apiResponse({
                 success: true,
                 timestamp: new Date().getTime(),
-                holder: local
+                holder: localout
             });
         }
-
     ], function (err) {
         if (err) {
             console.log('[api.app.check_order] - activated the list', err);

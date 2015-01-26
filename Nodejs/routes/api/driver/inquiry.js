@@ -8,8 +8,9 @@ var keystone = require('keystone'),
     jwt = require('jwt-simple'),
     moment = require('moment'),
     async = require('async'),
-    Call = keystone.list('Call'),
-    tool = require('../../../lib/handler/checker')
+    tool = require('../../../lib/handler/checker'),
+    ObjectId = require('mongoose').Types.ObjectId,
+    queries = require('../../../lib/handler/queries')
     ;
 
 exports = module.exports = function (req, res) {
@@ -22,32 +23,33 @@ exports = module.exports = function (req, res) {
 
     var
         Q = {},
-        local = {post: false};
+        local = {post: false, driver: false};
 
     async.series([
         function (next) {
             try {
-                Q = tool.url_param_checker(req.body, ['_call_id']);
+                Q = tool.url_param_checker(req.body, ['_call_id', 'driver_num']);
                 next();
             } catch (e) {
                 return next({message: e.message});
             }
+        }, function (next) {
+            console.log('---getuser---------------------------------------------------------');
+            queries.get_driver_by_phone(local, Q.driver_num, next);
         },
         function (next) {
-            var q = Call.model.findOne()
-                .where('_id', Q._call_id)
-                .exec(function (err, results) {
-                    if (err) {
-                        return next({message: err.message});
-                    } else {
-                        //update the value of status to taken
-                        results.dealstatus = "stage1";
-                        local.post = results;
-                        return next();
-                    }
-                });
+            queries.get_call_post_by_Id(local, Q._call_id, next);
         },
         function (next) {
+
+            //update the value of status to taken
+            //console.log(local.post.driver);
+            if (local.post.driver != null) {
+                console.log('---This order is currently taken---');
+                return next({message: "This order is currently taken."});
+            }
+            local.post.dealstatus = "stage1";
+            local.post.driver = new ObjectId(local.driver._id.toString());
             local.post.save(function (err, doc) {
                 if (err) {
                     return next({message: err.message});
@@ -67,7 +69,6 @@ exports = module.exports = function (req, res) {
                 holder: local.post._doc
             });
         }
-
     ], function (err) {
         if (err) {
             console.log('[api.app.inquiry] - activated the list', err);

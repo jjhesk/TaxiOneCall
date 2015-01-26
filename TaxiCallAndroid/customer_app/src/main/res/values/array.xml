@@ -42,5 +42,12 @@
         <item>@string/map_police</item>
     </array>
 
+    <array name="rejection_reasons">
+        <item>@string/issue_1</item>
+        <item>@string/issue_2</item>
+        <item>@string/issue_3</item>
+        <item>@string/issue_4</item>
+        <item>@string/issue_5</item>
+    </array>
 
 </resources>

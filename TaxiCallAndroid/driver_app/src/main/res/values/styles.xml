@@ -5,4 +5,21 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TextDriverPlaces">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/username5</item>
+        <item name="android:paddingLeft">@dimen/spacing</item>
+        <item name="android:paddingRight">@dimen/spacing</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
+    <style name="TextDriverPlaces.from">
+        <item name="android:textColor">@color/username5</item>
+    </style>
+    <style name="TextDriverPlaces.to">
+        <item name="android:textColor">@color/username2</item>
+    </style>
 </resources>

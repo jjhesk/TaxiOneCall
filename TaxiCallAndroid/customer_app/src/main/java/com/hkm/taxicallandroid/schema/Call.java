@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Call extends CallTask {
-    private static String data_object = "calldata";
+    private static String data_object = "holder";
 
     public Call(Context ccc, callback cb) {
         super(ccc, cb);

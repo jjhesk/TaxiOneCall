@@ -8,7 +8,7 @@
         android:tag="Bottom1"
         android:background="#66ddff00"
         android:id="@+id/bottom_wrapper"
-        android:layout_width="160dp"
+        android:layout_width="240dp"
         android:weightSum="1"
         android:layout_height="match_parent">
 
@@ -29,6 +29,16 @@
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
             android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/history_destin"
+            android:src="@drawable/timehistory"
+            android:layout_width="@dimen/button_width"
+            android:background="@color/ripple_material_dark"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
     <LinearLayout

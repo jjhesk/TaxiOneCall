@@ -3,12 +3,8 @@
     <item  android:left="1.2dp">
         <shape android:shape="rectangle"
             android:dither="true">
-
             <corners android:radius="2.9dp"/>
-
             <solid android:color="#ccc" />
-
-
         </shape>
     </item>
 
@@ -16,7 +12,6 @@
         <shape android:shape="rectangle"
 
             android:dither="true">
-
             <corners android:radius="3dp" />
             <solid android:color="@android:color/white" />
         </shape>

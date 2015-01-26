@@ -42,11 +42,11 @@ public class FragmentX extends Fragment {
     private static final String TAG = "FragmentX";
 
     private Context _ctx;
-    private boolean returnfailure = false;
     private DialogTools dialog_collection;
     private OrderAdapter mAdapter;
     private Identity logininfo;
     private List<OrderCustomer> mMessages = new ArrayList<OrderCustomer>();
+    private RecyclerView mMessagesView;
 
     @Override
     public void onAttach(Activity activity) {
@@ -60,8 +60,6 @@ public class FragmentX extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_listview, container, false);
     }
-
-    private RecyclerView mMessagesView;
 
 
     private void scrollToBottom() {
@@ -80,7 +78,7 @@ public class FragmentX extends Fragment {
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
-        if (logininfo.hasAuthen()) {
+        if (logininfo.hasAuthen() && Config.credential_object != null) {
             run();
         } else {
             startRegLogin();
@@ -88,6 +86,7 @@ public class FragmentX extends Fragment {
     }
 
     public void runagain() {
+        exec = Executors.newSingleThreadScheduledExecutor();
         run();
     }
 
@@ -125,22 +124,31 @@ public class FragmentX extends Fragment {
     }
 
 
-    private final ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+    private static ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
     private final Runnable maintask = new Runnable() {
         public void run() {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    // dialog_collection.showSimpleMessage("testing now");
+                    //  if (Config.credential_object != null) {
                     request();
+                    // } else {
+                    //       exec.shutdown();
+                    //      startRegLogin();
+                    //  }
+
                 }
             });
         }
     };
 
     private void run() {
-        exec.scheduleAtFixedRate(maintask, 1000, Config._default.refresh_time, TimeUnit.MILLISECONDS);
+            exec.scheduleAtFixedRate(maintask, 1000, Config._default.refresh_time, TimeUnit.MILLISECONDS);
         //request();
+    }
+
+    public void stopLoopRequest() {
+        exec.shutdown();
     }
 
     private void PostProcessJson(final String data) {
@@ -159,7 +167,8 @@ public class FragmentX extends Fragment {
     }
 
     private void request() {
-        final String Q = Config.domain + Config.control.getcalllist;
+        if (Config.credential_object == null) return;
+        final String Q = Config.domain + Config.control.getcalllist + "?token=" + Config.credential_object.getToken();
         final OrderListQ mCall = new OrderListQ(getActivity(), new GetTask.callback() {
             @Override
             public void onSuccess(final String data) {
@@ -181,10 +190,9 @@ public class FragmentX extends Fragment {
                     @Override
                     public void run() {
                         dialog_collection.progress_bar_dismiss();
+                        dialog_collection.showSimpleMessage(msg);
                     }
                 });
-
-                returnfailure = true;
 
             }
 
@@ -193,6 +201,7 @@ public class FragmentX extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         dialog_collection.progress_bar_start(R.string.wait);
                     }
                 });

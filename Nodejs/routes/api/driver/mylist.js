@@ -8,25 +8,32 @@ var keystone = require('keystone'),
     jwt = require('jwt-simple'),
     moment = require('moment'),
     async = require('async'),
-    Call = keystone.list('Call')
+    Call = keystone.list('Call'),
+    queries = require('../../../lib/handler/queries'),
+    tool = require('../../../lib/handler/checker')
     ;
 
 exports = module.exports = function (req, res) {
-
     //if (req.user) {
     //  console.log('[token] - fname [' + req.user.name.first + '], lname [' + req.user.name.last + '], id [' + req.user.id + '].');
-
-    var jwtTokenSecret = keystone.get('jwtTokenSecret');
-    var expires = moment().add(7, 'days').valueOf();
-
     //    var token = jwt.encode({iss: req.user.id, exp: expires}, jwtTokenSecret);
-
     // load the other posts
     var dataholder = {
-        posts: false
-    };
-
+        posts: false,
+        user: false
+    }, Q = {};
     async.series([
+        function (next) {
+            try {
+                Q = tool.url_param_checker(req.query, ['token']);
+                next();
+            } catch (e) {
+                return next({message: e.message});
+            }
+        },
+        function (next) {
+            queries.validate_token(Q.token, dataholder, next);
+        },
         function (next) {
             //  try {
             var q = Call.model.find().where('dealstatus', 'public').sort('-calltime').limit('1000');

@@ -18,9 +18,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
+import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.ConfirmCall;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
+import com.hkm.taxicallandroid.schema.Report;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.socketio.Acknowledge;
 import com.koushikdutta.async.http.socketio.ConnectCallback;
@@ -44,11 +46,11 @@ import java.util.concurrent.TimeUnit;
 public class WaitingForRide extends Activity {
     private String rawjson;
     private TextView edtv, from, to;
-    private Socket socket;
-    private ImageView confirm, nosure;
+
+
     private ConfirmCall CCdata;
     private DialogTools dT;
-    private View controlpanel;
+    private IncomingDriver viewbindDriverIncoming;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,26 +61,14 @@ public class WaitingForRide extends Activity {
         edtv = (TextView) findViewById(R.id._order_debug_line);
         from = (TextView) findViewById(R.id.from_spot);
         to = (TextView) findViewById(R.id.to_spot);
-        confirm = (ImageView) findViewById(R.id.confirm_ordered);
-        nosure = (ImageView) findViewById(R.id.wait);
+
         GsonBuilder gb = new GsonBuilder();
         Gson gs = gb.create();
         CCdata = gs.fromJson(rawjson, ConfirmCall.class);
 
         from.setText(CCdata.pickup);
         to.setText(CCdata.destination);
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirm_order();
-            }
-        });
-        nosure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reject_order();
-            }
-        });
+
         if (_debug_mode) {
             edtv.setText(rawjson);
         } else {
@@ -86,9 +76,9 @@ public class WaitingForRide extends Activity {
         }
         dT = new DialogTools(this);
 
+        viewbindDriverIncoming = new IncomingDriver();
+        viewbindDriverIncoming.getView(this);
 
-        controlpanel = (View) findViewById(R.id.panel_session);
-        controlpanel.setVisibility(View.INVISIBLE);
         //trigger with timer
         init_timer_task();
         //directly trigger the once
@@ -101,17 +91,19 @@ public class WaitingForRide extends Activity {
     protected void onDestroy() {
       /*  if (socket != null)
             socket.disconnect();*/
+        exec.shutdown();
         super.onDestroy();
     }
 
-    private void confirm_order() {
+    public void confirm_order() {
         CCdata.taken(this, dT);
+        exec.shutdown();
     }
 
-    private void reject_order() {
-
+    public void reject_order() {
+        Config.c_report = new Report(CCdata._id);
+       dT.reject_call();
     }
-
 
 
     /**
@@ -124,7 +116,7 @@ public class WaitingForRide extends Activity {
                 @Override
                 public void run() {
                     // dialog_collection.showSimpleMessage("testing now");
-                    CCdata.check_my_order(WaitingForRide.this, exec, controlpanel);
+                    CCdata.check_my_order(WaitingForRide.this, exec, viewbindDriverIncoming);
                 }
             });
         }

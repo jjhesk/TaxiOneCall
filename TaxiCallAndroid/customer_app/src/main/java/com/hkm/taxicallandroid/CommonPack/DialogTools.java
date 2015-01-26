@@ -3,16 +3,30 @@ package com.hkm.taxicallandroid.CommonPack;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.asynhkm.productchecker.Model.CallTask;
 import com.asynhkm.productchecker.Util.Tool;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.hkm.taxicallandroid.MainControlTh;
 import com.hkm.taxicallandroid.R;
+import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
+import com.hkm.taxicallandroid.WaitingForRide;
+import com.hkm.taxicallandroid.memory.wordmem;
+import com.hkm.taxicallandroid.schema.Call;
+import com.hkm.taxicallandroid.schema.check_order_obj;
+
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Created by hesk on 1/11/2015.
@@ -21,10 +35,12 @@ public class DialogTools {
     private Context __ctx;
     private ProgressDialog progressBar;
 
+    private wordmem wordmemory;
 
     public DialogTools(Context ctx) {
         __ctx = ctx;
         prepare_progress_bar();
+        wordmemory = new wordmem(__ctx);
     }
 
     public void showSimpleMessage(String message) {
@@ -182,18 +198,20 @@ public class DialogTools {
     private Integer[] add_remarks_selected;
 
     public void loc_history() {
-        new MaterialDialog.Builder(__ctx)
-                .title(R.string.prefer_locations)
-                .items(R.array.pin)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        //Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-                        sub_pin(which);
-                    }
-                })
-                .positiveText(android.R.string.ok)
-                .show();
+        if (wordmemory.hasWords()) {
+            new MaterialDialog.Builder(__ctx)
+                    .title(R.string.prefer_locations)
+                    .items(wordmemory.getList())
+                    .itemsCallback(new MaterialDialog.ListCallback() {
+                        @Override
+                        public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                            ((MainControlTh) __ctx).updateLocation(text.toString());
+                            dialog.dismiss();
+                        }
+                    })
+                    .positiveText(android.R.string.ok)
+                    .show();
+        }
     }
 
     public void pin_azure() {
@@ -224,7 +242,7 @@ public class DialogTools {
                 array_list = R.array.parks_locations;
                 break;
         }
-        Tool.trace(__ctx, which_map + "");
+        // Tool.trace(__ctx, which_map + "");
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.prefer_locations)
                 .items(array_list)
@@ -239,9 +257,9 @@ public class DialogTools {
     }
 
     public void add_remarks() {
-        if (add_remarks_selected == null) {
-            add_remarks_selected = new Integer[]{1};
-        }
+       /* if (add_remarks_selected == null) {
+            add_remarks_selected = new Integer[]{-1};
+        }*/
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.add_on)
                 .items(R.array.remarks)
@@ -250,20 +268,19 @@ public class DialogTools {
                     public void onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
                         StringBuilder str = new StringBuilder();
                         for (int i = 0; i < which.length; i++) {
-                            str.append(which[i]);
-                            str.append(": ");
+                            //str.append(which[i]);
+                            //str.append(": ");
                             str.append(text[i]);
+                            str.append(',');
                             str.append('\n');
-
                         }
                         add_remarks_selected = which;
-                        Tool.trace(__ctx, str.toString());
+                        ((MainControlTh) __ctx).updateRemark(str.toString());
+                        //Tool.trace(__ctx, str.toString());
                     }
                 })
                 .positiveText(R.string.confirm_choices)
                 .show();
-
-
     }
 
 
@@ -275,6 +292,7 @@ public class DialogTools {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                         ((MainControlTh) __ctx).updateLocation(text.toString());
+
                     }
                 })
                 .positiveText(android.R.string.ok)
@@ -292,6 +310,106 @@ public class DialogTools {
         WebView webView = (WebView) dialog.getCustomView().findViewById(R.id.webview);
         webView.loadUrl("file:///android_asset/license.html");
         dialog.show();
+    }
+
+
+    public void reject_call() {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.report_issue)
+                .items(R.array.rejection_reasons)
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                        if (i == -1) {
+                            materialDialog.dismiss();
+                        } else if (i < 4) {
+                            Config.c_report.setIssue(charSequence.toString());
+                            report_submission();
+                            materialDialog.dismiss();
+                        } else {
+                            materialDialog.dismiss();
+                            write_note();
+                        }
+                    }
+                })
+                .positiveText(android.R.string.ok)
+                .autoDismiss(false)
+                .show();
+    }
+
+
+    private EditText note_paper;
+    private View ActionButton;
+
+    private void write_note() {
+        final MaterialDialog m = new MaterialDialog.Builder(__ctx)
+                .title(R.string.report_issue)
+                .customView(R.layout.issue_report, false)
+                .neutralText(R.string.report_issue)
+                .negativeText(android.R.string.cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onNeutral(MaterialDialog dialog) {
+                        super.onNeutral(dialog);
+                        String report_content = note_paper.getText().toString();
+                        Config.c_report.setIssue(report_content);
+                        report_submission();
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        super.onNegative(dialog);
+                        dialog.dismiss();
+                    }
+                })
+                .cancelable(false)
+                .autoDismiss(false)
+                .build();
+        ActionButton = m.getActionButton(DialogAction.NEUTRAL);
+
+        note_paper = (EditText) m.getCustomView().findViewById(R.id.enter);
+        note_paper.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ActionButton.setEnabled(s.toString().trim().length() > 10);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        m.show();
+        ActionButton.setEnabled(false);
+
+    }
+
+    private void report_submission() {
+        final String q = Config.domain + Config.control.report_issue;
+        final Call check = new Call(__ctx, new CallTask.callback() {
+            @Override
+            public void onSuccess(String data) {
+                /*incoming_driver_data = gson.fromJson(data, check_order_obj.class);
+                if (incoming_driver_data.replied()) { controlPanel.incoming(incoming_driver_data);}*/
+                progress_bar_dismiss();
+            }
+
+            @Override
+            public void onFailure(String message) {
+                progress_bar_dismiss();
+            }
+
+            @Override
+            public void beforeStart(CallTask task) {
+                progress_bar_start(R.string.wait);
+            }
+        });
+        check.setDataObject("holder").setBody(Config.c_report.toJson()).setURL(q).execute();
     }
 
 /*

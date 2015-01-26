@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DriverView</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Street Taxi Driver Tool</string>
+
     <string name="action_settings">Settings</string>
     <string name="user_action_typing">is typing...</string>
     <string name="prompt_message">prompt message</string>
@@ -10,8 +10,13 @@
 
 
     <string name="action_leave">Leave</string>
-
     <string name="error_connect">Failed to connect</string>
+
+    <string name="action_remove">remove call</string>
+    <string name="action_release">release call</string>
+    <string name="message_note">What action do you want to take for this call?</string>
+    <string name="deal">Action for this deal</string>
+
 
     <!-- messages -->
     <string name="message_welcome">Welcome to Socket.IO List –</string>
@@ -23,5 +28,6 @@
     <string name="message_user_joined">%s joined</string>
     <string name="message_user_left">%s left</string>
 
-    <string name="wait">updating...</string>
+
+
 </resources>

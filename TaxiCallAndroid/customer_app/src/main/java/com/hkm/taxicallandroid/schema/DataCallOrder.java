@@ -21,6 +21,7 @@ import java.util.Locale;
  */
 public class DataCallOrder {
     private String
+            remarks = "no special requirements",
             phonenumber = "",
             gps = "00000,0000",
             type = "",
@@ -59,6 +60,10 @@ public class DataCallOrder {
 
     public void setStartLocation(String dstin) {
         mylocation = dstin;
+    }
+
+    public void setremark(String str) {
+        remarks = str;
     }
 
     public String consolidate() {

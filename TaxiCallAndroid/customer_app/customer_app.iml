@@ -96,6 +96,7 @@
     <orderEntry type="library" exported="" name="materialish-progress-1.2" level="project" />
     <orderEntry type="library" exported="" name="engine.io-client-0.3.1" level="project" />
     <orderEntry type="library" exported="" name="androidasync-2.0.5" level="project" />
+    <orderEntry type="library" exported="" name="prettytime-3.2.7.Final" level="project" />
     <orderEntry type="module" module-name="rippleView" exported="" />
     <orderEntry type="module" module-name="libHkmCheck" exported="" />
   </component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="complain_list">
+        <item>@string/action_remove</item>
+        <item>@string/action_release</item>
+    </array>
+    <array name="time_est">
+        <item>2 mins</item>
+        <item>3 mins</item>
+        <item>5 mins</item>
+        <item>10 mins</item>
+    </array>
+
+</resources>

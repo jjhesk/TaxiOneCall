@@ -51,17 +51,26 @@ exports = module.exports = function (app) {
     app.all('/contact', routes.views.contact);
     app.all('/api/*', keystone.initAPI);
     app.get('/download/users', routes.download.users);
-    app.all('/api/call/new', api.call.new);
+
     // jwt token authentication for socket.io traffic
     app.all('/api/token*', middleware.requireUser);
     app.all('/api/token', api.token);
     // app.all('/api/call/list', api.call.call_list);
+    app.all('/api/call/new', api.call.new);
     app.all('/api/call/confirm', api.call.confirm_order);
     app.all('/api/call/check', api.call.check_order);
+    app.all('/api/call/report', api.call.report);
+
+
+
+
     app.all('/api/driver/list', api.driver.mylist);
     app.all('/api/driver/inquiry', api.driver.inquiry);
-    app.all('/api/driver/login', api.account.logindriver);
+    app.all('/api/driver/login', api.account.login);
     app.all('/api/driver/new', api.account.newdriver);
+    app.all('/api/driver/deal', api.driver.deal);
+    app.all('/api/driver/remove', api.driver.remove_order);
+    app.all('/api/driver/release', api.driver.release_order);
     // app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf
     // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

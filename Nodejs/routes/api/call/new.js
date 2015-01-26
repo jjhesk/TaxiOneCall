@@ -28,7 +28,8 @@ var newCall = function (Q, next) {
         dealstatus: 'public',
         destination: Q.destination,
         pickup: Q.mylocation,
-        position: Q.gps
+        position: Q.gps,
+        remark_request: Q.remarks
     });
     callrecord.save(function (err) {
         if (err) {
@@ -51,7 +52,7 @@ exports = module.exports = function (req, res) {
         function (next) {
             try {
                 Q = tool.url_param_checker(req.body,
-                    ['phonenumber', 'gps', 'type', 'destination', 'mylocation']);
+                    ['phonenumber', 'gps', 'type', 'destination', 'mylocation', 'remarks']);
                 next();
             } catch (e) {
                 return next({message: e.message});
@@ -62,11 +63,11 @@ exports = module.exports = function (req, res) {
             next();
         },
         function (next) {
-            console.log('[api.new.call]  - verify your call failed.', local.call);
+            console.log('[api.new.call]  - success.', local.call);
             return res.apiResponse({
                 success: true,
                 timestamp: new Date().getTime(),
-                calldata: local.call
+                holder: local.call
             });
         }
     ], function (err) {

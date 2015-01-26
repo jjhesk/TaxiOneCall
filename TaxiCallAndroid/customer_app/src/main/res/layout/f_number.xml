@@ -8,7 +8,7 @@
         android:tag="Bottom1"
         android:background="#66ddff00"
         android:id="@+id/bottom_wrapper"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:weightSum="1"
         android:layout_height="match_parent">
 
@@ -16,26 +16,50 @@
         <ImageView
             android:id="@+id/change_number"
             android:src="@drawable/f0ad128"
-            android:layout_width="@dimen/button_width"
+            android:layout_width="@dimen/button_width_half"
             android:background="#ffcd7aff"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:scaleType="centerInside"
             android:layout_height="match_parent" />
 
-
+        <ImageView
+            android:id="@+id/stack_history"
+            android:src="@drawable/increment_money"
+            android:layout_width="@dimen/button_width_half"
+            android:background="#ff6fc0e0"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:scaleType="centerInside"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/display_number"
             android:tag="Hover"
-            android:text="__CALLER_NUMBER__"
+            android:text="XXXXXXXX"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/small_num"
+            android:tag="Hover"
+            android:text="small xxx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/driver_online"
+            android:tag="Hover"
+            android:text="small dr online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>

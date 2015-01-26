@@ -1,5 +1,13 @@
 package com.hkm.driverview.ListOrderes;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by hesk on 1/23/2015.
  */
@@ -16,7 +24,9 @@ public class OrderCustomer {
             _id,
             dealstatus,
             calltime,
-            calltype;
+            calltype,
+            dealstatus_time,
+            remark_request;
     public boolean customer;
     public int passengers;
 
@@ -61,6 +71,13 @@ public class OrderCustomer {
         }
     }
 
+    public String getRemark() {
+        return remark_request;
+    }
+
+    public String getStatusTime() {
+        return dealstatus_time;
+    }
 
     public String getOrderId() {
         return _id;
@@ -82,7 +99,16 @@ public class OrderCustomer {
         return pickup;
     }
 
-    public String getMoment() {
-        return calltime;
+    public String getMoment() throws ParseException {
+        PrettyTime p = new PrettyTime();
+        //  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
+        /*SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd hh:mm:ss:SSS");*/
+        String ISO_FORMAT1 = "yyyy-MM-dd'T'HH:mm:ss.SSS zzz";
+        String ISO_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        Date parsedTimeStamp = new SimpleDateFormat(ISO_FORMAT).parse(calltime);
+        // Date parsedTimeStamp = formatter.parse(calltime);
+        return p.format(parsedTimeStamp);
+        //  return calltime;
     }
 }

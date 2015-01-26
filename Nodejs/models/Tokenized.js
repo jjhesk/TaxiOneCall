@@ -12,7 +12,7 @@ var Tokenized = new keystone.List('Tokenized', {
 Tokenized.add({
     user: {type: Types.Relationship, ref: 'User'},
     expire: {type: Types.Datetime},
-    token: {type: Types.Key},
+    token: {type: Types.Text},
     object: {
         type: Types.Select,
         options: [

@@ -6,7 +6,8 @@ var keystone = require('keystone'),
     moment = require('moment'),
     async = require('async'),
     Call = keystone.list('Call'),
-    tool = require('../../../lib/handler/checker')
+    tool = require('../../../lib/handler/checker'),
+    queries = require('../../../lib/handler/queries')
     ;
 
 exports = module.exports = function (req, res) {
@@ -16,11 +17,9 @@ exports = module.exports = function (req, res) {
     // var expires = moment().add(7, 'days').valueOf();
     // var token = jwt.encode({iss: req.user.id, exp: expires}, jwtTokenSecret);
     // load the other posts
-
     var
         Q = {},
         local = {post: false};
-
     async.series([
         function (next) {
             try {
@@ -29,33 +28,10 @@ exports = module.exports = function (req, res) {
             } catch (e) {
                 return next({message: e.message});
             }
-        },
-        function (next) {
-            var q = Call.model.findOne()
-                .where('_id', Q._call_id)
-                .exec(function (err, results) {
-                    if (err) {
-                        return next({message: err});
-                    } else {
-                        // update the value of status to taken
-                        results.dealstatus = "stage2";
-                        local.post = results;
-                        return next();
-                    }
-                });
-        },
-        function (next) {
-            local.post.save(function (err, doc) {
-                if (err) {
-                    return next({message: err.message});
-                }
-                if (doc) {
-                    console.log('------------------------------------------------------------');
-                    console.log('[api.app.confirm] - result ...', doc);
-                    console.log('------------------------------------------------------------');
-                    return next();
-                }
-            });
+        }, function (next) {
+            queries.get_call_post_by_Id(local, Q._call_id, next);
+        }, function (next) {
+            queries.update_call_status(local.post, "stage2", next);
         },
         function (next) {
             return res.apiResponse({

@@ -19,6 +19,7 @@ import com.daimajia.swipe.SwipeLayout;
 import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.memory.Phone;
+import com.hkm.taxicallandroid.memory.wordmem;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
 
@@ -38,6 +39,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
     private speak_status mspeak_status;
     private DialogTools dialog_collection;
     private boolean calltriggered = false;
+    private wordmem history_word;
 
     enum speak_status {
         SET_DESTINATION, SET_START_LOCATION
@@ -48,6 +50,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
         order = new DataCallOrder();
+        history_word = new wordmem(this);
         dialog_collection = new DialogTools(this);
         mphone = new Phone(order, this);
         mphone.getPhoneNumber();
@@ -68,71 +71,66 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
             }
         });
         f_number = (SwipeLayout) findViewById(R.id.f_number);
-        f_number.setShowMode(SwipeLayout.ShowMode.PullOut);
-       /* f_number
-                .findViewById(R.id.logout)
-                .setOnClickListener(new View.OnClickListener() {
+        //f_number.setShowMode(SwipeLayout.ShowMode.LayDown);
+        f_number.setDragEdge(SwipeLayout.DragEdge.Left);
+        f_number.findViewById(R.id.change_number).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mphone.resetNumber(new Phone.callback() {
                     @Override
-                    public void onClick(View v) {
-                        showToastMessage("logout");
-                    }
-                });*/
-        f_number
-                .findViewById(R.id.change_number)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mphone.resetNumber(new Phone.callback() {
-                            @Override
-                            public void phonenumber(String num) {
-                                updateNumber();
-                            }
-                        });
+                    public void phonenumber(String num) {
+                        updateNumber();
                     }
                 });
-        f_destination = (SwipeLayout) findViewById(R.id.f_destination);
-        // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
-        //  f_destination.setDragEdge(SwipeLayout.DragEdge.Left);
-        f_destination
-                .findViewById(R.id.speak_button)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mspeak_status = speak_status.SET_DESTINATION;
-                        speak();
-                    }
-                });
-        f_destination.findViewById(R.id.pin)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mspeak_status = speak_status.SET_DESTINATION;
-                        dialog_collection.pin_azure();
-                    }
-                });
-
+            }
+        });
 
         f_start = (SwipeLayout) findViewById(R.id.f_setstart);
         // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
         //f_start.setDragEdge(SwipeLayout.DragEdge.Left);
-        f_start
-                .findViewById(R.id.speak_button)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mspeak_status = speak_status.SET_START_LOCATION;
-                        speak();
-                    }
-                });
-        f_start
-                .findViewById(R.id.loc)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // getLocationCurrent();
-                        dialog_collection.loc_history();
-                    }
-                });
+        f_start.findViewById(R.id.speak_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mspeak_status = speak_status.SET_START_LOCATION;
+                speak();
+            }
+        });
+        f_start.findViewById(R.id.loc).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // getLocationCurrent();
+                mspeak_status = speak_status.SET_START_LOCATION;
+                dialog_collection.loc_history();
+            }
+        });
+
+
+        f_destination = (SwipeLayout) findViewById(R.id.f_destination);
+        // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
+        //  f_destination.setDragEdge(SwipeLayout.DragEdge.Left);
+        f_destination
+                .findViewById(R.id.speak_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mspeak_status = speak_status.SET_DESTINATION;
+                speak();
+            }
+        });
+        f_destination.findViewById(R.id.pin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mspeak_status = speak_status.SET_DESTINATION;
+                dialog_collection.pin_azure();
+            }
+        });
+        f_destination.findViewById(R.id.history_destin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mspeak_status = speak_status.SET_DESTINATION;
+                dialog_collection.loc_history();
+            }
+        });
+
 
         display_start_loc = (TextView) f_start.findViewById(R.id.display_start_location);
         display_destination = (TextView) f_destination.findViewById(R.id.display_location_destination);
@@ -146,6 +144,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
         });
 
         mphone.setPhoneNumberDisplay(display_number);
+
     }
 
 
@@ -211,6 +210,10 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
         display_number.setText(order.getnumber());
     }
 
+    public void updateRemark(String remark) {
+        order.setremark(remark);
+    }
+
     public void updateLocation(String destination) {
 
         if (mspeak_status == speak_status.SET_DESTINATION) {
@@ -223,7 +226,7 @@ public class MainControlTh extends Activity implements FolderSelectorDialog.Fold
             order.setStartLocation(destination);
             f_start.close(true);
         }
-
+        history_word.addWord(destination);
     }
 
 

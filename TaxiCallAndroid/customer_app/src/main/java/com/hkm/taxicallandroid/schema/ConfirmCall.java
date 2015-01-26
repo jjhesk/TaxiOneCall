@@ -15,6 +15,7 @@ import com.google.gson.JsonParseException;
 import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.R;
+import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
 import com.hkm.taxicallandroid.WaitingForRide;
 
 import org.json.JSONException;
@@ -34,24 +35,12 @@ public class ConfirmCall {
             calltime,
             calltype,
             callnumber,
+            remark_request,
+            estimate,
             _id;
     public boolean customer;
     public int passengers;
 
-    public static class inquiry_return {
-        private String taxi_id,
-                taxi_license,
-                caller;
-        private boolean status;
-
-        public inquiry_return() {
-
-        }
-
-        public boolean replied() {
-            return status;
-        }
-    }
 
     public static class callconfirm {
         private String _call_id;
@@ -61,8 +50,9 @@ public class ConfirmCall {
         }
     }
 
+    private static check_order_obj incoming_driver_data;
 
-    public void check_my_order(final WaitingForRide ctx, final ScheduledExecutorService exec, final View controlPanel) {
+    public void check_my_order(final WaitingForRide ctx, final ScheduledExecutorService exec, final IncomingDriver controlPanel) {
         final String q = Config.domain + Config.control.check;
         final GsonBuilder gsonb = new GsonBuilder();
         String request_body = "";
@@ -71,10 +61,10 @@ public class ConfirmCall {
         final Call check = new Call(ctx, new CallTask.callback() {
             @Override
             public void onSuccess(String data) {
-                inquiry_return obj = gson.fromJson(data, inquiry_return.class);
-                if (obj.replied()) {
-                    controlPanel.setVisibility(View.VISIBLE);
-                    exec.shutdown();
+                incoming_driver_data = gson.fromJson(data, check_order_obj.class);
+                if (incoming_driver_data.replied()) {
+                    controlPanel.incoming(incoming_driver_data);
+                   // exec.shutdown();
                 }
             }
 
@@ -92,6 +82,8 @@ public class ConfirmCall {
     }
 
     public void taken(final WaitingForRide ctx, final DialogTools dt) {
+        final String content_f = "Driver %s is coming in %s";
+
         final quest q = new quest(ctx, new CallTask.callback() {
 
             @Override
@@ -100,9 +92,9 @@ public class ConfirmCall {
 
                 final NotificationCompat.Builder mBuilder =
                         new NotificationCompat.Builder(ctx)
-                                .setSmallIcon(R.drawable.map_azaue)
+                                .setSmallIcon(R.drawable.taxi_white)
                                 .setContentTitle("Incoming Taxi")
-                                .setContentText("Driver license XXXX is coming in 2 mins");
+                                .setContentText(String.format(content_f, incoming_driver_data.getLicense(), incoming_driver_data.getEstTime()));
                 // Creates an explicit intent for an Activity in your app
                 final Intent resultIntent = new Intent(ctx, WaitingForRide.class);
 

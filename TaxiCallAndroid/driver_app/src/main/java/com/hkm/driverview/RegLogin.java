@@ -2,11 +2,13 @@ package com.hkm.driverview;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.asynhkm.productchecker.Model.CallTask;
@@ -14,15 +16,17 @@ import com.daimajia.swipe.SwipeLayout;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.Identity;
 import com.hkm.driverview.common.PostD;
-import com.hkm.driverview.schema.register;
+import com.hkm.driverview.schema.Credential;
+import com.hkm.driverview.schema.LoginRequest;
+import com.hkm.driverview.schema.RegistrationRequest;
 import com.hkm.driverview.ui.DialogTools;
 
 /**
  * Created by hesk on 1/24/2015.
  */
 public class RegLogin extends Activity {
-    private EditText rloginEmail, rpass, rlicense, rphone, rdrivername;
-    private EditText loginEmail, password;
+    private EditText rloginEmail, rpass, rlicense, rphone, rdrivername, r_name;
+    private EditText loginPhone, password;
     private SwipeLayout swipelayout;
     private TextView.OnEditorActionListener edListener = new TextView.OnEditorActionListener() {
         @Override
@@ -51,7 +55,7 @@ public class RegLogin extends Activity {
         rpass = (EditText) findViewById(R.id.r_password);
         rlicense = (EditText) findViewById(R.id.r_license_plate);
         rphone = (EditText) findViewById(R.id.r_phone);
-
+        r_name = (EditText) findViewById(R.id.r_name);
         rpass.setOnEditorActionListener(reg_bt);
         rloginEmail.setOnEditorActionListener(reg_bt);
         rlicense.setOnEditorActionListener(reg_bt);
@@ -67,11 +71,11 @@ public class RegLogin extends Activity {
     }
 
     private void attemptRegister() {
-        final register databome = new register(
+        final RegistrationRequest databome = new RegistrationRequest(
                 rloginEmail.getText().toString(),
                 rpass.getText().toString(),
                 rlicense.getText().toString(),
-                "DRB" + 488944,
+                r_name.getText().toString(),
                 rphone.getText().toString()
         );
 
@@ -80,7 +84,6 @@ public class RegLogin extends Activity {
             final PostD pp = new PostD(this, new CallTask.callback() {
                 @Override
                 public void onSuccess(final String data) {
-
                     dialog_collection.progress_bar_dismiss();
                     dialog_collection.showSimpleMessage(data);
                     swipelayout.close(true);
@@ -104,12 +107,9 @@ public class RegLogin extends Activity {
     }
 
     private void attemptLogin() {
-        final register databome = new register(
-                rloginEmail.getText().toString(),
-                rpass.getText().toString(),
-                rlicense.getText().toString(),
-                "DRB" + 488944,
-                rphone.getText().toString()
+        final LoginRequest databome = new LoginRequest(
+                loginPhone.getText().toString(),
+                password.getText().toString()
         );
 
         if (databome.checkComplete()) {
@@ -117,8 +117,14 @@ public class RegLogin extends Activity {
                 @Override
                 public void onSuccess(final String data) {
                     dialog_collection.progress_bar_dismiss();
-                    dialog_collection.showSimpleMessage(data);
-                    swipelayout.close(true);
+                    //dialog_collection.showSimpleMessage(data);
+                    Credential.parse(data);
+                    final String email = Config.credential_object.getEmail();
+                    logininfo.saveAuthen(email,
+                            databome.pass,
+                            databome.login
+                    );
+                    finish();
                 }
 
                 @Override
@@ -133,39 +139,44 @@ public class RegLogin extends Activity {
                 }
             });
 
-            final String Q = Config.domain + Config.control.reg;
+            final String Q = Config.domain + Config.control.login;
             pp.setDataObj("holder").setURL(Q).setBody(databome.toJson()).execute();
+        } else {
+            dialog_collection.showSimpleMessage(R.string.login_incomplete);
         }
-        finish();
+        //finish();
     }
 
-    private Identity logininfo;
 
     private void setLogin() {
-        loginEmail = (EditText) findViewById(R.id.loginEmail);
+        loginPhone = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.password);
         password.setOnEditorActionListener(edListener);
-        Button signInButton = (Button) findViewById(R.id.sign_in_button);
+        ImageButton signInButton = (ImageButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
             }
         });
-        logininfo = new Identity(this);
         if (logininfo.hasAuthen()) {
-            loginEmail.setText(logininfo.getEmail());
+            loginPhone.setText(logininfo.getNumbr());
+            password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
             password.setText(logininfo.getPass());
         }
     }
 
+    private Identity logininfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        logininfo = new Identity(this);
         dialog_collection = new DialogTools(this);
         setContentView(R.layout.reglogin);
         setLogin();
         setRegister();
+
     }
 
 

@@ -52,7 +52,6 @@
     <include
         android:id="@+id/f_destination"
         android:layout_below="@+id/f_setstart"
-
         layout="@layout/f_destination"
         android:layout_width="match_parent"
         android:layout_height="80dp" />
@@ -69,7 +68,7 @@
         android:gravity="center"
         android:padding="35dp"
         ripple:alphaFactor="0.7"
-        ripple:rippleColor="#58FAAC"
+        ripple:rippleColor="#fffa7bae"
         ripple:hover="true"
         android:layout_alignParentBottom="true" />
 </RelativeLayout>

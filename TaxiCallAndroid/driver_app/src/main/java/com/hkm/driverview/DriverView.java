@@ -5,31 +5,34 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.asynhkm.productchecker.Model.CallTask;
-import com.asynhkm.productchecker.Model.GetTask;
-import com.asynhkm.productchecker.Util.Tool;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.hkm.driverview.ListOrderes.FragmentX;
+import com.hkm.driverview.ListOrderes.OrderCustomer;
 import com.hkm.driverview.common.APIHelper;
 import com.hkm.driverview.common.Config;
-import com.hkm.driverview.common.OrderListQ;
+import com.hkm.driverview.common.Identity;
 import com.hkm.driverview.common.PostD;
+import com.hkm.driverview.schema.simpleId;
+import com.hkm.driverview.singleorder.OrderView;
 import com.hkm.driverview.ui.DialogTools;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public class DriverView extends ActionBarActivity {
+    private final String LOG_TAG = "MainActivity";
+    private final String TAG = "DriverDaView";
+    private final String FILTER_NAME = this.getClass().getSimpleName();
+
+    private Identity idcard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog_collection = new DialogTools(this);
+        idcard = new Identity(this);
         setContentView(R.layout.act_main);
 
        /* SystemBarTintManager tintManager = new SystemBarTintManager(this);
@@ -47,11 +50,6 @@ public class DriverView extends ActionBarActivity {
 
     }
 
-    private final String LOG_TAG = "MainActivity";
-    private final String TAG = "DriverDaView";
-    private final String API_URL = "https://api.twitter.com/1/statuses/user_timeline.json?count=1";
-    private final String FILTER_NAME = this.getClass().getSimpleName();
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -67,23 +65,24 @@ public class DriverView extends ActionBarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Config.INTENT_CODE_LOGIN) {
-           // if (resultCode == RESULT_OK) {
-                // A contact was picked.  Here we will just display it
-                // to the user.
-                // startActivity(new Intent(Intent.ACTION_VIEW, data));
-                fragmentx.runagain();
+        if (requestCode == Config.INTENT_CODE_LOGIN || requestCode == Config.INTENT_CODE_SINGLE_ORDER) {
+            // if (resultCode == RESULT_OK) {
+            // A contact was picked.  Here we will just display it
+            // to the user.
+            // startActivity(new Intent(Intent.ACTION_VIEW, data));
+            fragmentx.runagain();
             //}
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     private FragmentX fragmentx;
 
     @Override
     public void onAttachFragment(Fragment fragment) {
         // TODO Auto-generated method stub
         super.onAttachFragment(fragment);
-      //  Tool.trace(this, fragment.getClass().getName());
+        //  Tool.trace(this, fragment.getClass().getName());
         if (fragment.getClass().getName().equalsIgnoreCase("com.hkm.driverview.ListOrderes.FragmentX")) {
             fragmentx = (FragmentX) fragment;
         }
@@ -115,24 +114,11 @@ public class DriverView extends ActionBarActivity {
 
     private DialogTools dialog_collection;
 
-    static class wrapper_inquiry_order {
-        private String _call_id;
-
-        public wrapper_inquiry_order(String id) {
-            _call_id = id;
-        }
-    }
-
-
-    public void inquiryOrder(final String number, final String cId) {
+    public void inquiryOrder(final String number, final String cId, final OrderCustomer order) {
         final String Q = Config.domain + Config.control.inquiry;
-
         //consolidate
-        final wrapper_inquiry_order cf = new wrapper_inquiry_order(cId);
-        final GsonBuilder gsonb = new GsonBuilder();
-        String request_body = "";
-        Gson gson = gsonb.create();
-        request_body = gson.toJson(cf);
+        Config.current_view_order = order;
+        final simpleId cf = new simpleId(cId, idcard.getNumbr());
 
         //task
         final PostD mCall = new PostD(DriverView.this, new CallTask.callback() {
@@ -142,11 +128,9 @@ public class DriverView extends ActionBarActivity {
                 DriverView.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        final String numberstr = "tel:" + number;
-                        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(numberstr));
-                        DriverView.this.startActivity(callIntent);
-
+                        fragmentx.stopLoopRequest();
+                        Intent orderintent = new Intent(DriverView.this, OrderView.class);
+                        startActivityForResult(orderintent, Config.INTENT_CODE_SINGLE_ORDER);
                         dialog_collection.progress_bar_dismiss();
                     }
                 });
@@ -159,6 +143,7 @@ public class DriverView extends ActionBarActivity {
                     @Override
                     public void run() {
                         dialog_collection.progress_bar_dismiss();
+                        dialog_collection.showSimpleMessage(msg);
                     }
                 });
             }
@@ -174,7 +159,7 @@ public class DriverView extends ActionBarActivity {
             }
         });
 
-        mCall.setBody(request_body).setURL(Q).execute();
+        mCall.setBody(cf.toJson()).setURL(Q).execute();
 
        /* getActivity().runOnUiThread(new Runnable() {
             @Override

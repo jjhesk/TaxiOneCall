@@ -3,6 +3,7 @@ package com.hkm.driverview.ui;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.hkm.driverview.R;
 
 /**
  * Created by hesk on 1/11/2015.
@@ -23,7 +25,15 @@ public class DialogTools {
         __ctx = ctx;
         prepare_progress_bar();
     }
-
+    public void showSimpleMessage(int message) {
+        new MaterialDialog.Builder(__ctx)
+                .title(android.R.string.dialog_alert_title)
+                .content(message)
+                .positiveText(android.R.string.ok)
+                .forceStacking(true)
+                .cancelable(false)
+                .show();
+    }
     public void showSimpleMessage(String message) {
         new MaterialDialog.Builder(__ctx)
                 .title(android.R.string.dialog_alert_title)
@@ -64,6 +74,34 @@ public class DialogTools {
         */
     }
 
+    public void deal(MaterialDialog.ListCallback cb) {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.deal)
+                .items(R.array.time_est)
+                .itemsCallback(cb)
+                .negativeText(android.R.string.cancel)
+                .forceStacking(true)
+                .cancelable(false)
+                .show();
+    }
+
+    public void writeNote(MaterialDialog.ListCallback cb) {
+        new MaterialDialog.Builder(__ctx)
+                .title(R.string.message_note)
+                .items(R.array.complain_list)
+                .itemsCallback(cb)
+                .negativeText(android.R.string.cancel)
+                .forceStacking(true)
+                .cancelable(false)
+                .show();
+    }
+
+    public void progressBarStartCustom() {
+        final Drawable n = __ctx.getResources().getDrawable(R.drawable.cooltext1353377076);
+        progressBar.setProgressDrawable(n);
+        progressBar.show();
+    }
+
     public void progress_bar_start(final int resId) {
         // runOnUiThread(new Runnable() {
         //   @Override
@@ -79,9 +117,9 @@ public class DialogTools {
      /*   runOnUiThread(new Runnable() {
             @Override
             public void run() {*/
-                if (progressBar.isShowing()) {
-                    progressBar.dismiss();
-                }
+        if (progressBar.isShowing()) {
+            progressBar.dismiss();
+        }
         /*    }
         });*/
     }

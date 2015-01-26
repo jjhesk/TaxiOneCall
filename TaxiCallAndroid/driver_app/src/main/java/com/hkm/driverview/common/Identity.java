@@ -12,12 +12,14 @@ public class Identity {
     public static String
             sharepreferencename_tag = "ONECALLTAXI",
             pass_tag = "DRIVER_PASS",
+            phone_num = "PHONE_NUM",
             email_tag = "DRIVER_EMAIL";
     private SharedPreferences SP;
     private String
             email = "",
             pass = "",
-            mac_id = "";
+            mac_id = "",
+            num = "";
     private Context __ctx;
 
     public Identity(Context service_context) {
@@ -26,17 +28,21 @@ public class Identity {
         mac_id = Tool.get_mac_address(__ctx);
         email = SP.getString(Identity.email_tag, "");
         pass = SP.getString(Identity.pass_tag, "");
+        num = SP.getString(Identity.phone_num, "");
     }
 
     public boolean hasAuthen() {
-        return !(email.equalsIgnoreCase("") || pass.equalsIgnoreCase(""));
+        return !(email.equalsIgnoreCase("") || pass.equalsIgnoreCase("")
+                || num.equalsIgnoreCase(""));
     }
 
-    public void saveAuthen(String email, String pass) {
-        SP.edit()
-                .putString(Identity.email_tag, email)
-                .putString(Identity.pass_tag, pass)
-                .apply();
+    public void saveAuthen(final String email, final String pass, final String num) {
+        SharedPreferences.Editor ed = SP.edit();
+        ed.putString(Identity.email_tag, email);
+        ed.putString(Identity.pass_tag, pass);
+        ed.putString(Identity.phone_num, num);
+        //ed.apply();
+        ed.commit();
     }
 
     public String getEmail() {
@@ -45,5 +51,9 @@ public class Identity {
 
     public String getPass() {
         return pass;
+    }
+
+    public String getNumbr() {
+        return num;
     }
 }
