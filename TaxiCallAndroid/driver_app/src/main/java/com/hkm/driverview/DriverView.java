@@ -16,8 +16,8 @@ import com.hkm.driverview.ListOrderes.OrderCustomer;
 import com.hkm.driverview.common.APIHelper;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.Identity;
-import com.hkm.driverview.common.PostD;
-import com.hkm.driverview.schema.simpleId;
+import com.hkm.driverview.common.flux.PostD;
+import com.hkm.driverview.common.schema.simpleId;
 import com.hkm.driverview.singleorder.OrderView;
 import com.hkm.driverview.ui.DialogTools;
 

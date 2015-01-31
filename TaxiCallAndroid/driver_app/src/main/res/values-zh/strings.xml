@@ -9,12 +9,21 @@
     <string name="action_send">發送</string>
     <string name="action_leave">離開</string>
     <string name="error_connect">無法連接</string>
+    <string name="action_done_passenger">成功接收乘客。</string>
+    <string name="action_customer_reject_final">乘客最後拒絕上車了。</string>
 
-    <string name="action_remove">remove call</string>
-    <string name="action_release">release call</string>
+    <!--<string name="action_remove">remove call</string>
+    <string name="action_release">release call</string>-->
+    <string name="action_custom_cancel">由客戶因其他取消該訂單。</string>
+    <string name="action_unattainable_time">不能及時到達。</string>
+
     <string name="message_note">What action do you want to take for this call?</string>
-    <string name="deal">Action for this deal</string>
-
+    <string name="dealcancel_reason">取消這筆交易的行動原因</string>
+    <string name="time_report">請估計多少時間考慮</string>
+    <string name="waiting_customer_res_prompt">現正等待客戶響應這提示。</string>
+    <string name="field_remark">客戶其他要求</string>
+    <string name="field_call_time">落單時間</string>
+    <string name="field_set_timer">計時器</string>
 
     <!-- messages -->
     <string name="message_welcome">Welcome to Socket.IO List –</string>

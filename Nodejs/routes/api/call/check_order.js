@@ -23,7 +23,7 @@ exports = module.exports = function (req, res) {
     var
         Q = {},
         local = {post: false, driver: false},
-        localout = {status: false, taxi_id: false, driver_name: false, taxi_license: "", caller: "", est_time: ""};
+        localout = {status: 0, taxi_id: false, driver_name: false, taxi_license: "", caller: "", est_time: ""};
 
     async.series([
         function (next) {
@@ -43,7 +43,7 @@ exports = module.exports = function (req, res) {
         }, function (next) {
             //update the value of status to taken
             if (local.post.dealstatus == "stage1") {
-                localout.status = true;
+                localout.status = 1;
                 if (local.driver) {
                     localout.taxi_id = local.driver._id.toString();
                     localout.driver_name = local.driver.name.first + " " + local.driver.name.last;
@@ -51,6 +51,18 @@ exports = module.exports = function (req, res) {
                     localout.caller = local.driver.cellPhone;
                     localout.est_time = local.post.estimate;
                     console.log('order is checked and the status is -stage1-');
+                }
+            }
+
+            if (local.post.dealstatus == "stage2") {
+                localout.status = 2;
+                if (local.driver) {
+                    localout.taxi_id = local.driver._id.toString();
+                    localout.driver_name = local.driver.name.first + " " + local.driver.name.last;
+                    localout.taxi_license = local.driver.licenseID;
+                    localout.caller = local.driver.cellPhone;
+                    localout.est_time = local.post.estimate;
+                    console.log('order is checked and the status is -stage2-');
                 }
             }
             next();

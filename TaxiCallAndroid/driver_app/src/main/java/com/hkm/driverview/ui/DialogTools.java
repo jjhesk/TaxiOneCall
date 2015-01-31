@@ -25,6 +25,7 @@ public class DialogTools {
         __ctx = ctx;
         prepare_progress_bar();
     }
+
     public void showSimpleMessage(int message) {
         new MaterialDialog.Builder(__ctx)
                 .title(android.R.string.dialog_alert_title)
@@ -34,6 +35,34 @@ public class DialogTools {
                 .cancelable(false)
                 .show();
     }
+
+
+    public void showSimpleMessage(int message, MaterialDialog.ButtonCallback cb) {
+        new MaterialDialog.Builder(__ctx)
+                .title(android.R.string.dialog_alert_title)
+                .content(message)
+                .callback(cb)
+                .positiveText(android.R.string.ok)
+                .forceStacking(true)
+                .cancelable(false)
+                .show();
+    }
+
+    public void showSimpleMesssageAlert(int message, MaterialDialog.ButtonCallback cb) {
+        new MaterialDialog.Builder(__ctx)
+                .title(android.R.string.dialog_alert_title)
+                .content(message)
+                .callback(cb)
+                .positiveText(android.R.string.ok)
+                .forceStacking(true)
+                .cancelable(false)
+                .backgroundColorRes(R.color.material_blue_grey_800)
+                .dividerColorRes(R.color.md_divider_white)
+                .show();
+
+
+    }
+
     public void showSimpleMessage(String message) {
         new MaterialDialog.Builder(__ctx)
                 .title(android.R.string.dialog_alert_title)
@@ -76,7 +105,7 @@ public class DialogTools {
 
     public void deal(MaterialDialog.ListCallback cb) {
         new MaterialDialog.Builder(__ctx)
-                .title(R.string.deal)
+                .title(R.string.time_report)
                 .items(R.array.time_est)
                 .itemsCallback(cb)
                 .negativeText(android.R.string.cancel)
@@ -87,7 +116,7 @@ public class DialogTools {
 
     public void writeNote(MaterialDialog.ListCallback cb) {
         new MaterialDialog.Builder(__ctx)
-                .title(R.string.message_note)
+                .title(R.string.dealcancel_reason)
                 .items(R.array.complain_list)
                 .itemsCallback(cb)
                 .negativeText(android.R.string.cancel)
@@ -103,25 +132,16 @@ public class DialogTools {
     }
 
     public void progress_bar_start(final int resId) {
-        // runOnUiThread(new Runnable() {
-        //   @Override
-        //     public void run() {
         final String n = __ctx.getResources().getString(resId);
         progressBar.setMessage(n);
         progressBar.show();
-        //     }
-        // });
+
     }
 
     public void progress_bar_dismiss() {
-     /*   runOnUiThread(new Runnable() {
-            @Override
-            public void run() {*/
         if (progressBar.isShowing()) {
             progressBar.dismiss();
         }
-        /*    }
-        });*/
     }
 
 }

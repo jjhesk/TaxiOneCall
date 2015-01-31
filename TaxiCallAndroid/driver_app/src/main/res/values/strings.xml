@@ -7,16 +7,25 @@
     <string name="user_action_typing">is typing...</string>
     <string name="prompt_message">prompt message</string>
     <string name="action_send">send</string>
+    <string name="action_done_passenger">Successful picked up the passenger.</string>
+    <string name="action_customer_reject_final">The passenger finally refuse to get on the taxi.</string>
 
 
     <string name="action_leave">Leave</string>
     <string name="error_connect">Failed to connect</string>
 
-    <string name="action_remove">remove call</string>
-    <string name="action_release">release call</string>
-    <string name="message_note">What action do you want to take for this call?</string>
-    <string name="deal">Action for this deal</string>
+    <!--<string name="action_remove">remove call</string>
+    <string name="action_release">release call</string>-->
+    <string name="action_custom_cancel">Cancel by customer with other reasons.</string>
+    <string name="action_unattainable_time">Cannot arrive in time.</string>
 
+    <string name="message_note">What action do you want to take for this call?</string>
+    <string name="dealcancel_reason">Reason to cancel this order</string>
+    <string name="time_report">Please estimate how much time it takes to reach the customer</string>
+    <string name="waiting_customer_res_prompt">Waiting for customer to respond to this prompt.</string>
+    <string name="field_remark">Additional requirements</string>
+    <string name="field_call_time">Order time</string>
+    <string name="field_set_timer">Timer</string>
 
     <!-- messages -->
     <string name="message_welcome">Welcome to Socket.IO List –</string>
@@ -27,7 +36,6 @@
 
     <string name="message_user_joined">%s joined</string>
     <string name="message_user_left">%s left</string>
-
 
 
 </resources>

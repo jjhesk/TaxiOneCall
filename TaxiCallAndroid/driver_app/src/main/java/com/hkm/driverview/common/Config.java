@@ -1,7 +1,8 @@
 package com.hkm.driverview.common;
 
 import com.hkm.driverview.ListOrderes.OrderCustomer;
-import com.hkm.driverview.schema.Credential;
+import com.hkm.driverview.common.schema.Credential;
+
 
 /**
  * Created by hesk on 1/23/2015.
@@ -15,12 +16,14 @@ public class Config {
         public final static String getcalllist = "/api/driver/list/";
         public final static String inquiry = "/api/driver/inquiry/";
         public final static String release = "/api/driver/release/";
-        public final static String remove = "/api/driver/remove/";
+        public final static String prompt_customer = "/api/driver/prompt_customer/";
         public final static String setdeal = "/api/driver/deal/";
     }
 
     public static class _default {
         public final static int refresh_time = 10000;
+        public final static int refresh_time_customer_prompt = 1000;
+        public final static float cameraZoomDefault = 18.0f;
 
     }
 

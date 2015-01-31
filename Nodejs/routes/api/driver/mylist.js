@@ -36,7 +36,17 @@ exports = module.exports = function (req, res) {
         },
         function (next) {
             //  try {
-            var q = Call.model.find().where('dealstatus', 'public').sort('-calltime').limit('1000');
+
+            var exp = moment().subtract(9, 'h').valueOf(),
+                q = Call.model
+                    /*.find({
+                    'dealstatus': 'public',
+                    'calltime': {$lt: exp}
+                })*/
+                    .find()
+                    .where('dealstatus', 'public')
+                 /*   .where('calltime').gt()*/
+                    .sort('-calltime').limit('1000');
             //  .populate('calltype')
             q.exec(function (err, results) {
                 dataholder.posts = results;

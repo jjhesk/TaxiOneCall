@@ -21,6 +21,8 @@ public class Config {
     public static Report c_report;
     public static class _default {
         public final static int setlooptimer = 5000;
+        public final static int timer = 1000;
+        public final static int vibe_length = 1000;
     }
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/control_panel_driver"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:show_mode="pull_out"
+    app:drag_edge="left">
+
+    <RelativeLayout
+        android:tag="bottom_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.MapFragment" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:tag="top_control"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/call_customer"
+                android:scaleType="fitCenter"
+                android:layout_width="@dimen/bw_driver_order_view"
+                android:layout_height="150dp"
+                android:src="@drawable/phone22" />
+
+            <ImageButton
+                android:id="@+id/report_time_est"
+                android:scaleType="fitCenter"
+                android:layout_width="@dimen/bw_driver_order_view"
+                android:layout_height="150dp"
+                android:src="@drawable/timer" />
+
+
+            <ImageButton
+                android:id="@+id/start_taxi_now"
+                android:scaleType="fitCenter"
+                android:layout_width="@dimen/bw_driver_order_view"
+                android:layout_height="150dp"
+                android:src="@drawable/goal" />
+
+            <ImageButton
+                android:id="@+id/release_order"
+                android:scaleType="fitCenter"
+                android:layout_width="@dimen/bw_driver_order_view"
+                android:layout_height="150dp"
+                android:src="@drawable/ret" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</com.daimajia.swipe.SwipeLayout>

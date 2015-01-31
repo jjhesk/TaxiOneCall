@@ -27,11 +27,11 @@ Call.add({
         options: [
             {value: 'public', label: 'New Fresh Public Request'},
             {value: 'stage1', label: 'Driver Accept'},
-            {value: 'stage2', label: 'Customer Accept'},
-            {value: 'stage3', label: 'Customer Got on The Taxi'},
+            {value: 'stage2', label: 'Driver Prompt Customer at the Pick Up location'},
+            {value: 'stage3', label: 'Customer see and got pick up by the driver'},
             {value: 'taken', label: 'Taken'},
-            {value: 'paid', label: 'Paid'},
-            {value: 'removed', label: 'Remove'}
+            {value: 'timeout', label: 'Ticket time out'},
+            {value: 'removed_c', label: 'Remove by customer'}
         ], noedit: false, label: "Calling Status"
     },
     dealstatus_time: {type: Date, default: Date.now, noedit: true, label: "Status update time"}

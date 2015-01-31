@@ -6,4 +6,7 @@
     <dimen name="card_space">5dp</dimen>
     <dimen name="button_width">80dp</dimen>
     <dimen name="bw_driver_order_view">80dp</dimen>
+    <dimen name="info_w">100dp</dimen>
+    <dimen name="size_big">50dp</dimen>
+    <dimen name="height_swipe_timer">100dp</dimen>
 </resources>

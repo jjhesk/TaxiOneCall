@@ -36,6 +36,8 @@ exports = module.exports = function (req, res) {
         }, function (next) {
             queries.report_new_issue(local, Q.report_issue, next);
         }, function (next) {
+            queries.update_call_status(local.post, "removed_c", next);
+        }, function (next) {
             return res.apiResponse({
                 success: true,
                 timestamp: new Date().getTime(),

@@ -18,6 +18,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/status_ln"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/primary_dark_material_dark"
@@ -30,6 +31,14 @@
             android:layout_height="wrap_content"
             android:textColor="@color/primary_dark_material_dark"
             android:text="this is the debug view"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/count_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_dark_material_dark"
+            android:text="___"
             android:gravity="center_horizontal" />
 
 

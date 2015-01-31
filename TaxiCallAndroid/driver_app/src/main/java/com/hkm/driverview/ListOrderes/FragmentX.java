@@ -21,7 +21,7 @@ import com.hkm.driverview.R;
 import com.hkm.driverview.RegLogin;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.Identity;
-import com.hkm.driverview.common.OrderListQ;
+import com.hkm.driverview.common.flux.OrderListQ;
 import com.hkm.driverview.ui.DialogTools;
 
 import java.util.ArrayList;

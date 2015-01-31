@@ -11,13 +11,12 @@ var keystone = require('keystone'),
     queries = require('../../../lib/handler/queries')
     ;
 exports = module.exports = function (req, res) {
-    var
-        Q = {},
+    var Q = {},
         local = {post: false, driver: false};
     async.series([
         function (next) {
             try {
-                Q = tool.url_param_checker(req.body, ['_call_id', 'driver_num']);
+                Q = tool.url_param_checker(req.body, ['_call_id', 'driver_num', 'new_status']);
                 next();
             } catch (e) {
                 return next({message: e.message});
@@ -30,7 +29,7 @@ exports = module.exports = function (req, res) {
             queries.get_call_post_by_Id(local, Q._call_id, next);
         },
         function (next) {
-            queries.update_call_status(local.post, "public", next);
+            queries.update_call_status(local.post, Q.new_status, next);
         },
         function (next) {
             return res.apiResponse({

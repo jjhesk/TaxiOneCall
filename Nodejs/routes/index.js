@@ -69,7 +69,7 @@ exports = module.exports = function (app) {
     app.all('/api/driver/login', api.account.login);
     app.all('/api/driver/new', api.account.newdriver);
     app.all('/api/driver/deal', api.driver.deal);
-    app.all('/api/driver/remove', api.driver.remove_order);
+    app.all('/api/driver/prompt_customer', api.driver.listening_customer);
     app.all('/api/driver/release', api.driver.release_order);
     // app.all('/api/license/registration', api.license_processor.registration);
     // app.all('/api/me/register', routes.api.register); dsfsdf

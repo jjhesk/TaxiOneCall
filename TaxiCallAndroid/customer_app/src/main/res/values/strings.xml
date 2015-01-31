@@ -16,7 +16,7 @@
     <string name="get_server_number">To better match your request please enter your phone number to create an account.</string>
     <string name="addresshintstart">Pick Up Point >></string>
     <string name="addresshintend">Drop Off >></string>
-
+    <string name="over_time">You do not have any drivers to respond your order. Do you want to make a new order and try again or keep waiting?</string>
 
 
     <string name="basic">Basic</string>
@@ -57,6 +57,9 @@
     <string name="call_type">Transportation</string>
     <string name="extra_requirement">Extra</string>
     <string name="number_field">Order Number</string>
+    <string name="status_new_taxi">You just have a taxi driver taken your order.</string>
+    <string name="status_taxi_withdrawn">Your taxi driver has withdrawn your order. Please be patient and wait for the next driver to take your order.</string>
+    <string name="status_complete_prompt">The taxi driver has arrived at your location. Press the green button to confirm this pick and complete the call.</string>
 
 
     <string name="about_body"><![CDATA[

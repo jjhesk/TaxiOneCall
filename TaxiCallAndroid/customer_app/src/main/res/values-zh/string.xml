@@ -34,6 +34,7 @@
     <string name="addresshintstart">上車地點 >></string>
     <string name="addresshintend">下車位置 >></string>
     <string name="confirm_choices">確認額外要求</string>
+    <string name="over_time">你沒有任司機回應您的訂單。你是否想建立新單，或是想繼續等待？</string>
     <string-array name="AutoType">
         <item>的士</item>
         <!--        <item>Van</item>
@@ -44,6 +45,9 @@
     <string name="call_type">車種</string>
     <string name="extra_requirement">額外要求</string>
     <string name="number_field">訂單號</string>
+    <string name="status_new_taxi">您剛剛有一個的士司機確認了你的訂單。</string>
+    <string name="status_taxi_withdrawn">的士司機已撤回了你的訂單，請耐心等待下一個的士司機把你的訂單確認。</string>
+    <string name="status_complete_prompt">的士司機已到達您的位置。按下綠色按鈕以確認這個選擇並完成呼叫。</string>
 
 
     <string name="basic">Basic</string>

@@ -2,21 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hkm.driverview">
 
+    <uses-feature
+        android:glEsVersion="0x00030000"
+        android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <application
-
         android:clipToPadding="false"
         android:fitsSystemWindows="true"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".DriverView"
             android:label="@string/app_name"
@@ -40,15 +41,23 @@
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.AppCompat"
             android:windowSoftInputMode="adjustResize|stateAlwaysVisible"></activity>
-
         <receiver
-            android:name=".common.NetworkChangeReceiver"
+            android:name=".common.flux.NetworkChangeReceiver"
             android:label="NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+        <!-- google map library -->
+        <!-- AIzaSyDAMkltRaf5IL6zW5Bm9n2Y0xbUsqFL2II-->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDAMkltRaf5IL6zW5Bm9n2Y0xbUsqFL2II" />
+        <uses-library android:name="com.google.android.maps" />
 
     </application>
 </manifest>

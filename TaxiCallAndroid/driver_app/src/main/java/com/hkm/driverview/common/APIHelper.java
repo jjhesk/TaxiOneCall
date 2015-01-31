@@ -25,6 +25,8 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.hkm.driverview.common.flux.NetworkStatusHelper;
+
 public class APIHelper {
 
     //TODO: alert if connectivity lost and call queued

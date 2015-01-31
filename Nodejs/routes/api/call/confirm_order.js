@@ -31,9 +31,11 @@ exports = module.exports = function (req, res) {
         }, function (next) {
             queries.get_call_post_by_Id(local, Q._call_id, next);
         }, function (next) {
-            queries.update_call_status(local.post, "stage2", next);
+            queries.update_call_status(local.post, "stage3", next);
+
         },
         function (next) {
+            console.log("[api.app.confirm] - reveal:", local.post._doc);
             return res.apiResponse({
                 success: true,
                 timestamp: new Date().getTime(),

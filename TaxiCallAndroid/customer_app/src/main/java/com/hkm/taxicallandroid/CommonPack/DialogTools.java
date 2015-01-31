@@ -2,36 +2,29 @@ package com.hkm.taxicallandroid.CommonPack;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.asynhkm.productchecker.Model.CallTask;
-import com.asynhkm.productchecker.Util.Tool;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.hkm.taxicallandroid.MainControlTh;
+import com.hkm.taxicallandroid.CallPanel;
+import com.hkm.taxicallandroid.OrderPanel;
 import com.hkm.taxicallandroid.R;
 import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
-import com.hkm.taxicallandroid.WaitingForRide;
 import com.hkm.taxicallandroid.memory.wordmem;
 import com.hkm.taxicallandroid.schema.Call;
-import com.hkm.taxicallandroid.schema.check_order_obj;
-
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Created by hesk on 1/11/2015.
  */
 public class DialogTools {
+    private static String TAG = "dialog_tools";
     private Context __ctx;
     private ProgressDialog progressBar;
 
@@ -205,7 +198,7 @@ public class DialogTools {
                     .itemsCallback(new MaterialDialog.ListCallback() {
                         @Override
                         public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                            ((MainControlTh) __ctx).updateLocation(text.toString());
+                            ((OrderPanel) __ctx).updateLocation(text.toString());
                             dialog.dismiss();
                         }
                     })
@@ -249,7 +242,7 @@ public class DialogTools {
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        ((MainControlTh) __ctx).updateLocation(text.toString());
+                        ((OrderPanel) __ctx).updateLocation(text.toString());
                         dialog.dismiss();
                     }
                 })
@@ -272,10 +265,10 @@ public class DialogTools {
                             //str.append(": ");
                             str.append(text[i]);
                             str.append(',');
-                            str.append('\n');
+                            //str.append('\n');
                         }
                         add_remarks_selected = which;
-                        ((MainControlTh) __ctx).updateRemark(str.toString());
+                        ((OrderPanel) __ctx).updateRemark(str.toString());
                         //Tool.trace(__ctx, str.toString());
                     }
                 })
@@ -291,7 +284,7 @@ public class DialogTools {
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        ((MainControlTh) __ctx).updateLocation(text.toString());
+                        ((OrderPanel) __ctx).updateLocation(text.toString());
 
                     }
                 })
@@ -312,8 +305,30 @@ public class DialogTools {
         dialog.show();
     }
 
+    public void give_up_prompt() {
+        new MaterialDialog.Builder(__ctx)
+                .title(android.R.string.dialog_alert_title)
+                .content(R.string.get_server_number)
+                .callback(new MaterialDialog.Callback() {
+                    @Override
+                    public void onNegative(MaterialDialog materialDialog) {
+                        materialDialog.dismiss();
+                    }
 
-    public void reject_call() {
+                    @Override
+                    public void onPositive(MaterialDialog materialDialog) {
+                        Config.c_report.setIssue("time out from waiting for the taxi.");
+                        report_submission();
+                        materialDialog.dismiss();
+                    }
+                })
+                .negativeText(android.R.string.cancel)
+                .positiveText(android.R.string.ok)
+                .autoDismiss(false)
+                .show();
+    }
+
+    public void reject_call(final IncomingDriver callbackkstack) {
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.report_issue)
                 .items(R.array.rejection_reasons)
@@ -328,10 +343,13 @@ public class DialogTools {
                             materialDialog.dismiss();
                         } else {
                             materialDialog.dismiss();
-                            write_note();
+                            write_note(callbackkstack);
                         }
+                        Log.d(TAG, i + "");
                     }
                 })
+
+                .negativeText(android.R.string.cancel)
                 .positiveText(android.R.string.ok)
                 .autoDismiss(false)
                 .show();
@@ -341,7 +359,7 @@ public class DialogTools {
     private EditText note_paper;
     private View ActionButton;
 
-    private void write_note() {
+    private void write_note(final IncomingDriver callbackkstack) {
         final MaterialDialog m = new MaterialDialog.Builder(__ctx)
                 .title(R.string.report_issue)
                 .customView(R.layout.issue_report, false)
@@ -394,9 +412,8 @@ public class DialogTools {
         final Call check = new Call(__ctx, new CallTask.callback() {
             @Override
             public void onSuccess(String data) {
-                /*incoming_driver_data = gson.fromJson(data, check_order_obj.class);
-                if (incoming_driver_data.replied()) { controlPanel.incoming(incoming_driver_data);}*/
                 progress_bar_dismiss();
+                ((CallPanel) __ctx).finish();
             }
 
             @Override

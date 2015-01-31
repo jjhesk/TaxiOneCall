@@ -15,10 +15,10 @@ import com.asynhkm.productchecker.Model.CallTask;
 import com.daimajia.swipe.SwipeLayout;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.Identity;
-import com.hkm.driverview.common.PostD;
-import com.hkm.driverview.schema.Credential;
-import com.hkm.driverview.schema.LoginRequest;
-import com.hkm.driverview.schema.RegistrationRequest;
+import com.hkm.driverview.common.flux.PostD;
+import com.hkm.driverview.common.schema.Credential;
+import com.hkm.driverview.common.schema.LoginRequest;
+import com.hkm.driverview.common.schema.RegistrationRequest;
 import com.hkm.driverview.ui.DialogTools;
 
 /**

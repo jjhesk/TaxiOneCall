@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_info_panel"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_swipe_timer"
+    app:show_mode="lay_down"
+    app:drag_edge="right">
+
+
+    <LinearLayout
+        android:tag="top"
+        android:background="@color/timer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_swipe_timer">
+
+        <LinearLayout
+            android:background="@drawable/liska"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/timer"
+                android:scaleType="centerInside"
+                android:padding="@dimen/card_space" />
+
+            <TextView
+                android:text="10:10:XX"
+                android:id="@+id/timer"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/size_big"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="inherit"
+                android:textIsSelectable="false"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:background="@color/backgroundred"
+        android:tag="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_swipe_timer">
+
+        <!-- android:layout_margin="@dimen/card_space"
+                 android:paddingTop="@dimen/spacing"-->
+        <LinearLayout
+            android:padding="@dimen/spacing"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="@dimen/info_w"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    android:text="@string/field_call_time" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/time"
+                    android:textColor="@color/white_color"
+                    android:text="demotime"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <TextView
+                    android:layout_width="@dimen/info_w"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:textStyle="bold"
+                    android:text="@string/field_remark" />
+
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/remarks"
+                    android:textColor="@color/white_color"
+                    android:text="demotime\nkpodkpokpd" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/driver_map"
+            android:background="@drawable/item_button"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/steering_wheel_xxl"
+            android:scaleType="centerInside"
+            android:layout_alignParentRight="true"
+            android:padding="10dp" />
+
+    </RelativeLayout>
+
+
+
+
+</com.daimajia.swipe.SwipeLayout>
