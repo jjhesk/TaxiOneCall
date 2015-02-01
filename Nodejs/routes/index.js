@@ -60,6 +60,7 @@ exports = module.exports = function (app) {
     app.all('/api/call/confirm', api.call.confirm_order);
     app.all('/api/call/check', api.call.check_order);
     app.all('/api/call/report', api.call.report);
+    app.all('/api/call/status', api.call.status);
 
 
 

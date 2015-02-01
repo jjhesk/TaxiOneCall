@@ -17,6 +17,10 @@
     <string name="addresshintstart">Pick Up Point >></string>
     <string name="addresshintend">Drop Off >></string>
     <string name="over_time">You do not have any drivers to respond your order. Do you want to make a new order and try again or keep waiting?</string>
+    <string name="service_not_available">GPS is not available</string>
+    <string name="invalid_lat_long_used">invalid location</string>
+    <string name="no_address_found">No address was found</string>
+    <string name="address_found">The address is found</string>
 
 
     <string name="basic">Basic</string>

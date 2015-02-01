@@ -108,18 +108,17 @@ public class IncomingDriver {
     }
 
     public void confirm_order() {
-        __ctx.getCallRecord().taken(__ctx, __ctx.getDT());
+        Config.online_order.taken(__ctx, __ctx.getDT());
         __ctx.stream_up(false);
     }
 
     public void reject_order() {
-        Config.c_report = new Report(__ctx.getCallRecord()._id);
+        Config.c_report = new Report(Config.online_order._id);
         __ctx.getDT().reject_call(this);
     }
 
     public void cancel_by_customer() {
-        Config.c_report = new Report(__ctx.getCallRecord()._id);
-        __ctx.getDT().reject_call(this);
+        __ctx.change_call_status("removed_c");
     }
 
 

@@ -2,12 +2,19 @@ package com.hkm.taxicallandroid;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.asynhkm.productchecker.Model.CallTask;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
+import com.hkm.taxicallandroid.schema.CRChangeStatus;
+import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.ConfirmCall;
 
 import java.util.concurrent.Executors;
@@ -18,12 +25,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by hesk on 1/21/2015.
  */
-public class CallPanel extends Activity {
+public class CallPanel extends Activity implements
+        GooglePlayServicesClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private String rawjson;
     private TextView edtv, from, to;
 
+    private static String TAG = "CallPanel Control";
 
-    private ConfirmCall CCdata;
     private DialogTools dT;
     private IncomingDriver viewbindDriverIncoming;
 
@@ -37,9 +45,9 @@ public class CallPanel extends Activity {
         from = (TextView) findViewById(R.id.from_spot);
         to = (TextView) findViewById(R.id.to_spot);
 
-        CCdata = ConfirmCall.parse(rawjson);
-        from.setText(CCdata.pickup);
-        to.setText(CCdata.destination);
+        Config.online_order = ConfirmCall.parse(rawjson);
+        from.setText(Config.online_order.pickup);
+        to.setText(Config.online_order.destination);
 
         if (_debug_mode) {
             edtv.setText(rawjson);
@@ -83,8 +91,34 @@ public class CallPanel extends Activity {
         else init_timer_task();
     }
 
-    public ConfirmCall getCallRecord() {
-        return CCdata;
+
+    public void change_call_status(final String status_name) {
+        final CRChangeStatus cr = new CRChangeStatus(Config.online_order._id, status_name);
+        final String Q = Config.domain + Config.control.call_record_status;
+        //task
+        final Call mCall = new Call(this, new CallTask.callback() {
+            @Override
+            public void onSuccess(final String data) {
+                Log.d(TAG, data);
+                // __ctx.runOnUiThread(success_call);
+                finish();
+            }
+
+            @Override
+            public void onFailure(final String msg) {
+                Log.d(TAG, msg);
+                dT.progress_bar_dismiss();
+            }
+
+            @Override
+            public void beforeStart(final CallTask task) {
+                dT.progress_bar_start(R.string.wait);
+            }
+
+        });
+
+        mCall.setBody(cr.toJson()).setURL(Q).execute();
+
     }
 
     public DialogTools getDT() {
@@ -100,8 +134,7 @@ public class CallPanel extends Activity {
             CallPanel.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    // dialog_collection.showSimpleMessage("testing now");
-                    CCdata.check_my_order(CallPanel.this, exec, viewbindDriverIncoming);
+                    Config.online_order.check_my_order(CallPanel.this, exec, viewbindDriverIncoming);
                 }
             });
         }
@@ -109,5 +142,20 @@ public class CallPanel extends Activity {
 
     private void init_timer_task() {
         exec.scheduleAtFixedRate(maintask, 1000, Config._default.setlooptimer, TimeUnit.MILLISECONDS);
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onDisconnected() {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 }

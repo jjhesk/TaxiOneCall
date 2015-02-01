@@ -1,9 +1,11 @@
 package com.hkm.taxicallandroid;
 
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +20,9 @@ import com.asynhkm.productchecker.Util.Tool;
 import com.daimajia.swipe.SwipeLayout;
 import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
-import com.hkm.taxicallandroid.memory.Phone;
-import com.hkm.taxicallandroid.memory.wordmem;
+import com.hkm.taxicallandroid.CommonPack.memory.FolderSelectorDialog;
+import com.hkm.taxicallandroid.CommonPack.memory.Phone;
+import com.hkm.taxicallandroid.CommonPack.memory.wordmem;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
 
@@ -144,9 +147,23 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         });
 
         mphone.setPhoneNumberDisplay(display_number);
-
+        apply_from_location();
     }
 
+    private void apply_from_location() {
+      if(Config.mAddress != null && Config.mAddress.size() > 0) {
+            ArrayList<String> addressFragments = new ArrayList<String>();
+            Address address = Config.mAddress.get(0);
+            // Fetch the address lines using getAddressLine,
+            // join them, and send them to the thread.
+          for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+            addressFragments.add(address.getAddressLine(i));
+          }
+            String add = TextUtils.join(System.getProperty("line.separator"), addressFragments);
+            display_start_loc.setText(add);
+            order.setDestination(add);
+      }
+    }
 
     private TextView display_number, display_destination, display_start_loc;
 

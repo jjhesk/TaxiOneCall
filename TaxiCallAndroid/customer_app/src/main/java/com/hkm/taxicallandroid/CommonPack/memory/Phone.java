@@ -1,4 +1,4 @@
-package com.hkm.taxicallandroid.memory;
+package com.hkm.taxicallandroid.CommonPack.memory;
 
 import android.content.Context;
 import android.content.SharedPreferences;

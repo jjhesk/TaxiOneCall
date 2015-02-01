@@ -17,7 +17,8 @@ import com.hkm.taxicallandroid.CallPanel;
 import com.hkm.taxicallandroid.OrderPanel;
 import com.hkm.taxicallandroid.R;
 import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
-import com.hkm.taxicallandroid.memory.wordmem;
+import com.hkm.taxicallandroid.CommonPack.memory.wordmem;
+import com.hkm.taxicallandroid.schema.CRChangeStatus;
 import com.hkm.taxicallandroid.schema.Call;
 
 /**
@@ -222,9 +223,9 @@ public class DialogTools {
                 .show();
     }
 
-    private void sub_pin(final int which_map) {
+    private int connect_list(int item_in) {
         int array_list = R.array.pin;
-        switch (which_map) {
+        switch (item_in) {
             case 0:
                 array_list = R.array.public_hospital;
                 break;
@@ -234,11 +235,21 @@ public class DialogTools {
             case 2:
                 array_list = R.array.parks_locations;
                 break;
+            case 3:
+                array_list = R.array.lst_map_c_parks;
+                break;
+            case 4:
+                array_list = R.array.lst_beaches;
+                break;
         }
+        return array_list;
+    }
+
+    private void sub_pin(final int which_map) {
         // Tool.trace(__ctx, which_map + "");
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.prefer_locations)
-                .items(array_list)
+                .items(connect_list(which_map))
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
@@ -250,7 +261,7 @@ public class DialogTools {
     }
 
     public void add_remarks() {
-       /* if (add_remarks_selected == null) {
+        /* if (add_remarks_selected == null) {
             add_remarks_selected = new Integer[]{-1};
         }*/
         new MaterialDialog.Builder(__ctx)

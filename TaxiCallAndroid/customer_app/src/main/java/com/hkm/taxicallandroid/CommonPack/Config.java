@@ -1,7 +1,14 @@
 package com.hkm.taxicallandroid.CommonPack;
 
+import android.location.Address;
+import android.location.Location;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.hkm.taxicallandroid.schema.ConfirmCall;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
 import com.hkm.taxicallandroid.schema.Report;
+
+import java.util.List;
 
 /**
  * Created by hesk on 1/11/2015.
@@ -15,14 +22,29 @@ public class Config {
         public final static String check = "/api/call/check/";
         public final static String confirm_order = "/api/call/confirm/";
         public final static String report_issue = "/api/call/report/";
+        public final static String call_record_status = "/api/call/status/";
     }
 
-    public static DataCallOrder current_order;
-    public static Report c_report;
+
     public static class _default {
         public final static int setlooptimer = 5000;
         public final static int timer = 1000;
         public final static int vibe_length = 1000;
     }
 
+
+    public static final int SUCCESS_RESULT = 0;
+    public static final int FAILURE_RESULT = 1;
+    public static final String PACKAGE_NAME = "com.hkm.taxicall.locationaddress";
+    public static final String RECEIVER = PACKAGE_NAME + ".RECEIVER";
+    public static final String RESULT_DATA_KEY = PACKAGE_NAME + ".RESULT_DATA_KEY";
+    public static final String LOCATION_DATA_EXTRA = PACKAGE_NAME + ".LOCATION_DATA_EXTRA";
+    public static final String RESULTMSG = PACKAGE_NAME + ".RESULTMSG";
+
+    public static ConfirmCall online_order;
+    public static DataCallOrder current_order;
+    public static Report c_report;
+    public static GoogleApiClient mGoogleApiClient;
+    public static Location mLastLocation;
+    public static List<Address> mAddress;
 }

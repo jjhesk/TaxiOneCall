@@ -49,7 +49,8 @@ exports = module.exports = function (req, res) {
                 return next({message: "This order is currently taken."});
             }
             local.post.dealstatus = "stage1";
-            local.post.driver = new ObjectId(local.driver._id.toString());
+            local.post.driver = new ObjectId(local.driver._id);
+            //console.log('the new driver order', local.driver._id);
             local.post.save(function (err, doc) {
                 if (err) {
                     return next({message: err.message});

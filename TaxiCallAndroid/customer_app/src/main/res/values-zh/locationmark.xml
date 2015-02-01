@@ -7,15 +7,16 @@
     </string-array>
 
     <string-array name="parks_locations">
-        <item>香港海洋公園</item>
-        <item>香港迪士尼樂園</item>
-        <item>太平山頂</item>
-        <item>星光大道</item>
-        <item>女人街</item>
-        <item>廟街夜市</item>
-        <item>金紫荊廣場</item>
+        <item>Hong Kong Ocean Park</item>
+        <item>Hong Kong Disneyland</item>
+        <item>Great European Carnival</item>
+        <item>The peak</item>
+        <item>Avenue of Stars</item>
+        <item>Woemn Street</item>
+        <item>Temple Street Night</item>
+        <item>Golden Bauhinia Square</item>
+        <item>Kai Tak Cruise Terminal</item>
 
-        <item>啓德郵輪碼頭上落客區</item>
         <item>柴灣公園</item>
         <item>香港公園-香港中區</item>
         <item>香港動植物公園</item>
@@ -113,6 +114,90 @@
         <item>聖德肋撒醫院-九龍</item>
         <item>荃灣港安醫院-荃灣</item>
         <item>仁安醫院-沙田</item>
+
+    </string-array>
+
+    <string-array name="lst_beaches">
+        <item>蝴蝶灣-屯門</item>
+        <item>青山灣-屯門</item>
+        <item>加多利灣-屯門</item>
+        <item>舊咖啡灣-屯門</item>
+        <item>新咖啡灣-屯門</item>
+        <item>黃金-屯門</item>
+        <item>釣魚灣-汀九</item>
+        <item>雙仙灣-汀九</item>
+        <item>海美灣-汀九</item>
+        <item>更生灣-汀九</item>
+        <item>麗都灣-汀九</item>
+        <item>汀九灣-汀九</item>
+        <item>近水灣-汀九</item>
+        <item>東灣-馬灣</item>
+        <item>三星灣-西貢</item>
+
+        <item>銀線灣-清水灣</item>
+        <item>清水灣第一灣-清水灣</item>
+        <item>清水灣第二灣-清水灣</item>
+        <item>深水灣-南區</item>
+        <item>淺水灣-南區</item>
+        <item>中灣-南區</item>
+        <item>南灣-南區</item>
+        <item>舂坎灣-南區</item>
+        <item>赤柱正灘-赤柱</item>
+        <item>夏萍灣-赤柱</item>
+        <item>聖士提反灣-赤柱</item>
+        <item>龜背灣-石澳</item>
+        <item>石澳-石澳</item>
+        <item>石澳灣-石澳</item>
+        <item>大浪灣-石澳</item>
+
+    </string-array>
+    <string-array name="lst_map_c_parks">
+
+        <item>薄扶林郊野公園-香港</item>
+        <item>龍虎山郊野公園-香港</item>
+        <item>香港仔郊野公園-香港</item>
+        <item>大潭郊野公園-香港</item>
+        <item>大潭（鰂魚涌擴建部分）郊野公園-香港</item>
+        <item>石澳郊野公園-香港</item>
+
+        <item>八仙嶺郊野公園-新界東</item>
+        <item>船灣郊野公園-新界東</item>
+        <item>船灣（擴建部分）郊野公園-新界東</item>
+        <item>金山郊野公園-新界東</item>
+        <item>獅子山郊野公園-新界東</item>
+        <item>馬鞍山郊野公園-新界東</item>
+        <item>大帽山郊野公園-新界東</item>
+        <item>西貢東郊野公園-新界東</item>
+        <item>西貢西郊野公園-新界東</item>
+        <item>西貢西郊野公園(南風半島)-新界東</item>
+        <item>清水灣郊野公園-新界東</item>
+        <item>橋咀郊野公園-新界東</item>
+        <item>紅花嶺郊野公園-新界東</item>
+
+        <item>城門郊野公園-新界西</item>
+        <item>林村郊野公園-新界西</item>
+        <item>大欖郊野公園-新界西</item>
+        <item>南大嶼郊野公園-新界西</item>
+        <item>南大嶼郊野公園-靈會山</item>
+        <item>南大嶼郊野公園-石壁</item>
+        <item>南大嶼郊野公園-十塱</item>
+        <item>北大嶼郊野公園-大山</item>
+        <item>北大嶼郊野公園-大東山</item>
+        <item>北大嶼郊野公園-二東山</item>
+        <item>北大嶼郊野公園-蓮花山</item>
+        <item>北大嶼郊野公園-鳳凰山北坡</item>
+        <item>北大嶼郊野公園-彌勒山</item>
+        <item>北大嶼郊野公園-黃龍坑郊遊徑</item>
+        <item>北大嶼郊野公園-昂平</item>
+        <item>北大嶼郊野公園-犁壁山</item>
+        <item>北大嶼郊野公園-老虎頭北陂</item>
+        <item>北大嶼郊野公園-萬角咀</item>
+        <item>北大嶼郊野公園-婆髻山</item>
+        <item>北大嶼郊野公園-薄刀屻</item>
+        <item>北大嶼郊野公園-石獅山</item>
+        <item>北大嶼郊野公園-石門甲</item>
+        <item>北大嶼郊野公園-彌勒山北陂</item>
+        <item>北大嶼郊野公園-沙螺灣</item>
 
     </string-array>
 </resources>

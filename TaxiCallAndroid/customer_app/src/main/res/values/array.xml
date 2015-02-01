@@ -38,8 +38,12 @@
         <item>@string/map_hospital</item>
         <item>@string/map_airport</item>
         <item>@string/map_parks</item>
-        <item>@string/map_mtr</item>
-        <item>@string/map_police</item>
+        <item>@string/map_c_parks</item>
+        <item>@string/beaches</item>
+        <!--
+        <item>@string/hongkong</item>
+        <item>@string/kowloon</item>
+        <item>@string/newterr</item>-->
     </array>
 
     <array name="rejection_reasons">

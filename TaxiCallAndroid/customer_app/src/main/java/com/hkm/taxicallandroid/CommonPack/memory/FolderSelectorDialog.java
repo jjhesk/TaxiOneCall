@@ -1,4 +1,4 @@
-package com.hkm.taxicallandroid;
+package com.hkm.taxicallandroid.CommonPack.memory;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.hkm.taxicallandroid.R;
 
 import java.io.File;
 import java.util.ArrayList;
