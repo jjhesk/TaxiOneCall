@@ -47,10 +47,10 @@ exports = module.exports = function (app) {
     // app.get('/register/machine/', routes.views.blog);
     // app.get('/blog/post/:post', routes.views.post);
     // app.get('/ticket/:tid', routes.views.ticket);
-    app.get('/gallery', routes.views.gallery);
-    app.all('/contact', routes.views.contact);
-    app.all('/api/*', keystone.initAPI);
-    app.get('/download/users', routes.download.users);
+   // app.get('/gallery', routes.views.gallery);
+  //  app.all('/contact', routes.views.contact);
+  //  app.all('/api/*', keystone.initAPI);
+  //  app.get('/download/users', routes.download.users);
 
     // jwt token authentication for socket.io traffic
     app.all('/api/token*', middleware.requireUser);
@@ -61,8 +61,6 @@ exports = module.exports = function (app) {
     app.all('/api/call/check', api.call.check_order);
     app.all('/api/call/report', api.call.report);
     app.all('/api/call/status', api.call.status);
-
-
 
 
     app.all('/api/driver/list', api.driver.mylist);
