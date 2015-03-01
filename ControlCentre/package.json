@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "keystone": "~0.2.42",
+    "keystone": "^0.3.2",
     "resty-stone": "0.0.32-alpha",
     "mongoose": "3.8.21",
     "async": "~0.9.0",

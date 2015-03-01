@@ -100,7 +100,7 @@ keystone.set('resty token header', "api-token");
 keystone.set('jwtTokenSecret', '234Ufs(99#@@#*&@9F9855456460V'); // put in something hard to guess
 
 // Start Keystone to connect to your database and initialise the web server
-restyStone.start();
+//restyStone.start();
 
 keystone.start({
     // http:
