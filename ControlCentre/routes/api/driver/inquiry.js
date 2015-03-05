@@ -34,10 +34,11 @@ exports = module.exports = function (req, res) {
                 return next({message: e.message});
             }
         }, function (next) {
-            console.log('---getuser---------------------------------------------------------');
+            console.log('[api.app.inquiry]  - by user by phone number ..', Q.driver_num);
             queries.get_driver_by_phone(local, Q.driver_num, next);
         },
         function (next) {
+            console.log('[api.app.inquiry]  - by user by caller ID ..', Q._call_id);
             queries.get_call_post_by_Id(local, Q._call_id, next);
         },
         function (next) {
@@ -49,7 +50,8 @@ exports = module.exports = function (req, res) {
                 return next({message: "This order is currently taken."});
             }
             local.post.dealstatus = "stage1";
-            local.post.driver = new ObjectId(local.driver._id);
+            //   local.post.driver = new ObjectId(local.driver._id);
+            local.post.driver = local.driver._id;
             //console.log('the new driver order', local.driver._id);
             local.post.save(function (err, doc) {
                 if (err) {

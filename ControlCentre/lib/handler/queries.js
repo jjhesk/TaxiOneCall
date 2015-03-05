@@ -9,7 +9,7 @@ var keystone = require('keystone'),
     Token = keystone.list('Tokenized'),
     Complain = keystone.list('Complain'),
     User = keystone.list('User'),
-    ObjectId = require('mongoose').Types.ObjectId,
+    ObjectIdAction = require('mongoose').Types.ObjectId,
     tool = require('./checker')
     ;
 var getuser_by_phonenumber = function (local, driver_num, next) {
@@ -95,13 +95,13 @@ var getuser_by_phonenumber = function (local, driver_num, next) {
         });
     },
     submissionIssueReport = function (local, Q_content, next) {
-        var driver_id = new ObjectId(local.driver._id.toString());
-        var call_id = new ObjectId(local.post._id.toString());
+      //  var driver_id = new ObjectIdAction(local.driver._id.toString());
+      //  var call_id = new ObjectIdAction(local.post._id.toString());
         var datenow = Date.now();
         // console.log('[api.new.call] - get Q.', Q);
         var complain_post = new Complain.model({
-            driver: driver_id,
-            callId: call_id,
+            driver: local.driver._id,
+            callId: local.post._id,
             issueContent: Q_content,
             reportTime: datenow,
             status: 'new'
@@ -131,21 +131,35 @@ var getuser_by_phonenumber = function (local, driver_num, next) {
                 return next();
 
             });
-    }, createnewtoken = function (token, user_id, next) {
+    }, createnewtoken = function (local_object, next) {
+        /**
+         * issue a new token for the user in here.
+         *   var local = {token: false, expires: false, user: false}
+         * @type {a.data.model}
+         */
+        console.log('[api.new.token] - start process method.');
+        var new_issued_token = tool.genkey(24);
+        /* if (token_input == "" || !token_input)
+         token_input = tool.genkey(24);*/
+        console.log('[api.new.token] - generated new_issued_token:', new_issued_token);
         var tokenp = new Token.model({
-            token: token,
-            user: new ObjectId(user_id),
+            token: new_issued_token,
+            // user: new ObjectIdAction(user_id),
+            user: local_object.user,
             expire: moment().add(7, 'days').valueOf(),
             object: 'login'
         });
+
+        console.log('[api.new.token] - token object is formed');
         tokenp.save(function (err) {
             if (err) {
-                console.log('[api.new.token]  - Error saving new token.', err);
+                console.log('[api.new.token] - Error saving new token.', err);
                 console.log('------------------------------------------------------------');
                 return next({message: 'Sorry, there was an error processing your account, please try again.'});
             }
-            console.log('[api.new.token]  - Saved new token.');
+            console.log('[api.new.token] - Saved new token.');
             console.log('------------------------------------------------------------');
+            local_object.token = new_issued_token;
             return next();
         });
     };

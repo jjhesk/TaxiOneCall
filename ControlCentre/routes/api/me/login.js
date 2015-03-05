@@ -66,10 +66,9 @@ exports = module.exports = function (req, res) {
                     console.log('------------------------------------------------------------');
                     // return res.redirect(req.cookies.target || '/me');
                     //tokenize(local, user);
-                    local.token = "";
                     local.user = loctemp.driver._id;
                     local.email = loctemp.driver.email;
-                    queries.issue_token(local.token, local.user, next);
+                    queries.issue_token(local, next);
                 },
                 onFail = function (err) {
                     console.log('[auth.confirm] - Failed signing in.', err);
@@ -80,11 +79,13 @@ exports = module.exports = function (req, res) {
             keystone.session.signin({email: loctemp.driver.email, password: Q.pass}, req, res, onSuccess, onFail);
         },
         function (next) {
-            return res.apiResponse({
+            var finaloutput = {
                 success: true,
                 timestamp: new Date().getTime(),
                 holder: local
-            });
+            };
+            console.log('[auth.confirm] - final output : ', finaloutput);
+            return res.apiResponse(finaloutput);
         }
 
     ], function (err) {
