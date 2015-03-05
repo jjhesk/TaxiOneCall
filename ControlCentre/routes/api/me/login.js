@@ -66,7 +66,7 @@ exports = module.exports = function (req, res) {
                     console.log('------------------------------------------------------------');
                     // return res.redirect(req.cookies.target || '/me');
                     //tokenize(local, user);
-                    local.token = user;
+                    local.token = "";
                     local.user = loctemp.driver._id;
                     local.email = loctemp.driver.email;
                     queries.issue_token(local.token, local.user, next);
