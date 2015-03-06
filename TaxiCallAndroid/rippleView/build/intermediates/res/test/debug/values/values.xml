@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="RippleView"><attr format="color" name="rippleColor"/><attr format="float" name="alphaFactor"/><attr format="boolean" name="hover"/></declare-styleable>
-    <!-- From: file:/F:/backupgithub/TaxiOneCall/TaxiCallAndroid/rippleView/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/Users/hesk/GitHub/TaxiOneCall/TaxiCallAndroid/rippleView/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <string name="app_name">RippleView</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">

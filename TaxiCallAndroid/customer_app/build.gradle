@@ -33,7 +33,6 @@ dependencies {
     compile project(':libHkmCheck')
     compile project(':rippleView')
     compile 'org.ocpsoft.prettytime:prettytime:3.2.7.Final'
-
     compile 'com.google.android.gms:play-services:6.5.87'
     compile 'com.androidmapsextensions:android-maps-extensions:2.1.+'
 }

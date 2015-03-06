@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -71,10 +73,35 @@ public class FragmentX extends Fragment {
         getActivity().startActivityForResult(intent, Config.INTENT_CODE_LOGIN);
     }
 
+    private SwipeRefreshLayout swipper;
+
+    private class scroller extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(RecyclerView view, int state) {
+
+        }
+
+        @Override
+        public void onScrolled(RecyclerView view, int dx, int dy) {
+            boolean enable = false;
+            if (view != null && view.getChildCount() > 0) {
+                // check if the first item of the list is visible
+                //  boolean firstItemVisible = view.getChildPosition(view.getChildAt(0)) == 0;
+                // check if the top of the first item is visible
+                // boolean topOfFirstItemVisible = view.getChildAt(0).getTop() == 0;
+                boolean topOfFirstItemVisible = dy == 0;
+                // enabling or disabling the refresh layout
+                //    enable = firstItemVisible && topOfFirstItemVisible;
+                enable = topOfFirstItemVisible;
+            }
+            swipper.setEnabled(enable);
+        }
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        swipper = (SwipeRefreshLayout) view.findViewById(R.id.swipper);
         mMessagesView = (RecyclerView) view.findViewById(R.id.messages);
         mMessagesView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMessagesView.setAdapter(mAdapter);
@@ -83,6 +110,20 @@ public class FragmentX extends Fragment {
         } else {
             startRegLogin();
         }
+        mMessagesView.setOnScrollListener(new scroller());
+        swipper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                // get the new data from you data source
+                // TODO : request data here
+                // our swipeRefreshLayout needs to be notified when the data is returned in order for it to stop the animation
+                handler.post(refreshing);
+            }
+        });
+        // sets the colors used in the refresh animation
+      /*  swipper.setColorSchemeResources(R.color.blue_bright, R.color.green_light,
+                R.color.orange_light, R.color.red_light);*/
     }
 
     public void runagain() {
@@ -143,7 +184,7 @@ public class FragmentX extends Fragment {
     };
 
     private void run() {
-            exec.scheduleAtFixedRate(maintask, 1000, Config._default.refresh_time, TimeUnit.MILLISECONDS);
+        exec.scheduleAtFixedRate(maintask, 1000, Config._default.refresh_time, TimeUnit.MILLISECONDS);
         //request();
     }
 
@@ -209,5 +250,28 @@ public class FragmentX extends Fragment {
         });
         mCall.setURL(Q).execute();
     }
+
+    private boolean isRefreshing() {
+        return true;
+    }
+
+    private Handler handler = new Handler();
+    private final Runnable refreshing = new Runnable() {
+        public void run() {
+            try {
+                // TODO : isRefreshing should be attached to your data request status
+                if (isRefreshing()) {
+                    // re run the verification after 1 second
+                    handler.postDelayed(this, 1000);
+                } else {
+                    // stop the animation after the data is fully loaded
+                    swipper.setRefreshing(false);
+                    // TODO : update your list with the new data
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
 }

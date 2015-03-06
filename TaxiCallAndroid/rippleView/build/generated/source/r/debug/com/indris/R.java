@@ -86,7 +86,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.indris:alphaFactor
         */
-        public static final int RippleView_alphaFactor = 1;
+        public static int RippleView_alphaFactor = 1;
         /**
           <p>This symbol is the offset where the {@link com.indris.R.attr#hover}
           attribute's value can be found in the {@link #RippleView} array.
@@ -100,7 +100,7 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.indris:hover
         */
-        public static final int RippleView_hover = 2;
+        public static int RippleView_hover = 2;
         /**
           <p>This symbol is the offset where the {@link com.indris.R.attr#rippleColor}
           attribute's value can be found in the {@link #RippleView} array.
@@ -115,6 +115,6 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.indris:rippleColor
         */
-        public static final int RippleView_rippleColor = 0;
+        public static int RippleView_rippleColor = 0;
     };
 }

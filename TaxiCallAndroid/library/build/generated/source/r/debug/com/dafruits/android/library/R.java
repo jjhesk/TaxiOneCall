@@ -53,7 +53,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.dafruits.android.library:scrollBarPanel
         */
-        public static final int ExtendedListView_scrollBarPanel = 0;
+        public static int ExtendedListView_scrollBarPanel = 0;
         /**
           <p>This symbol is the offset where the {@link com.dafruits.android.library.R.attr#scrollBarPanelInAnimation}
           attribute's value can be found in the {@link #ExtendedListView} array.
@@ -63,7 +63,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.dafruits.android.library:scrollBarPanelInAnimation
         */
-        public static final int ExtendedListView_scrollBarPanelInAnimation = 1;
+        public static int ExtendedListView_scrollBarPanelInAnimation = 1;
         /**
           <p>This symbol is the offset where the {@link com.dafruits.android.library.R.attr#scrollBarPanelOutAnimation}
           attribute's value can be found in the {@link #ExtendedListView} array.
@@ -73,6 +73,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           @attr name com.dafruits.android.library:scrollBarPanelOutAnimation
         */
-        public static final int ExtendedListView_scrollBarPanelOutAnimation = 2;
+        public static int ExtendedListView_scrollBarPanelOutAnimation = 2;
     };
 }
