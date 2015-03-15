@@ -15,11 +15,12 @@ import com.asynhkm.productchecker.Model.CallTask;
 import com.daimajia.swipe.SwipeLayout;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.Identity;
-import com.hkm.driverview.common.flux.PostD;
+import com.hkm.driverview.managers.PostD;
 import com.hkm.driverview.common.schema.Credential;
 import com.hkm.driverview.common.schema.LoginRequest;
 import com.hkm.driverview.common.schema.RegistrationRequest;
 import com.hkm.driverview.ui.DialogTools;
+import com.hkm.ui.processbutton.iml.ActionProcessButton;
 
 /**
  * Created by hesk on 1/24/2015.
@@ -28,6 +29,19 @@ public class RegLogin extends Activity {
     private EditText rloginEmail, rpass, rlicense, rphone, rdrivername, r_name;
     private EditText loginPhone, password;
     private SwipeLayout swipelayout;
+    private ActionProcessButton signInButton, register_submission_button;
+    private Identity logininfo;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        logininfo = new Identity(this);
+        dialog_collection = new DialogTools(this);
+        setContentView(R.layout.reglogin);
+        setLogin();
+        setRegister();
+    }
+
     private TextView.OnEditorActionListener edListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -61,8 +75,8 @@ public class RegLogin extends Activity {
         rlicense.setOnEditorActionListener(reg_bt);
         rphone.setOnEditorActionListener(reg_bt);
         swipelayout = (SwipeLayout) findViewById(R.id.swipeloginface);
-        Button signInButton = (Button) findViewById(R.id.register_driver);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        register_submission_button = (ActionProcessButton) findViewById(R.id.register_driver);
+        register_submission_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptRegister();
@@ -84,20 +98,21 @@ public class RegLogin extends Activity {
             final PostD pp = new PostD(this, new CallTask.callback() {
                 @Override
                 public void onSuccess(final String data) {
-                    dialog_collection.progress_bar_dismiss();
+                    //  dialog_collection.progress_bar_dismiss();
                     dialog_collection.showSimpleMessage(data);
                     swipelayout.close(true);
                 }
 
                 @Override
                 public void onFailure(final String message) {
-                    dialog_collection.progress_bar_dismiss();
+                    //  dialog_collection.progress_bar_dismiss();
                     dialog_collection.showSimpleMessage(message);
                 }
 
                 @Override
                 public void beforeStart(final CallTask task) {
-                    dialog_collection.progress_bar_start(R.string.wait);
+                    //dialog_collection.progress_bar_start(R.string.wait);
+
                 }
             });
 
@@ -116,7 +131,8 @@ public class RegLogin extends Activity {
             final PostD pp = new PostD(this, new CallTask.callback() {
                 @Override
                 public void onSuccess(final String data) {
-                    dialog_collection.progress_bar_dismiss();
+                    signInButton.setProgress(100);
+                    //dialog_collection.progress_bar_dismiss();
                     //dialog_collection.showSimpleMessage(data);
                     Credential.parse(data);
                     final String email = Config.credential_object.getEmail();
@@ -124,18 +140,30 @@ public class RegLogin extends Activity {
                             databome.pass,
                             databome.login
                     );
+                    register_submission_button.setProgress(100);
                     finish();
+
                 }
 
                 @Override
                 public void onFailure(final String message) {
-                    dialog_collection.progress_bar_dismiss();
+                //    dialog_collection.progress_bar_dismiss();
                     dialog_collection.showSimpleMessage(message);
+                    signInButton.setProgress(-1);
+                    loginPhone.setEnabled(true);
+                    password.setEnabled(true);
+                    register_submission_button.setEnabled(true);
+                    register_submission_button.setProgress(-1);
                 }
 
                 @Override
                 public void beforeStart(final CallTask task) {
-                    dialog_collection.progress_bar_start(R.string.wait);
+                 //   dialog_collection.progress_bar_start(R.string.wait);
+                    signInButton.setProgress(10);
+                    loginPhone.setEnabled(false);
+                    password.setEnabled(false);
+                    register_submission_button.setEnabled(false);
+                    register_submission_button.setProgress(10);
                 }
             });
 
@@ -152,7 +180,7 @@ public class RegLogin extends Activity {
         loginPhone = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.password);
         password.setOnEditorActionListener(edListener);
-        ImageButton signInButton = (ImageButton) findViewById(R.id.sign_in_button);
+        signInButton = (ActionProcessButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,18 +194,6 @@ public class RegLogin extends Activity {
         }
     }
 
-    private Identity logininfo;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        logininfo = new Identity(this);
-        dialog_collection = new DialogTools(this);
-        setContentView(R.layout.reglogin);
-        setLogin();
-        setRegister();
-
-    }
 
 
 }

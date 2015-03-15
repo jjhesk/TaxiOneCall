@@ -91,7 +91,7 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:27:17
 	android:name
 		ADDED from AndroidManifest.xml:27:27
-activity#com.hkm.driverview.singleorder.OrderView
+activity#com.hkm.driverview.OrderView
 ADDED from AndroidManifest.xml:30:9
 	android:label
 		ADDED from AndroidManifest.xml:32:13
@@ -119,7 +119,7 @@ ADDED from AndroidManifest.xml:39:9
 		ADDED from AndroidManifest.xml:42:13
 	android:name
 		ADDED from AndroidManifest.xml:40:13
-receiver#com.hkm.driverview.common.flux.NetworkChangeReceiver
+receiver#com.hkm.driverview.managers.NetworkChangeReceiver
 ADDED from AndroidManifest.xml:44:9
 	android:label
 		ADDED from AndroidManifest.xml:46:13

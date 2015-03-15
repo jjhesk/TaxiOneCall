@@ -28,14 +28,14 @@
             android:maxLines="1"
             android:singleLine="true" />
 
-        <Button
+        <com.hkm.ui.processbutton.iml.ActionProcessButton
             android:id="@+id/sign_in_button"
-            style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="@style/LoginButton"/>
 
     </LinearLayout>
 </ScrollView>

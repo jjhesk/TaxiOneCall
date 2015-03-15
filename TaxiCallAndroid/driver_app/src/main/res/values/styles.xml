@@ -16,10 +16,31 @@
         <item name="android:layout_weight">3</item>
         <item name="android:gravity">center_vertical|center_horizontal</item>
     </style>
+
     <style name="TextDriverPlaces.from">
         <item name="android:textColor">@color/username5</item>
     </style>
+
     <style name="TextDriverPlaces.to">
         <item name="android:textColor">@color/username2</item>
     </style>
+
+    <style name="LoginButton" xmlns="http://schemas.android.com/apk/res-auto">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">Connect</item>
+        <item name="android:textSize">15sp</item>
+        <item name="pb_colorNormal">@color/teal_400</item>
+        <item name="pb_colorPressed">@color/teal_300</item>
+        <item name="pb_colorComplete">@color/green_900</item>
+        <item name="pb_textComplete">success</item>
+        <item name="pb_textProgress">@string/waitprocess</item>
+        <item name="pb_textError">@string/errorloading</item>
+        <item name="pb_colorError">@color/red_200</item>
+        <!--<item name="pb_disabled">@color/dark</item>-->
+        <item name="android:layout_marginLeft">@dimen/marginp</item>
+        <item name="android:layout_marginRight">@dimen/marginp</item>
+        <item name="android:layout_marginTop">@dimen/marginp</item>
+    </style>
+
+
 </resources>

@@ -8,8 +8,8 @@
     <string name="action_login">Login</string>
     <string name="error_field_required">This field is required</string>
     <string name="login_incomplete">You need to have complete login information.</string>
-
-
+    <string name="waitprocess">one moment..</string>
+    <string name="errorloading">Login Failure</string>
     <string name="title_activity_login">Login Driver</string>
     <string name="action_register">New Driver Registration</string>
     <string name="wait">updating...</string>

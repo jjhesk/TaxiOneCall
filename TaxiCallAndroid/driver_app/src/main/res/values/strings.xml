@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Street Taxi Driver Tool</string>
-
     <string name="action_settings">Settings</string>
     <string name="user_action_typing">is typing...</string>
     <string name="prompt_message">prompt message</string>

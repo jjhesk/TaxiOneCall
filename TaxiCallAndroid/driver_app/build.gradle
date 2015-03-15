@@ -1,7 +1,13 @@
 apply plugin: 'com.android.application'
-def get_store_file(){
-   return file('M:/keystore/onecall.keystore')
+
+def get_store_file_windows() {
+    return file('M:/keystore/onecall.keystore')
 }
+
+def get_store_file_mac() {
+    return file('/Users/hesk/installations/ghesk.keystore')
+}
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -10,8 +16,8 @@ android {
         applicationId "com.hkm.streettaxidriver"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 1003
-        versionName "1.0.1"
+        versionCode 1010
+        versionName "1.1.0"
     }
 
     signingConfigs {
@@ -20,7 +26,8 @@ android {
             // storeFile get_store_file()
             storePassword 'kmk12345'
             keyPassword 'kmk12345'
-            storeFile file('/Users/hesk/installations/ghesk.keystore')
+            //   storeFile file('/Users/hesk/installations/ghesk.keystore')
+            storeFile file('M:/keystore/ghesk.keystore')
         }
     }
     buildTypes {
@@ -31,29 +38,44 @@ android {
             debuggable false
         }
         debug {
-            signingConfig signingConfigs.driverkeyhkmlab
+            //  signingConfig signingConfigs.driverkeyhkmlab
             debuggable true
         }
     }
 }
-
+repositories {
+    maven { url 'http://dl.bintray.com/madcyph3r/maven/' }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.afollestad:material-dialogs:0.5.9'
+    // compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.cocosw:bottomsheet:0.+@aar'
+    compile files('libs/easyandroidanimationslibrary-v0.5.jar')
+    compile 'com.daimajia.easing:library:1.0.1@aar'
+    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
     compile 'com.daimajia.swipelayout:library:1.1.7@aar'
     compile 'com.pnikosis:materialish-progress:1.2'
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
-    compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'org.lucasr.twowayview:twowayview:0.1.4'
+    compile 'com.squareup.picasso:picasso:2.5.0'
+    //persistent data storage
+    compile 'io.realm:realm-android:0.80.0'
     //compile 'com.android.support:cardview-v7:21.0.0-rc1'
     compile project(':libHkmCheck')
-    compile project(':rippleView')
+    compile  'com.melnykov:floatingactionbutton:1.2.0'
     compile 'org.ocpsoft.prettytime:prettytime:3.2.7.Final'
-    compile 'com.google.android.gms:play-services:6.5.87'
+    compile 'com.google.android.gms:play-services:6.5.+'
     compile 'com.androidmapsextensions:android-maps-extensions:2.1.+'
-    /*compile 'com.nineoldandroids:library:2.4.0'
-            compile 'com.daimajia.easing:library:1.0.1@aar'
-            compile 'com.daimajia.androidanimations:library:1.1.3@aar'*/
-    compile files('libs/easyandroidanimationslibrary-v0.5.jar')
+    //AdvancedMaterialDrawer
+    compile 'de.madcyph3r:materialDrawer:1.1.0@aar'
+    // compile 'com.sothree.slidinguppanel:library:3.0.0'
+    compile project(':processbuttonadvanced')
+    //https://github.com/cymcsg/UltimateRecyclerView
+    //  compile 'com.marshalchen.ultimaterecyclerview:library:0.2.2'
 }

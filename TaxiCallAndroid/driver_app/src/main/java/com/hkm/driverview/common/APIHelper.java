@@ -19,13 +19,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.hkm.driverview.common.flux.NetworkStatusHelper;
+import com.hkm.driverview.managers.NetworkStatusHelper;
 
 public class APIHelper {
 

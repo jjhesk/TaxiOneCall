@@ -1,64 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/handmaid_dark_fiber"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/handmaid_dark_fiber">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipper"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messages"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/messages"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scrollbars="vertical"
-            android:scrollbarStyle="outsideOverlay" />
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/full_menu"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/car"
+        fab:fab_colorNormal="@color/yellow_400"
+        fab:fab_colorPressed="@color/indigo_300"
+        fab:fab_colorRipple="@color/indigo_200"
+        fab:fab_type="normal" />
 
-        <!-- <EditText
-             android:id="@+id/message_input"
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="1"
-             android:hint="@string/prompt_message"
-             android:imeActionId="@+id/send"
-             android:imeActionLabel="@string/action_send"
-             android:imeOptions="actionSend"
-             android:inputType="text"
-             android:maxLines="1"
-             android:singleLine="true" />
- -->  <ImageButton
-        android:id="@+id/send_1"
-        android:layout_width="@dimen/button_width"
-        android:layout_height="@dimen/button_width"
-        android:src="@drawable/mic"
-        android:scaleType="centerInside" />
-
-        <ImageButton
-            android:scaleType="centerInside"
-            android:id="@+id/send_2"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_width"
-            android:src="@drawable/signature" />
-
-        <ImageButton
-            android:scaleType="centerInside"
-            android:id="@+id/send_button"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_width"
-            android:src="@drawable/parking_locked" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

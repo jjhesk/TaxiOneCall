@@ -16,3 +16,4 @@
 -dontobfuscate
 
 -microedition
+

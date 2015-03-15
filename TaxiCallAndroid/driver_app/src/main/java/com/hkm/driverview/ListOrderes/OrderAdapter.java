@@ -22,7 +22,7 @@ import java.text.ParseException;
 import java.util.List;
 
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
+public class OrderAdapter extends FixedRecyclerView.Adapter<OrderAdapter.ViewHolder> {
 
     private List<OrderCustomer> mListMsg;
     private int[] mUsernameColors;
@@ -101,21 +101,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             callcustomer = (ImageView) itemView.findViewById(R.id.hammer);
             swip = (SwipeLayout) itemView.findViewById(R.id.swipe_remarks);
             parentView = itemView;
-            //swip.setShowMode(SwipeLayout.ShowMode.LayDown);
-            //swip.setDragEdge(SwipeLayout.DragEdge.Top);
-           /* swip.addRevealListener(R.id.bottom_wrapper_child1, new SwipeLayout.OnRevealListener() {
-                @Override
-                public void onReveal(View child, SwipeLayout.DragEdge edge, float fraction, int distance) {
-                    View star = child.findViewById(R.id.hammer);
-                    float d = child.getHeight() / 2 - star.getHeight() / 2;
-                    ViewHelper.setTranslationY(star, d * fraction);
-                    ViewHelper.setScaleX(star, fraction + 0.6f);
-                    ViewHelper.setScaleY(star, fraction + 0.6f);
-                    //  int c = (Integer) evaluate(fraction, Color.parseColor("#dddddd"), Color.parseColor("#4C535B"));
-                    // child.setBackgroundColor(c);
-                }
-            });*/
-            //    sample2.setShowMode(SwipeLayout.ShowMode.LayDown);
         }
 
         public void setOrder(OrderCustomer order) {

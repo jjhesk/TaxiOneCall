@@ -22,7 +22,7 @@ public class Config {
 
     public static class _default {
         public final static int refresh_time = 10000;
-        public final static int refresh_time_customer_prompt = 1000;
+        public final static int refresh_time_customer_prompt = 10000;
         public final static float cameraZoomDefault = 18.0f;
 
     }

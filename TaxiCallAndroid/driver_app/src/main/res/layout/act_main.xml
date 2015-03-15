@@ -1,23 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame"
-
-    android:id="@+id/container"
+    android:id="@+id/containerswipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--    <fragment
-            class="com.hkm.driverview.testIo.FragmentIo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />-->
+    <!-- <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
+         android:id="@+id/sliding_layout"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:gravity="bottom"
+         sothree:umanoPanelHeight="68dp"
+         sothree:umanoShadowHeight="4dp">-->
 
-    <fragment
-        class="com.hkm.driverview.ListOrderes.FragmentX"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</FrameLayout>
+
+
+    <!--  <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:paddingRight="@dimen/activity_horizontal_margin">
+
+          <ImageButton
+              android:id="@+id/send_1"
+              android:layout_width="@dimen/button_width"
+              android:layout_height="@dimen/button_width"
+              android:scaleType="centerInside"
+              android:src="@drawable/mic" />
+
+          <ImageButton
+              android:id="@+id/send_2"
+              android:layout_width="@dimen/button_width"
+              android:layout_height="@dimen/button_width"
+              android:scaleType="centerInside"
+              android:src="@drawable/signature" />
+
+          <ImageButton
+              android:id="@+id/send_button"
+              android:layout_width="@dimen/button_width"
+              android:layout_height="@dimen/button_width"
+              android:scaleType="centerInside"
+              android:src="@drawable/parking_locked" />
+      </LinearLayout>-->
+    <!--
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>-->
+</android.support.v4.widget.SwipeRefreshLayout>
 

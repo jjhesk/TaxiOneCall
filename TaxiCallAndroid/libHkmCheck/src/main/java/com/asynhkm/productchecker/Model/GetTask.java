@@ -8,7 +8,6 @@ import com.asynhkm.productchecker.Util.Tool;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import org.apache.http.params.BasicHttpParams;
@@ -16,6 +15,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.io.IOException;
 

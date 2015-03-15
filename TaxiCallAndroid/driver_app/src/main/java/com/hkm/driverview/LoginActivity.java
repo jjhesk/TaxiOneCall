@@ -83,10 +83,8 @@ public class LoginActivity extends Activity {
     private void attemptLogin() {
         // Reset errors.
         mUsernameView.setError(null);
-
         // Store values at the time of the login attempt.
         String username = mUsernameView.getText().toString().trim();
-
         // Check for a valid username.
         if (TextUtils.isEmpty(username)) {
             // There was an error; don't attempt login and focus the first

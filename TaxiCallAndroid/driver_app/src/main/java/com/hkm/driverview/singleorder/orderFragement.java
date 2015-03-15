@@ -3,37 +3,21 @@ package com.hkm.driverview.singleorder;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.asynhkm.productchecker.Model.CallTask;
-import com.asynhkm.productchecker.Util.Tool;
 import com.daimajia.swipe.SwipeLayout;
-import com.easyandroidanimations.library.Animation;
 import com.easyandroidanimations.library.RotationAnimation;
 import com.hkm.driverview.R;
 import com.hkm.driverview.common.Config;
-import com.hkm.driverview.common.Identity;
-import com.hkm.driverview.common.flux.PostD;
-import com.hkm.driverview.common.schema.CallRecordStatusChange;
 import com.hkm.driverview.common.schema.DealFace;
-import com.hkm.driverview.common.schema.simpleId;
-import com.hkm.driverview.ui.DialogTools;
 
 import java.text.ParseException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by hesk on 1/25/2015.

@@ -41,7 +41,6 @@ public class Identity {
         ed.putString(Identity.email_tag, email);
         ed.putString(Identity.pass_tag, pass);
         ed.putString(Identity.phone_num, num);
-        //ed.apply();
         ed.commit();
     }
 

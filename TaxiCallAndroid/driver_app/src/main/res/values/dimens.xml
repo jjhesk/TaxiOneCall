@@ -9,4 +9,5 @@
     <dimen name="info_w">100dp</dimen>
     <dimen name="size_big">50dp</dimen>
     <dimen name="height_swipe_timer">100dp</dimen>
+    <dimen name="marginp">30dp</dimen>
 </resources>

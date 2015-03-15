@@ -5,30 +5,32 @@
     <uses-feature
         android:glEsVersion="0x00030000"
         android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
+        android:name=".common.AppBase"
+        android:allowBackup="true"
         android:clipToPadding="false"
         android:fitsSystemWindows="true"
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
             android:name=".DriverView"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".singleorder.OrderView"
+            android:name=".OrderView"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.AppCompat"></activity>
         <activity
@@ -41,8 +43,9 @@
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.AppCompat"
             android:windowSoftInputMode="adjustResize|stateAlwaysVisible"></activity>
+
         <receiver
-            android:name=".common.flux.NetworkChangeReceiver"
+            android:name=".managers.NetworkChangeReceiver"
             android:label="NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -57,6 +60,7 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDAMkltRaf5IL6zW5Bm9n2Y0xbUsqFL2II" />
+
         <uses-library android:name="com.google.android.maps" />
 
     </application>
