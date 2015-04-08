@@ -10,8 +10,7 @@ import android.os.Bundle;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hkm.taxicallandroid.CommonPack.Config;
-
+import com.hkm.taxicallandroid.life.Config;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;

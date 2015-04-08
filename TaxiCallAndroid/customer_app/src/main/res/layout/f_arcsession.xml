@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.hkm.taxicallandroid.CommonPack.ClipRevealFrame
+        android:id="@+id/menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondary_text_default_material_light"
+        android:visibility="invisible">
+
+        <com.ogaclejapan.arclayout.ArcLayout
+            android:id="@+id/arc_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:arc_axisRadius="120dp"
+            app:arc_color="#4D000000"
+            app:arc_freeAngle="false"
+            app:arc_origin="center"
+            app:arc_radius="168dp"
+            app:arc_reverseAngle="false">
+
+
+            <Button
+                android:id="@+id/additional_button"
+                style="@style/Item.Path"
+                android:text="A"
+                android:textColor="@color/incoming_green"
+                app:arc_angle="30" />
+
+            <Button
+                android:id="@+id/call_type"
+                style="@style/Item.Path"
+                android:text="B"
+                android:textColor="@color/incoming_green"
+                app:arc_angle="60" />
+
+            <Button
+                style="@style/Item.Path"
+                android:text="C"
+                android:textColor="@color/incoming_green"
+                app:arc_angle="90" />
+
+            <Button
+                style="@style/Item.Path"
+                android:text="D"
+                android:textColor="@color/incoming_green"
+                app:arc_angle="120" />
+
+            <Button
+                style="@style/Item.Path"
+                android:text="E"
+                android:textColor="@color/incoming_green"
+                app:arc_angle="150" />
+
+        </com.ogaclejapan.arclayout.ArcLayout>
+    </com.hkm.taxicallandroid.CommonPack.ClipRevealFrame>
+
+    <Button
+        android:id="@+id/fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/oval_selector"
+        android:text="+"
+        android:textColor="#992322"
+        android:textSize="24sp" />
+
+</RelativeLayout>

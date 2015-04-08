@@ -1,5 +1,9 @@
 package com.hkm.taxicallandroid;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.location.Address;
 import android.os.Bundle;
@@ -9,6 +13,8 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnticipateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,16 +24,21 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.asynhkm.productchecker.Model.CallTask;
 import com.asynhkm.productchecker.Util.Tool;
 import com.daimajia.swipe.SwipeLayout;
-import com.hkm.taxicallandroid.CommonPack.Config;
+import com.hkm.taxicallandroid.CommonPack.AnimatorUtils;
+import com.hkm.taxicallandroid.CommonPack.ClipRevealFrame;
+import com.hkm.taxicallandroid.life.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.CommonPack.memory.FolderSelectorDialog;
 import com.hkm.taxicallandroid.CommonPack.memory.Phone;
 import com.hkm.taxicallandroid.CommonPack.memory.wordmem;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
+import com.ogaclejapan.arclayout.Arc;
+import com.ogaclejapan.arclayout.ArcLayout;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hesk on 1/10/2015.
@@ -43,36 +54,126 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
     private DialogTools dialog_collection;
     private boolean calltriggered = false;
     private wordmem history_word;
+    private ArcLayout mArcLayout;
+    private ClipRevealFrame mMenuLayout;
+    private Button mCenterItem;
 
     enum speak_status {
         SET_DESTINATION, SET_START_LOCATION
+    }
+
+    private void onFabClick(View v) {
+        if (v.isSelected()) {
+            hideMenu();
+        } else {
+            showMenu();
+        }
+        v.setSelected(!v.isSelected());
+    }
+
+    @SuppressWarnings("NewApi")
+    private void showMenu() {
+        mMenuLayout.setVisibility(View.VISIBLE);
+        List<Animator> animList = new ArrayList<>();
+        for (int i = 0, len = mArcLayout.getChildCount(); i < len; i++) {
+            animList.add(createShowItemAnimator(mArcLayout.getChildAt(i)));
+        }
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.setDuration(400);
+        animSet.setInterpolator(new OvershootInterpolator());
+        animSet.playTogether(animList);
+        animSet.start();
+    }
+
+    @SuppressWarnings("NewApi")
+    private void hideMenu() {
+        List<Animator> animList = new ArrayList<>();
+        for (int i = mArcLayout.getChildCount() - 1; i >= 0; i--) {
+            animList.add(createHideItemAnimator(mArcLayout.getChildAt(i)));
+        }
+        AnimatorSet animSet = new AnimatorSet();
+        animSet.setDuration(400);
+        animSet.setInterpolator(new AnticipateInterpolator());
+        animSet.playTogether(animList);
+        animSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mMenuLayout.setVisibility(View.INVISIBLE);
+            }
+        });
+        animSet.start();
+
+    }
+
+    private Animator createShowItemAnimator(View item) {
+
+        float dx = mCenterItem.getX() - item.getX();
+        float dy = mCenterItem.getY() - item.getY();
+
+        item.setRotation(0f);
+        item.setTranslationX(dx);
+        item.setTranslationY(dy);
+
+        Animator anim = ObjectAnimator.ofPropertyValuesHolder(
+                item,
+                AnimatorUtils.rotation(0f, 720f),
+                AnimatorUtils.translationX(dx, 0f),
+                AnimatorUtils.translationY(dy, 0f)
+        );
+
+        return anim;
+    }
+
+    private Animator createHideItemAnimator(final View item) {
+        float dx = mCenterItem.getX() - item.getX();
+        float dy = mCenterItem.getY() - item.getY();
+
+        Animator anim = ObjectAnimator.ofPropertyValuesHolder(
+                item,
+                AnimatorUtils.rotation(720f, 0f),
+                AnimatorUtils.translationX(0f, dx),
+                AnimatorUtils.translationY(0f, dy)
+        );
+
+        anim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                item.setTranslationX(0f);
+                item.setTranslationY(0f);
+            }
+        });
+
+        return anim;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
+
         order = new DataCallOrder();
         history_word = new wordmem(this);
         dialog_collection = new DialogTools(this);
         mphone = new Phone(order, this);
+
         mphone.getPhoneNumber();
-        call_type = (Button)
-                findViewById(R.id.call_type);
+        call_type = (Button) findViewById(R.id.call_type);
         call_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showListTypeVech();
             }
         });
-        additional_button = (Button)
-                findViewById(R.id.additional_button);
+        additional_button = (Button) findViewById(R.id.additional_button);
         additional_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog_collection.add_remarks();
             }
         });
+
         f_number = (SwipeLayout) findViewById(R.id.f_number);
         //f_number.setShowMode(SwipeLayout.ShowMode.LayDown);
         f_number.setDragEdge(SwipeLayout.DragEdge.Left);
@@ -87,8 +188,20 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                 });
             }
         });
+        mArcLayout = (ArcLayout) findViewById(R.id.arc_layout);
+        mMenuLayout = (ClipRevealFrame)findViewById(R.id.menu_layout);
+        mCenterItem = (Button) findViewById(R.id.fab);
+        mCenterItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFabClick(v);
+            }
+        });
+
 
         f_start = (SwipeLayout) findViewById(R.id.f_setstart);
+
+        // mArcLayout.setArc(demo.arc);
         // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
         //f_start.setDragEdge(SwipeLayout.DragEdge.Left);
         f_start.findViewById(R.id.speak_button).setOnClickListener(new View.OnClickListener() {
@@ -106,7 +219,12 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                 dialog_collection.loc_history();
             }
         });
+        mArcLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
         f_destination = (SwipeLayout) findViewById(R.id.f_destination);
         // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -151,18 +269,18 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
     }
 
     private void apply_from_location() {
-      if(Config.mAddress != null && Config.mAddress.size() > 0) {
+        if (Config.mAddress != null && Config.mAddress.size() > 0) {
             ArrayList<String> addressFragments = new ArrayList<String>();
             Address address = Config.mAddress.get(0);
             // Fetch the address lines using getAddressLine,
             // join them, and send them to the thread.
-          for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-            addressFragments.add(address.getAddressLine(i));
-          }
+            for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                addressFragments.add(address.getAddressLine(i));
+            }
             String add = TextUtils.join(System.getProperty("line.separator"), addressFragments);
             display_start_loc.setText(add);
             order.setDestination(add);
-      }
+        }
     }
 
     private TextView display_number, display_destination, display_start_loc;

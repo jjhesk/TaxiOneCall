@@ -2,14 +2,15 @@ package com.hkm.taxicallandroid.ViewBind;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hkm.taxicallandroid.CallPanel;
-import com.hkm.taxicallandroid.CommonPack.Config;
 import com.hkm.taxicallandroid.R;
+import com.hkm.taxicallandroid.life.Config;
 import com.hkm.taxicallandroid.schema.Order_status;
 import com.hkm.taxicallandroid.schema.Report;
 
@@ -76,30 +77,27 @@ public class IncomingDriver {
         init_timer_task();
     }
 
+    private final Handler runner = new Handler();
     private static final ScheduledExecutorService sexservice = Executors.newSingleThreadScheduledExecutor();
     private final Runnable maintask = new Runnable() {
         public void run() {
             __ctx.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    check_zero_time_pass();
-
+                    if (left_time == 0) {
+                        if (current_status.replied() == WAITING_DRIVER && sexservice != null) {
+                            sexservice.shutdown();
+                            __ctx.getDT().give_up_prompt();
+                        }
+                    } else {
+                        left_time--;
+                        count_down.setText(left_time + " seconds left");
+                    }
                 }
             });
         }
     };
 
-    private void check_zero_time_pass() {
-        if (left_time == 0) {
-            if (current_status.replied() == WAITING_DRIVER) {
-                sexservice.shutdown();
-                __ctx.getDT().give_up_prompt();
-            }
-        } else {
-            left_time--;
-            count_down.setText(left_time + " seconds left");
-        }
-    }
 
     private static int left_time = 60;
 

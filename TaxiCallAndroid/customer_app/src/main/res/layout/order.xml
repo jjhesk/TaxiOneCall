@@ -1,74 +1,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".order">
 
-
-
-
     <LinearLayout
-        android:id="@+id/topbar"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="80dp"
-        >
-
-        <Button
-            android:id="@+id/call_type"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="@string/call_type"
-            />
-
-        <Button
-            android:id="@+id/additional_button"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="@string/extra_requirement"
-            />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/f_number"
             layout="@layout/f_number"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <include
+            android:id="@+id/f_setstart"
+            layout="@layout/f_setstart"
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+        <include
+            android:id="@+id/f_destination"
+            layout="@layout/f_destination"
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
 
     </LinearLayout>
-
-    <include
-        android:id="@+id/f_setstart"
-        android:layout_below="@+id/topbar"
-        layout="@layout/f_setstart"
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
-
-
-    <include
-        android:id="@+id/f_destination"
-        android:layout_below="@+id/f_setstart"
-        layout="@layout/f_destination"
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
-
 
     <com.indris.material.RippleView
         android:id="@+id/order_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:text="@string/order_now"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:background="@drawable/card_bk"
         android:gravity="center"
         android:padding="35dp"
+        android:text="@string/order_now"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         ripple:alphaFactor="0.7"
-        ripple:rippleColor="#fffa7bae"
         ripple:hover="true"
-        android:layout_alignParentBottom="true" />
+        ripple:rippleColor="#fffa7bae" />
+
+    <include
+        layout="@layout/f_arcsession"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
 </RelativeLayout>

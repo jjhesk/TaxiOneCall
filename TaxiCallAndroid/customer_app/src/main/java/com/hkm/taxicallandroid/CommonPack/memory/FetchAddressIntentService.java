@@ -9,8 +9,7 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
-
-import com.hkm.taxicallandroid.CommonPack.Config;
+import com.hkm.taxicallandroid.life.Config;
 import com.hkm.taxicallandroid.R;
 
 import java.io.IOException;

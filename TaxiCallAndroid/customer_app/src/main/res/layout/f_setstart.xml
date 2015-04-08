@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/item_selector"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="80dp"
+    android:background="@drawable/item_selector">
 
     <LinearLayout
-        android:tag="Bottom1"
-        android:background="#66ddff00"
         android:id="@+id/bottom_wrapper"
         android:layout_width="160dp"
-        android:weightSum="1"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#66ddff00"
+        android:tag="Bottom1"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/loc"
-            android:src="@drawable/timehistory"
             android:layout_width="@dimen/button_width"
+            android:layout_height="match_parent"
             android:background="@color/ripple_material_dark"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:layout_height="match_parent" />
+            android:src="@drawable/timehistory" />
 
         <ImageView
             android:id="@+id/speak_button"
-            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
             android:layout_width="@dimen/button_width"
+            android:layout_height="match_parent"
             android:background="@color/ripple_material_light"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:layout_height="match_parent" />
+            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha" />
     </LinearLayout>
 
     <LinearLayout
-        android:padding="10dp"
-        android:background="@android:color/holo_orange_light"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_orange_light"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/display_start_location"
-            android:tag="Hover"
-            android:text="@string/addresshintstart"
+            style="@style/swipebarTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/Base.TextAppearance.AppCompat.Display1" />
+            android:text="@string/addresshintstart" />
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>

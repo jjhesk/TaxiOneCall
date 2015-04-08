@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.hkm.taxicallandroid.CallPanel;
-import com.hkm.taxicallandroid.CommonPack.Config;
+import com.hkm.taxicallandroid.life.Config;
 import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.R;
 import com.hkm.taxicallandroid.ViewBind.IncomingDriver;

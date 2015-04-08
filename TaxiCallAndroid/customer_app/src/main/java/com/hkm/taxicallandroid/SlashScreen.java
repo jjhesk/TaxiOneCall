@@ -12,7 +12,7 @@ import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.hkm.taxicallandroid.CommonPack.Config;
+import com.hkm.taxicallandroid.life.Config;
 
 import java.io.IOException;
 import java.util.ArrayList;
