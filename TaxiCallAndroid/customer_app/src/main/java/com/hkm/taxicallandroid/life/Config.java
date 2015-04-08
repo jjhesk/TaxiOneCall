@@ -48,6 +48,6 @@ public class Config {
     public static GoogleApiClient mGoogleApiClient;
     public static Location mLastLocation;
     public static List<Address> mAddress;
-    public static final String PARSE_APPLICATION_ID = "yjvYZqY25oJbfkZCKYdspnFiSjNIg7n9GXm7YKJ0";
-    public static final String PARSE_CLIENT_KEY = "eeJlDLPuK5sYS0H4tNuLA18hSDU93EjrW1kWTa2K";
+    public static final String PARSE_APPLICATION_ID = "T7zl6nOtVQ3WwoqPiV5Q5PJkNvuZlXqno6s3m2te";
+    public static final String PARSE_CLIENT_KEY = "4BHpcZLUzactbrnMJDdzuMfjYsfI2TgATDlKsgIt";
 }

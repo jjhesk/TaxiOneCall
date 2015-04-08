@@ -3,6 +3,7 @@ package com.hkm.taxicallandroid.life;
 import android.app.Application;
 
 import com.asynhkm.productchecker.Util.Tool;
+import com.hkm.taxicallandroid.life.ream.phonedata;
 import com.parse.Parse;
 import com.parse.ParseCrashReporting;
 import com.squareup.picasso.Picasso;
@@ -61,7 +62,7 @@ public class LifeCycleApp extends Application {
     }
 
     private void RealmGetData() {
-      /*  realm.beginTransaction();
+      /* realm.beginTransaction();
         RealmQuery<WishedItem> wishedItemRealmQuery = realm.where(WishedItem.class);
         RealmResults<WishedItem> wishedItemRealmResults = wishedItemRealmQuery.findAll();
         retent.WItems.clear();
@@ -75,17 +76,14 @@ public class LifeCycleApp extends Application {
                     RealmResults<WishedItem> wishedItemRealmResults = wishedItemRealmQuery.findAll();
                     retent.WItems.clear();
                     retent.WItems.addAll(wishedItemRealmResults);
-
-
                     RealmQuery<elementHome> elementHomeRealmQuery = realm.where(elementHome.class);
                     RealmResults<elementHome> elementHomeRealmResults = elementHomeRealmQuery.findAll();
                     retent.home_elements.clear();
                     retent.home_elements.addAll(elementHomeRealmResults);
-
-                    APPSettings appSettingsItem = realm.where(APPSettings.class).findAll().last();
-                    if (appSettingsItem != null)
-                        retent.appSettings.setShopping_bag_current_item(appSettingsItem.getShopping_bag_current_item());
 */
+                phonedata appSettingsItem = realm.where(phonedata.class).findAll().last();
+                if (appSettingsItem != null)
+                    retend.phone = appSettingsItem;
 
             }
         });

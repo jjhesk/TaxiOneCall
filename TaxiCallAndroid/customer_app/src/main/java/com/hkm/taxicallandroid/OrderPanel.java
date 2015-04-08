@@ -31,10 +31,12 @@ import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.CommonPack.memory.FolderSelectorDialog;
 import com.hkm.taxicallandroid.CommonPack.memory.Phone;
 import com.hkm.taxicallandroid.CommonPack.memory.wordmem;
+import com.hkm.taxicallandroid.life.retend;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
 import com.ogaclejapan.arclayout.Arc;
 import com.ogaclejapan.arclayout.ArcLayout;
+import com.parse.ParseObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -73,6 +75,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
     @SuppressWarnings("NewApi")
     private void showMenu() {
+        if (mMenuLayout == null) mMenuLayout = (ClipRevealFrame) findViewById(R.id.menu_layout);
         mMenuLayout.setVisibility(View.VISIBLE);
         List<Animator> animList = new ArrayList<>();
         for (int i = 0, len = mArcLayout.getChildCount(); i < len; i++) {
@@ -87,6 +90,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
     @SuppressWarnings("NewApi")
     private void hideMenu() {
+
         List<Animator> animList = new ArrayList<>();
         for (int i = mArcLayout.getChildCount() - 1; i >= 0; i--) {
             animList.add(createHideItemAnimator(mArcLayout.getChildAt(i)));
@@ -109,7 +113,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
     private Animator createShowItemAnimator(View item) {
 
         float dx = mCenterItem.getX() - item.getX();
-        float dy = mCenterItem.getY() - item.getY();
+        float dy = mCenterItem.getY() - 500 - item.getY();
 
         item.setRotation(0f);
         item.setTranslationX(dx);
@@ -127,7 +131,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
     private Animator createHideItemAnimator(final View item) {
         float dx = mCenterItem.getX() - item.getX();
-        float dy = mCenterItem.getY() - item.getY();
+        float dy = mCenterItem.getY() - 500 - item.getY();
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
@@ -157,8 +161,9 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         history_word = new wordmem(this);
         dialog_collection = new DialogTools(this);
         mphone = new Phone(order, this);
-
         mphone.getPhoneNumber();
+
+
         call_type = (Button) findViewById(R.id.call_type);
         call_type.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +171,12 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                 showListTypeVech();
             }
         });
+        if(retend.phone.getTransportation()!=null){
+            call_type.setText(retend.phone.getTransportation());
+            order.setType(retend.phone.getTransportation());
+        }
+
+
         additional_button = (Button) findViewById(R.id.additional_button);
         additional_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +200,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
             }
         });
         mArcLayout = (ArcLayout) findViewById(R.id.arc_layout);
-        mMenuLayout = (ClipRevealFrame)findViewById(R.id.menu_layout);
+        mMenuLayout = (ClipRevealFrame) findViewById(R.id.menu_layout);
         mCenterItem = (Button) findViewById(R.id.fab);
         mCenterItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,12 +230,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                 dialog_collection.loc_history();
             }
         });
-        mArcLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
         f_destination = (SwipeLayout) findViewById(R.id.f_destination);
         // f_destination.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -454,13 +460,13 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
     private void show_waiting(final String raw) {
         final Intent intent = new Intent(this, CallPanel.class);
-        //    EditText editText = (EditText) findViewById(R.id.edit_message);
-        //    String message = editText.getText().toString();
         final Bundle b = new Bundle();
         b.putString("json_order", raw);
         intent.putExtras(b);
         startActivity(intent);
-        //check
+        ParseObject testObject = new ParseObject("CallMade");
+        testObject.put("call", raw);
+        testObject.saveInBackground();
     }
 
     private void showListTypeVech() {
@@ -474,7 +480,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                         //Tool.trace(getApplicationContext(), which + " : " + text);
                         call_type.setText(text);
                         auto_type = which;
-                        order.setType(text.toString());
+                        mphone.saveTransportationType(text.toString());
                     }
                 })
                 .positiveText(R.string.choose)

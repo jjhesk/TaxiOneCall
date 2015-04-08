@@ -7,9 +7,10 @@ android {
         applicationId "com.hkm.taxicallandroid"
         minSdkVersion 17
         targetSdkVersion 21
-        versionCode 1006
-        versionName "1.0.3"
+        versionCode 1009
+        versionName "1.0.7"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -18,6 +19,12 @@ android {
         debug {
             debuggable true
         }
+    }
+}
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://jitpack.io'
     }
 }
 
@@ -38,8 +45,19 @@ dependencies {
     compile 'com.google.android.gms:play-services:6.5.87'
     compile 'com.androidmapsextensions:android-maps-extensions:2.1.+'
     compile 'com.ogaclejapan.arclayout:library:1.0.0@aar'
+    compile 'com.pawegio.kandroid:kandroid:0.1.8@aar'
+
+    compile 'com.github.vbauer.jackdaw:jackdaw-core:1.0.5'
+    provided 'com.github.vbauer.jackdaw:jackdaw-apt:1.0.5'
+
     compile fileTree(dir: '../libs', include: ['*.jar'])
 }
 configurations {
     all*.exclude group: 'com.nineoldandroids', module: 'library'
+    provided
+}
+sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
 }

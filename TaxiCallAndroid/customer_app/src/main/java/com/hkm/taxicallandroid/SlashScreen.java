@@ -13,6 +13,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.hkm.taxicallandroid.life.Config;
+import com.parse.ParseAnalytics;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class SlashScreen extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         geocoder = new Geocoder(getBaseContext(), Locale.getDefault());
+        ParseAnalytics.trackAppOpened(getIntent());
         buildGoogleApiClient();
         setContentView(R.layout.waiting);
     }

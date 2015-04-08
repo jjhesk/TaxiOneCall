@@ -12,53 +12,74 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asynhkm.productchecker.Util.Tool;
 import com.hkm.taxicallandroid.R;
+import com.hkm.taxicallandroid.life.ream.phonedata;
+import com.hkm.taxicallandroid.life.retend;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
+
+import io.realm.Realm;
 
 /**
  * Created by hesk on 1/10/2015.
  */
 public class Phone {
     public static String
-            sharepreferencename_tag = "ONECALLTAXI",
-            phonenumber_tag = "PHONENUM";
+            sharepreferencename_tag = "ONECALLTAXI";
 
     public static int hong_kong_number_limit = 8;
-    private DataCallOrder mDataCallOrder;
-    private Context _app_context;
-    private SharedPreferences SP;
-    private String
-            phonenumber = "",
-            productKey = "",
-            mac_id = "";
-
+    private final DataCallOrder mDataCallOrder;
+    private final Context _app_context;
+    private final Realm realm;
     public Phone(DataCallOrder m, Context service_context) {
         _app_context = service_context;
         mDataCallOrder = m;
-        SP = _app_context.getApplicationContext().getSharedPreferences(Phone.sharepreferencename_tag, Context.MODE_PRIVATE);
-        mac_id = Tool.get_mac_address(_app_context);
-        phonenumber = SP.getString(Phone.phonenumber_tag, "");
-
+        realm = Realm.getInstance(_app_context);
     }
+
+    private callback mcall;
+    private EditText enter_num;
+    private View ActionButton;
 
     public interface callback {
         public void phonenumber(String num);
     }
 
-    private void save_number(String num) {
-        SP.edit().putString(Phone.phonenumber_tag, num).apply();
+    private void save_number(final String num) {
         mDataCallOrder.setPhonenumber(num);
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                phonedata appSettingsItem = realm.where(phonedata.class).findAll().last();
+                if (appSettingsItem != null) {
+                    realm.copyToRealm(retend.phone);
+                } else {
+                    appSettingsItem.setPhonenum(num);
+                }
+            }
+        });
     }
 
-    private callback mcall;
+    public void saveTransportationType(final String typ) {
+        mDataCallOrder.setType(typ);
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                phonedata appSettingsItem = realm.where(phonedata.class).findAll().last();
+                if (appSettingsItem != null) {
+                    realm.copyToRealm(retend.phone);
+                } else {
+                    appSettingsItem.setTransportation(typ);
+                }
+            }
+        });
+    }
 
     public void resetNumber(callback mcallback) {
         mcall = mcallback;
-        phonenumber = "";
+        retend.phone.setPhonenum("");
+        retend.phone.setTransportation("");
         get_agreement();
     }
 
-    private EditText enter_num;
-    private View ActionButton;
 
     private void login() {
         final MaterialDialog m = new MaterialDialog.Builder(_app_context)
@@ -125,9 +146,7 @@ public class Phone {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //  if (count == Phone.hong_kong_number_limit) {
                 ActionButton.setEnabled(s.toString().trim().length() == Phone.hong_kong_number_limit);
-                //  }
             }
 
             @Override
@@ -141,8 +160,8 @@ public class Phone {
     }
 
     public void getPhoneNumber() {
-        if (!phonenumber.equalsIgnoreCase("")) {
-            mDataCallOrder.setPhonenumber(phonenumber);
+        if (!retend.phone.getPhonenum().equalsIgnoreCase("")) {
+            mDataCallOrder.setPhonenumber(retend.phone.getPhonenum());
         } else {
             get_agreement();
         }
