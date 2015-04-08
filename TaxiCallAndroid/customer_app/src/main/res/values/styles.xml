@@ -39,8 +39,8 @@
     </style>
 
     <style name="Item.Path">
-        <item name="android:layout_width">@dimen/item_circle_size_path</item>
-        <item name="android:layout_height">@dimen/item_circle_size_path</item>
+        <item name="android:layout_width">@dimen/item_circle_size_tumblr</item>
+        <item name="android:layout_height">@dimen/item_circle_size_tumblr</item>
         <item name="android:textSize">@dimen/item_font_size_path</item>
         <item name="android:background">@drawable/path_white_oval</item>
     </style>
