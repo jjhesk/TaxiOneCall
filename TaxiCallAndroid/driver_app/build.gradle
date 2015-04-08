@@ -47,12 +47,11 @@ repositories {
     maven { url 'http://dl.bintray.com/madcyph3r/maven/' }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: '../libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.afollestad:material-dialogs:0.5.9'
-    // compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.cocosw:bottomsheet:0.+@aar'
     compile files('libs/easyandroidanimationslibrary-v0.5.jar')
     compile 'com.daimajia.easing:library:1.0.1@aar'
@@ -61,8 +60,10 @@ dependencies {
     compile 'com.pnikosis:materialish-progress:1.2'
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'org.lucasr.twowayview:twowayview:0.1.4'
+
+    compile 'io.realm:realm-android:0.80.0'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup.picasso:picasso:2.5.0'
     //persistent data storage
     compile 'io.realm:realm-android:0.80.0'
@@ -76,6 +77,4 @@ dependencies {
     compile 'de.madcyph3r:materialDrawer:1.1.0@aar'
     // compile 'com.sothree.slidinguppanel:library:3.0.0'
     compile project(':processbuttonadvanced')
-    //https://github.com/cymcsg/UltimateRecyclerView
-    //  compile 'com.marshalchen.ultimaterecyclerview:library:0.2.2'
 }

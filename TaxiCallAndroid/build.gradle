@@ -13,6 +13,13 @@ buildscript {
 
 allprojects {
     repositories {
+
+        //All sub-projects will now refer to the same 'libs' directory
+        flatDir {
+            dirs "${rootProject.projectDir}/libs"
+            dirs 'libs'
+        }
         jcenter()
+        mavenCentral()
     }
 }

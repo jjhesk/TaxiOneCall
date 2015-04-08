@@ -20,6 +20,7 @@ import com.hkm.driverview.common.schema.DealFace;
 import com.hkm.driverview.singleorder.DriverControl;
 import com.hkm.driverview.singleorder.orderFragement;
 import com.hkm.driverview.ui.DialogTools;
+import com.parse.ParseAnalytics;
 
 /**
  * Created by hesk on 1/25/2015.
@@ -49,6 +50,8 @@ public class OrderView extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
         setContentView(R.layout.act_order);
         orderFragement of = (orderFragement) getFragmentManager().findFragmentById(R.id.order_fragement);
         dialog_collection = new DialogTools(this);

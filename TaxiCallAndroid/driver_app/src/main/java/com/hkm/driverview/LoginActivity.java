@@ -15,6 +15,7 @@ import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.hkm.driverview.common.Config;
+import com.parse.ParseAnalytics;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,8 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
         setContentView(R.layout.act_login);
 
         // Set up the login form.

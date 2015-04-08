@@ -5,16 +5,15 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"/>-->
     <application
-
+        android:name=".life.LifeCycleApp"
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <!-- <service
              android:name=".FetchAddressIntentService"
@@ -29,9 +28,9 @@
         </activity>
 
         <activity
-            android:label="@string/app_name"
             android:name=".OrderPanel"
-            android:configChanges="orientation">
+            android:configChanges="orientation"
+            android:label="@string/app_name">
 
         </activity>
 

@@ -21,6 +21,7 @@ import com.hkm.driverview.common.schema.LoginRequest;
 import com.hkm.driverview.common.schema.RegistrationRequest;
 import com.hkm.driverview.ui.DialogTools;
 import com.hkm.ui.processbutton.iml.ActionProcessButton;
+import com.parse.ParseAnalytics;
 
 /**
  * Created by hesk on 1/24/2015.
@@ -40,6 +41,7 @@ public class RegLogin extends Activity {
         setContentView(R.layout.reglogin);
         setLogin();
         setRegister();
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
 
     private TextView.OnEditorActionListener edListener = new TextView.OnEditorActionListener() {

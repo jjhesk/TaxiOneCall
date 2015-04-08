@@ -16,6 +16,7 @@ import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
 import com.hkm.taxicallandroid.schema.CRChangeStatus;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.ConfirmCall;
+import com.parse.ParseAnalytics;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -38,6 +39,8 @@ public class CallPanel extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
         setContentView(R.layout.orderconfirm);
         Bundle b = getIntent().getExtras();
         rawjson = b.getString("json_order");

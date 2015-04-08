@@ -18,6 +18,7 @@ import com.hkm.driverview.managers.PostD;
 import com.hkm.driverview.common.schema.simpleId;
 import com.hkm.driverview.ui.DialogTools;
 import com.melnykov.fab.FloatingActionButton;
+import com.parse.ParseAnalytics;
 
 public class DriverView extends ActionBarActivity {
     private final String LOG_TAG = "MainActivity";
@@ -37,6 +38,7 @@ public class DriverView extends ActionBarActivity {
         dialog_collection = new DialogTools(this);
         idcard = new Identity(this);
         setContentView(R.layout.act_main);
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
         swipcontainer = (SwipeRefreshLayout) findViewById(R.id.containerswipe);
 
     /*    mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
