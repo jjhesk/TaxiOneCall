@@ -6,8 +6,8 @@ import io.realm.RealmObject;
  * Created by hesk on 4/9/2015.
  */
 public class phonedata extends RealmObject {
-    private String phonenum;
-    private String transportation;
+    private String phonenum = "";
+    private String transportation = "";
 
     public phonedata() {
 

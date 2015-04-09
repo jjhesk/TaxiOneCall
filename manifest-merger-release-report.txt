@@ -45,8 +45,16 @@ uses-permission#android.permission.VIBRATE
 ADDED from AndroidManifest.xml:10:5
 	android:name
 		ADDED from AndroidManifest.xml:10:22
-application
+uses-permission#android.permission.WAKE_LOCK
 ADDED from AndroidManifest.xml:12:5
+	android:name
+		ADDED from AndroidManifest.xml:12:22
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from AndroidManifest.xml:13:5
+	android:name
+		ADDED from AndroidManifest.xml:13:22
+application
+ADDED from AndroidManifest.xml:15:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
@@ -58,54 +66,79 @@ MERGED from TaxiCallAndroid:rippleView:unspecified:11:5
 MERGED from com.google.android.gms:play-services:6.5.87:20:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.androidmapsextensions:android-maps-extensions:2.1.0:5:5
+MERGED from com.pawegio.kandroid:kandroid:0.1.8:12:5
 	android:label
-		ADDED from AndroidManifest.xml:16:9
+		ADDED from AndroidManifest.xml:19:9
 	android:allowBackup
-		ADDED from AndroidManifest.xml:14:9
-	android:icon
-		ADDED from AndroidManifest.xml:15:9
-	android:theme
 		ADDED from AndroidManifest.xml:17:9
+	android:icon
+		ADDED from AndroidManifest.xml:18:9
+	android:theme
+		ADDED from AndroidManifest.xml:20:9
 	android:name
-		ADDED from AndroidManifest.xml:13:9
-activity#com.hkm.taxicallandroid.SlashScreen
-ADDED from AndroidManifest.xml:23:9
+		ADDED from AndroidManifest.xml:16:9
+meta-data#com.parse.push.notification_icon
+ADDED from AndroidManifest.xml:26:9
+	android:resource
+		ADDED from AndroidManifest.xml:28:13
 	android:name
-		ADDED from AndroidManifest.xml:23:19
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:24:13
-action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:25:17
+		ADDED from AndroidManifest.xml:27:13
+service#com.parse.PushService
+ADDED from AndroidManifest.xml:29:9
 	android:name
-		ADDED from AndroidManifest.xml:25:25
-category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:26:17
-	android:name
-		ADDED from AndroidManifest.xml:26:27
-activity#com.hkm.taxicallandroid.OrderPanel
+		ADDED from AndroidManifest.xml:29:18
+receiver#com.parse.ParseBroadcastReceiver
 ADDED from AndroidManifest.xml:30:9
+	android:name
+		ADDED from AndroidManifest.xml:30:19
+intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:31:13
+action#android.intent.action.BOOT_COMPLETED
+ADDED from AndroidManifest.xml:32:17
+	android:name
+		ADDED from AndroidManifest.xml:32:25
+action#android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:33:17
+	android:name
+		ADDED from AndroidManifest.xml:33:25
+activity#com.hkm.taxicallandroid.SlashScreen
+ADDED from AndroidManifest.xml:37:9
+	android:name
+		ADDED from AndroidManifest.xml:37:19
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:38:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:39:17
+	android:name
+		ADDED from AndroidManifest.xml:39:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:40:17
+	android:name
+		ADDED from AndroidManifest.xml:40:27
+activity#com.hkm.taxicallandroid.OrderPanel
+ADDED from AndroidManifest.xml:44:9
 	android:label
-		ADDED from AndroidManifest.xml:33:13
+		ADDED from AndroidManifest.xml:47:13
 	android:configChanges
-		ADDED from AndroidManifest.xml:32:13
+		ADDED from AndroidManifest.xml:46:13
 	android:name
-		ADDED from AndroidManifest.xml:31:13
+		ADDED from AndroidManifest.xml:45:13
 activity#com.hkm.taxicallandroid.CallPanel
-ADDED from AndroidManifest.xml:38:9
+ADDED from AndroidManifest.xml:52:9
 	android:parentActivityName
-		ADDED from AndroidManifest.xml:40:13
+		ADDED from AndroidManifest.xml:54:13
 	android:name
-		ADDED from AndroidManifest.xml:39:13
+		ADDED from AndroidManifest.xml:53:13
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from AndroidManifest.xml:41:13
+ADDED from AndroidManifest.xml:55:13
 	android:name
-		ADDED from AndroidManifest.xml:42:17
+		ADDED from AndroidManifest.xml:56:17
 	android:value
-		ADDED from AndroidManifest.xml:43:17
+		ADDED from AndroidManifest.xml:57:17
 activity#com.hkm.taxicallandroid.iotesting
-ADDED from AndroidManifest.xml:46:9
+ADDED from AndroidManifest.xml:60:9
 	android:name
-		ADDED from AndroidManifest.xml:46:19
+		ADDED from AndroidManifest.xml:60:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5
@@ -123,6 +156,7 @@ MERGED from com.google.android.gms:play-services:6.5.87:18:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
 MERGED from com.androidmapsextensions:android-maps-extensions:2.1.0:3:5
 MERGED from com.ogaclejapan.arclayout:library:1.0.0:8:5
+MERGED from com.pawegio.kandroid:kandroid:0.1.8:8:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

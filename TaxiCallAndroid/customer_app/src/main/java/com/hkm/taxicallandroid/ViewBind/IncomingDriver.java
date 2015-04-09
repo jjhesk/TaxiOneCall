@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hkm.taxicallandroid.CallPanel;
+import com.hkm.taxicallandroid.CommonPack.DialogTools;
 import com.hkm.taxicallandroid.R;
 import com.hkm.taxicallandroid.life.Config;
 import com.hkm.taxicallandroid.schema.Order_status;
@@ -26,12 +27,12 @@ public class IncomingDriver {
     private View controlpanel;
 
     private ImageView confirm, nosure;
-
     private CallPanel __ctx;
     private boolean hasDriver = false;
     private Order_status current_status;
 
-    public IncomingDriver() {
+    public IncomingDriver(updateEstTimer list) {
+        listener = list;
     }
 
     public final static int WAITING_DRIVER = 0;
@@ -39,7 +40,7 @@ public class IncomingDriver {
     public final static int DRIVER_PROMPT_CUSTOMER = 2;
     public final static int CUSTOME_ACCEPTED_PROMPT = 3;
 
-    public void getView(Activity _ctx) {
+    public void getView(Activity _ctx, final DialogTools mdialogTools) {
         controlpanel = (View) _ctx.findViewById(R.id.panel_session);
         taxiname = (TextView) _ctx.findViewById(R.id.taxi_name);
         licenseno = (TextView) _ctx.findViewById(R.id.license_no);
@@ -54,7 +55,7 @@ public class IncomingDriver {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirm_order();
+                confirm_order(mdialogTools);
             }
         });
         nosure.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +66,7 @@ public class IncomingDriver {
                         cancel_by_customer();
                         break;
                     case DRIVER_PROMPT_CUSTOMER:
-                        reject_order();
+                        reject_order(mdialogTools);
                         break;
                     case WAITING_DRIVER:
 
@@ -73,54 +74,47 @@ public class IncomingDriver {
                 }
             }
         });
-        left_time = 60;
-        init_timer_task();
+
+
     }
 
-    private final Handler runner = new Handler();
-    private static final ScheduledExecutorService sexservice = Executors.newSingleThreadScheduledExecutor();
-    private final Runnable maintask = new Runnable() {
-        public void run() {
-            __ctx.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (left_time == 0) {
-                        if (current_status.replied() == WAITING_DRIVER && sexservice != null) {
-                            sexservice.shutdown();
-                            __ctx.getDT().give_up_prompt();
-                        }
-                    } else {
-                        left_time--;
-                        count_down.setText(left_time + " seconds left");
-                    }
-                }
-            });
+    private updateEstTimer listener = new updateEstTimer() {
+        @Override
+        public void update(int time) {
+
+        }
+
+        @Override
+        public void onDriverWait() {
+
         }
     };
 
+    public interface updateEstTimer {
+        public void update(int time);
 
-    private static int left_time = 60;
-
-    private void init_timer_task() {
-        sexservice.scheduleAtFixedRate(maintask, 1000, Config._default.timer, TimeUnit.MILLISECONDS);
+        public void onDriverWait();
     }
 
-    public void confirm_order() {
-        Config.online_order.taken(__ctx, __ctx.getDT());
+    public void confirm_order(DialogTools mdialogTools) {
+        Config.online_order.taken(__ctx, mdialogTools);
         __ctx.stream_up(false);
     }
 
-    public void reject_order() {
-        Config.c_report = new Report(Config.online_order._id);
-        __ctx.getDT().reject_call(this);
+    public void reject_order(DialogTools mdialogTools) {
+        //   Config.c_report = new Report(Config.online_order._id);
+        mdialogTools.reject_call(this);
     }
 
     public void cancel_by_customer() {
         __ctx.change_call_status("removed_c");
     }
 
+    public TextView getNumberView() {
+        return count_down;
+    }
 
-    public void incoming(final Order_status incoming) {
+    public void incoming(final ScheduledExecutorService timer, final Order_status incoming) {
         current_status = incoming;
         switch (incoming.replied()) {
             case DRIVER_TOOK_THE_ORDER:
@@ -133,10 +127,11 @@ public class IncomingDriver {
 
                 status_ln.setText(__ctx.getResources().getString(R.string.status_new_taxi));
                 hasDriver = true;
+                listener.update(Integer.parseInt(timeEst));
 
-                int k = Integer.parseInt(timeEst);
-                left_time = k * 60 + left_time;
-                sexservice.shutdown();
+
+                timer.shutdown();
+
                 break;
 
             case DRIVER_PROMPT_CUSTOMER:
@@ -155,8 +150,8 @@ public class IncomingDriver {
                     // trigger the driver left the order from the customer
                     status_ln.setText(__ctx.getResources().getString(R.string.status_taxi_withdrawn));
                     controlpanel.setVisibility(View.INVISIBLE);
-                    left_time = 60;
-                    init_timer_task();
+                 //   left_time = 60;
+                //    init_timer_task();
                 }
 
                 break;

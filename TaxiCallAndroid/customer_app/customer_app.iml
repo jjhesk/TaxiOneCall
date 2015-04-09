@@ -85,12 +85,15 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="play-services-6.5.87" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.2.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-6.5.87" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="Parse-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="materialish-progress-1.2" level="project" />
+    <orderEntry type="library" exported="" name="commons-io-2.4" level="project" />
+    <orderEntry type="library" exported="" name="javapoet-acc49154b3" level="project" />
+    <orderEntry type="library" exported="" name="guava-18.0" level="project" />
     <orderEntry type="library" exported="" name="material-dialogs-0.5.9" level="project" />
     <orderEntry type="library" exported="" name="ParseFacebookUtilsV4-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
@@ -103,13 +106,16 @@
     <orderEntry type="library" exported="" name="realm-android-0.80.0" level="project" />
     <orderEntry type="library" exported="" name="library-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="okhttp-2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="commons-lang3-3.3.2" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
     <orderEntry type="library" exported="" name="kandroid-0.1.8" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.1.4-javadoc" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="library-1.1.7" level="project" />
+    <orderEntry type="library" exported="" name="jackdaw-apt-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
     <orderEntry type="library" exported="" name="robotium-solo-5.2.1" level="project" />
+    <orderEntry type="library" exported="" name="jackdaw-core-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="prettytime-3.2.7.Final" level="project" />
     <orderEntry type="module" module-name="rippleView" exported="" />
     <orderEntry type="module" module-name="libHkmCheck" exported="" />

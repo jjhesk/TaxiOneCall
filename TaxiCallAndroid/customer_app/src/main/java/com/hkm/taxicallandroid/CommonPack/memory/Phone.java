@@ -29,6 +29,7 @@ public class Phone {
     private final DataCallOrder mDataCallOrder;
     private final Context _app_context;
     private final Realm realm;
+
     public Phone(DataCallOrder m, Context service_context) {
         _app_context = service_context;
         mDataCallOrder = m;
@@ -47,13 +48,14 @@ public class Phone {
         mDataCallOrder.setPhonenumber(num);
         realm.executeTransaction(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
-                phonedata appSettingsItem = realm.where(phonedata.class).findAll().last();
-                if (appSettingsItem != null) {
-                    realm.copyToRealm(retend.phone);
-                } else {
-                    appSettingsItem.setPhonenum(num);
+            public void execute(Realm r) {
+                try {
+                    phonedata appSettingsItem = r.where(phonedata.class).findAll().last();
+                    appSettingsItem.setTransportation(num);
+                } catch (Exception e) {
+                    r.copyToRealm(retend.phone);
                 }
+                r.commitTransaction();
             }
         });
     }
@@ -62,13 +64,14 @@ public class Phone {
         mDataCallOrder.setType(typ);
         realm.executeTransaction(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm) {
-                phonedata appSettingsItem = realm.where(phonedata.class).findAll().last();
-                if (appSettingsItem != null) {
-                    realm.copyToRealm(retend.phone);
-                } else {
+            public void execute(Realm r) {
+                try {
+                    phonedata appSettingsItem = r.where(phonedata.class).findAll().last();
                     appSettingsItem.setTransportation(typ);
+                } catch (Exception e) {
+                    r.copyToRealm(retend.phone);
                 }
+                r.commitTransaction();
             }
         });
     }

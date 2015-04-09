@@ -31,6 +31,7 @@ public class Config {
         public final static int setlooptimer = 5000;
         public final static int timer = 1000;
         public final static int vibe_length = 1000;
+        public final static int waiting_drive_time_sec = 15;
     }
 
 

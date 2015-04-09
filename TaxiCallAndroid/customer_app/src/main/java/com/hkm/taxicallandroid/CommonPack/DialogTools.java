@@ -113,82 +113,6 @@ public class DialogTools {
                 })
                 .show();
     }
-/*
-    private void showList() {
-        new MaterialDialog.Builder(__ctx)
-                .title(R.string.socialNetworks)
-                .items(R.array.socialNetworks)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .show();
-    }
-
-
-    private void showListNoTitle() {
-        new MaterialDialog.Builder(__ctx)
-                .items(R.array.states)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .show();
-    }
-
-    private void showLongList() {
-        new MaterialDialog.Builder(__ctx)
-                .title(R.string.states)
-                .items(R.array.states)
-                .itemsCallback(new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .positiveText(android.R.string.ok)
-                .show();
-    }
-
-    private void showSingleChoice() {
-        new MaterialDialog.Builder(__ctx)
-                .title(R.string.socialNetworks)
-                .items(R.array.socialNetworks)
-                .itemsCallbackSingleChoice(2, new MaterialDialog.ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        Toast.makeText(__ctx, which + ": " + text, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .positiveText(R.string.choose)
-                .show();
-    }
-
-    private void showMultiChoice() {
-        new MaterialDialog.Builder(__ctx)
-                .title(R.string.socialNetworks)
-                .items(R.array.socialNetworks)
-                .itemsCallbackMultiChoice(new Integer[]{1, 3}, new MaterialDialog.ListCallbackMulti() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                        StringBuilder str = new StringBuilder();
-                        for (int i = 0; i < which.length; i++) {
-                            str.append(which[i]);
-                            str.append(": ");
-                            str.append(text[i]);
-                            str.append('\n');
-                        }
-                        Toast.makeText(__ctx, str.toString(), Toast.LENGTH_LONG).show();
-                    }
-                })
-                .positiveText(R.string.choose)
-
-                .show();
-    }*/
 
     private Integer[] add_remarks_selected;
 
@@ -320,7 +244,7 @@ public class DialogTools {
     public void give_up_prompt() {
         new MaterialDialog.Builder(__ctx)
                 .title(android.R.string.dialog_alert_title)
-                .content(R.string.get_server_number)
+                .content(R.string.over_time)
                 .callback(new MaterialDialog.Callback() {
                     @Override
                     public void onNegative(MaterialDialog materialDialog) {
@@ -329,8 +253,7 @@ public class DialogTools {
 
                     @Override
                     public void onPositive(MaterialDialog materialDialog) {
-                        Config.c_report.setIssue("time out from waiting for the taxi.");
-                        report_submission();
+                        report_submission("time out from waiting for the taxi.");
                         materialDialog.dismiss();
                     }
                 })
@@ -350,8 +273,8 @@ public class DialogTools {
                         if (i == -1) {
                             materialDialog.dismiss();
                         } else if (i < 4) {
-                            Config.c_report.setIssue(charSequence.toString());
-                            report_submission();
+
+                            report_submission(charSequence.toString());
                             materialDialog.dismiss();
                         } else {
                             materialDialog.dismiss();
@@ -381,9 +304,7 @@ public class DialogTools {
                     @Override
                     public void onNeutral(MaterialDialog dialog) {
                         super.onNeutral(dialog);
-                        String report_content = note_paper.getText().toString();
-                        Config.c_report.setIssue(report_content);
-                        report_submission();
+                        report_submission(note_paper.getText().toString());
                         dialog.dismiss();
                     }
 
@@ -419,7 +340,8 @@ public class DialogTools {
 
     }
 
-    private void report_submission() {
+    private void report_submission(String issue_complains_in_writing) {
+        Config.c_report.setIssue(issue_complains_in_writing);
         final String q = Config.domain + Config.control.report_issue;
         final Call check = new Call(__ctx, new CallTask.callback() {
             @Override

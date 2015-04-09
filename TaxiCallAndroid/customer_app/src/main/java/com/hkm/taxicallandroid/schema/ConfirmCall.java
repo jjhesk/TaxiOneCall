@@ -52,14 +52,18 @@ public class ConfirmCall {
 
     private static Order_status incoming_driver_data;
 
-    public void check_my_order(final CallPanel ctx, final ScheduledExecutorService exec, final IncomingDriver controlPanel) {
+    public Order_status getStatusNow() {
+        return incoming_driver_data;
+    }
+
+    public void check_my_order(final Context ctx, final IncomingDriver controlPanel,final ScheduledExecutorService timer) {
         final String q = Config.domain + Config.control.check;
         String request_body = "";
         final Call check = new Call(ctx, new CallTask.callback() {
             @Override
             public void onSuccess(String data) {
                 incoming_driver_data = Order_status.parse(data);
-                controlPanel.incoming(incoming_driver_data);
+                controlPanel.incoming(timer,incoming_driver_data);
             }
 
             @Override
