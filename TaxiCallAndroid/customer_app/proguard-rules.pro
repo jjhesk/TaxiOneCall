@@ -27,7 +27,7 @@
 -keepclassmembernames class * {
     @com.google.android.gms.common.annotation.KeepName *;
 }
-
+-keepclassmembers class com.sefford.circularprogressdrawable.CircularProgressDrawable { *;}
 -keepnames class * implements android.os.Parcelable {
     public static final ** CREATOR;
 }

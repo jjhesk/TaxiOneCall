@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
-import com.easyandroidanimations.library.RotationAnimation;
 import com.hkm.driverview.R;
 import com.hkm.driverview.common.Config;
 import com.hkm.driverview.common.schema.DealFace;
@@ -73,10 +72,11 @@ public class orderFragement extends Fragment {
             public void onClick(View v) {
                 mdrivercontrol.swipeMapToggle();
               /*  YoYo.with(Techniques.Swing).duration(700).playOn(v);*/
-                new RotationAnimation(v).setPivot(RotationAnimation.PIVOT_CENTER)
+             /*   new RotationAnimation(v).setPivot(RotationAnimation.PIVOT_CENTER)
                         .setDuration(1000)
                         .setInterpolator(new BounceInterpolator())
-                        .animate();
+                        .animate();*/
+                v.animate().rotationBy(270f).setInterpolator(new BounceInterpolator());
             }
         });
     }

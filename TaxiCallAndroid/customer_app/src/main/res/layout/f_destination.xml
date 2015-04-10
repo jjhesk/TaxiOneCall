@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:background="@drawable/item_selector">
@@ -11,15 +12,6 @@
         android:background="#66ddff00"
         android:tag="Bottom1"
         android:weightSum="1">
-
-        <ImageView
-            android:id="@+id/speak_button"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="match_parent"
-            android:background="@color/ripple_material_light"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha" />
 
         <ImageView
             android:id="@+id/pin"
@@ -44,15 +36,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_orange_dark"
-        android:padding="10dp">
+        android:background="@color/destinationloc">
 
-        <TextView
-            android:id="@+id/display_location_destination"
-            style="@style/swipebarTextView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent">
 
-            android:text="@string/addresshintend" />
+            <me.grantland.widget.AutofitTextView
+                android:singleLine="true"
+                android:id="@+id/display_location_destination"
+                style="@style/swipebarTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/addresshintend"
+                autofit:minTextSize="@dimen/minswipetextsize"
+                android:layout_margin="10dp" />
+
+            <ImageView
+                android:id="@+id/speak_button"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="match_parent"
+                android:background="@color/ripple_material_light"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>

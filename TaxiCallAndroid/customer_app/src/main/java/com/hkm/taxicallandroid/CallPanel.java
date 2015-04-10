@@ -1,7 +1,11 @@
 package com.hkm.taxicallandroid;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hkm.taxicallandroid.CommonPack.callpanelmechanism;
@@ -11,6 +15,7 @@ import com.hkm.taxicallandroid.ViewBind.IncomingDriver;
 import com.hkm.taxicallandroid.schema.ConfirmCall;
 import com.hkm.taxicallandroid.schema.Report;
 import com.parse.ParseAnalytics;
+import com.sefford.circularprogressdrawable.CircularProgressDrawable;
 
 
 /**
@@ -21,6 +26,9 @@ public class CallPanel extends callpanelmechanism {
     private TextView edtv, from, to;
     private IncomingDriver viewbindDriverIncoming;
     private DialogTools dT;
+    private CircularProgressDrawable drawable;
+    private Animator currentAnimation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

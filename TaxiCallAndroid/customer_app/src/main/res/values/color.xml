@@ -11,7 +11,8 @@
     <color name="incoming_green">#ffb5ffa8</color>
     <color name="incoming_red">#ffff4e64</color>
     <color name="route_color">#ff84663b</color>
-
     <color name="backgroundColor">#E8E8E0</color>
     <color name="backgroundColorPress">#DBDBD3</color>
+    <color name="destinationloc">#ffdb5e81</color>
+    <color name="startloc">#ffdb5f71</color>
 </resources>

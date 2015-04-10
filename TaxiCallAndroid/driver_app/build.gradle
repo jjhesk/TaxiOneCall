@@ -26,8 +26,8 @@ android {
             // storeFile get_store_file()
             storePassword 'kmk12345'
             keyPassword 'kmk12345'
-            //   storeFile file('/Users/hesk/installations/ghesk.keystore')
-            storeFile file('M:/keystore/ghesk.keystore')
+            storeFile file('/Users/hesk/documents/certs/ghesk.keystore')
+            //storeFile file('M:/keystore/ghesk.keystore')
         }
     }
     buildTypes {
@@ -69,7 +69,7 @@ dependencies {
     compile 'io.realm:realm-android:0.80.0'
     //compile 'com.android.support:cardview-v7:21.0.0-rc1'
     compile project(':libHkmCheck')
-    compile  'com.melnykov:floatingactionbutton:1.2.0'
+    compile 'com.melnykov:floatingactionbutton:1.2.0'
     compile 'org.ocpsoft.prettytime:prettytime:3.2.7.Final'
     compile 'com.google.android.gms:play-services:6.5.+'
     compile 'com.androidmapsextensions:android-maps-extensions:2.1.+'
