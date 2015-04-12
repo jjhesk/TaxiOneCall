@@ -24,25 +24,27 @@
             app:arc_radius="168dp"
             app:arc_reverseAngle="false">
 
-
-            <Button
-                android:id="@+id/additional_button"
-                style="@style/Item.Path"
-                android:text="A"
-                android:textColor="@color/incoming_green"
+            <ImageButton
+                android:id="@+id/phone_list_1"
+                style="@style/Item.Path.green"
+                android:src="@drawable/ic_cartaxiicon"
                 app:arc_angle="30" />
 
-            <Button
-                android:id="@+id/call_type"
-                style="@style/Item.Path"
-                android:text="B"
-                android:textColor="@color/incoming_green"
+            <ImageButton
+                android:id="@+id/phone_list_2"
+                style="@style/Item.Path.red"
+                android:src="@drawable/ic_cartaxiicon"
                 app:arc_angle="60" />
 
-            <Button
+            <ImageButton
+                android:id="@+id/additional_button"
                 style="@style/Item.Path"
-                android:text="C"
-                android:textColor="@color/incoming_green"
+                android:src="@drawable/ic_talkrequirements"
+                app:arc_angle="60" />
+
+            <ImageButton
+                android:id="@+id/call_type"
+                style="@style/Item.Path"
                 app:arc_angle="90" />
 
             <Button
@@ -60,16 +62,14 @@
         </com.ogaclejapan.arclayout.ArcLayout>
     </com.hkm.taxicallandroid.CommonPack.ClipRevealFrame>
 
-    <Button
-        android:id="@+id/fab"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+    <ImageButton
+        android:id="@+id/start_here"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="180dp"
-        android:background="@drawable/oval_selector"
-        android:text="+"
-        android:textColor="#992322"
-        android:textSize="24sp" />
+        android:background="@drawable/path_white_oval"
+        android:src="@drawable/starthere" />
 
 </RelativeLayout>

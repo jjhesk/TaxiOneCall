@@ -10,7 +10,7 @@
     android:background="@drawable/whitegradient"
     tools:context=".order">
 
-    <include layout="@layout/card_route"></include>
+    <include layout="@layout/card_route"/>
 
     <LinearLayout
         android:layout_below="@+id/linearLayout"

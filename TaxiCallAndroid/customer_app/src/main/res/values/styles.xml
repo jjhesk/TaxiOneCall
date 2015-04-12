@@ -9,6 +9,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:tag">hover</item>
     </style>
+
     <style name="Item" parent="">
         <item name="android:textColor">@color/material_blue_grey_900</item>
     </style>
@@ -43,5 +44,20 @@
         <item name="android:layout_height">@dimen/item_circle_size_tumblr</item>
         <item name="android:textSize">@dimen/item_font_size_path</item>
         <item name="android:background">@drawable/path_white_oval</item>
+    </style>
+
+    <style name="imagebuttonStyle" parent="Item.Path">
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:padding">1dp</item>
+        <item name="android:layout_width">@dimen/item_circle_size_tumblr</item>
+        <item name="android:layout_height">@dimen/item_circle_size_tumblr</item>
+    </style>
+
+    <style name="Item.Path.green" parent="imagebuttonStyle">
+        <item name="android:background">@drawable/path_oval_greenl</item>
+    </style>
+
+    <style name="Item.Path.red" parent="imagebuttonStyle">
+        <item name="android:background">@drawable/path_oval_red</item>
     </style>
 </resources>

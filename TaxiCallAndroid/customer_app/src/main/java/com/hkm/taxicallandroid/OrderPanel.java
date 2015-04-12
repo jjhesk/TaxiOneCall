@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
@@ -34,7 +35,6 @@ import com.hkm.taxicallandroid.CommonPack.memory.wordmem;
 import com.hkm.taxicallandroid.life.retend;
 import com.hkm.taxicallandroid.schema.Call;
 import com.hkm.taxicallandroid.schema.DataCallOrder;
-import com.ogaclejapan.arclayout.Arc;
 import com.ogaclejapan.arclayout.ArcLayout;
 import com.parse.ParseObject;
 
@@ -48,7 +48,7 @@ import java.util.List;
 
 public class OrderPanel extends Activity implements FolderSelectorDialog.FolderSelectCallback {
     private DataCallOrder order;
-    private Button position_button, call_type, speak_button, additional_button;
+    private Button position_button, speak_button;
     private static final int VOICE_RECOGNITION_REQUEST_CODE = 1001;
     private SwipeLayout f_destination, f_number, f_start;
     private Phone mphone;
@@ -58,7 +58,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
     private wordmem history_word;
     private ArcLayout mArcLayout;
     private ClipRevealFrame mMenuLayout;
-    private Button mCenterItem;
+    private ImageButton call_type, additional_button, mCenterItem;
 
     enum speak_status {
         SET_DESTINATION, SET_START_LOCATION
@@ -121,7 +121,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
-                AnimatorUtils.rotation(0f, 720f),
+               // AnimatorUtils.rotation(0f, 720f),
                 AnimatorUtils.translationX(dx, 0f),
                 AnimatorUtils.translationY(dy, 0f)
         );
@@ -135,7 +135,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
-                AnimatorUtils.rotation(720f, 0f),
+               // AnimatorUtils.rotation(720f, 0f),
                 AnimatorUtils.translationX(0f, dx),
                 AnimatorUtils.translationY(0f, dy)
         );
@@ -152,6 +152,14 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         return anim;
     }
 
+    protected void gotoPhoneBook(int book_no) {
+        Intent g = new Intent(this, PhoneBookListing.class);
+        Bundle bb = new Bundle();
+        bb.putInt("startbooknumberurl", book_no);
+        bb.putInt("bookapidataurl", book_no);
+        startActivity(g);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,21 +171,32 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         mphone = new Phone(order, this);
         mphone.getPhoneNumber();
 
-
-        call_type = (Button) findViewById(R.id.call_type);
+        call_type = (ImageButton) findViewById(R.id.call_type);
         call_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showListTypeVech();
             }
         });
-        if(retend.phone.getTransportation()!=null){
-            call_type.setText(retend.phone.getTransportation());
+        if (retend.phone.getTransportation() != null) {
+            // call_type.setText(retend.phone.getTransportation());
             order.setType(retend.phone.getTransportation());
         }
-
-
-        additional_button = (Button) findViewById(R.id.additional_button);
+        final ImageButton calltaxibook1 = (ImageButton) findViewById(R.id.phone_list_1);
+        final ImageButton calltaxibook2 = (ImageButton) findViewById(R.id.phone_list_2);
+        calltaxibook1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoPhoneBook(1);
+            }
+        });
+        calltaxibook2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoPhoneBook(2);
+            }
+        });
+        additional_button = (ImageButton) findViewById(R.id.additional_button);
         additional_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,10 +204,10 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
             }
         });
 
-        f_number = (SwipeLayout) findViewById(R.id.f_number);
+        //    f_number = (SwipeLayout) findViewById(R.id.f_number);
         //f_number.setShowMode(SwipeLayout.ShowMode.LayDown);
-        f_number.setDragEdge(SwipeLayout.DragEdge.Left);
-        f_number.findViewById(R.id.change_number).setOnClickListener(new View.OnClickListener() {
+        //  f_number.setDragEdge(SwipeLayout.DragEdge.Left);
+      /*  f_number.findViewById(R.id.change_number).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mphone.resetNumber(new Phone.callback() {
@@ -198,10 +217,10 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                     }
                 });
             }
-        });
+        });*/
         mArcLayout = (ArcLayout) findViewById(R.id.arc_layout);
         mMenuLayout = (ClipRevealFrame) findViewById(R.id.menu_layout);
-        mCenterItem = (Button) findViewById(R.id.fab);
+        mCenterItem = (ImageButton) findViewById(R.id.start_here);
         mCenterItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -261,8 +280,16 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
         display_start_loc = (TextView) f_start.findViewById(R.id.display_start_location);
         display_destination = (TextView) f_destination.findViewById(R.id.display_location_destination);
-        display_number = (TextView) f_number.findViewById(R.id.display_number);
 
+        /**
+         * display_info
+         */
+        display_number = (TextView) findViewById(R.id.display_info);
+        mphone.setPhoneNumberDisplay(display_number);
+
+        /**
+         * order button to the enabled or active
+         */
         ((Button) findViewById(R.id.order_send)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,11 +297,10 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
             }
         });
 
-        mphone.setPhoneNumberDisplay(display_number);
-        apply_from_location();
+        applyFromCurrentLoc();
     }
 
-    private void apply_from_location() {
+    private void applyFromCurrentLoc() {
         if (Config.mAddress != null && Config.mAddress.size() > 0) {
             ArrayList<String> addressFragments = new ArrayList<String>();
             Address address = Config.mAddress.get(0);
@@ -285,7 +311,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
             }
             String add = TextUtils.join(System.getProperty("line.separator"), addressFragments);
             display_start_loc.setText(add);
-            order.setDestination(add);
+            order.setStartLocation(add);
         }
     }
 
@@ -478,7 +504,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
                     @Override
                     public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                         //Tool.trace(getApplicationContext(), which + " : " + text);
-                        call_type.setText(text);
+                        // call_type.setText(text);
                         auto_type = which;
                         mphone.saveTransportationType(text.toString());
                     }

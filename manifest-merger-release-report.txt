@@ -55,18 +55,24 @@ ADDED from AndroidManifest.xml:13:5
 		ADDED from AndroidManifest.xml:13:22
 application
 ADDED from AndroidManifest.xml:15:5
-MERGED from com.android.support:appcompat-v7:21.0.3:16:5
-MERGED from com.android.support:support-v4:21.0.3:16:5
-MERGED from com.android.support:appcompat-v7:21.0.3:16:5
-MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.android.support:appcompat-v7:22.0.0:22:5
+MERGED from com.android.support:support-v4:22.0.0:22:5
+MERGED from com.android.support:appcompat-v7:22.0.0:22:5
+MERGED from com.android.support:support-v4:22.0.0:22:5
 MERGED from com.pnikosis:materialish-progress:1.2:11:5
-MERGED from com.android.support:appcompat-v7:21.0.3:16:5
-MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.android.support:appcompat-v7:22.0.0:22:5
+MERGED from com.android.support:support-v4:22.0.0:22:5
 MERGED from TaxiCallAndroid:rippleView:unspecified:11:5
 MERGED from com.google.android.gms:play-services:6.5.87:20:5
-MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.android.support:support-v4:22.0.0:22:5
 MERGED from com.androidmapsextensions:android-maps-extensions:2.1.0:5:5
 MERGED from com.pawegio.kandroid:kandroid:0.1.8:12:5
+MERGED from me.alexrs:wave-drawable:1.0.0:11:5
+MERGED from com.android.support:recyclerview-v7:21.0.3:17:5
+MERGED from com.android.support:support-v4:22.0.0:22:5
+MERGED from com.android.support:appcompat-v7:22.0.0:22:5
+MERGED from com.android.support:support-v4:22.0.0:22:5
+MERGED from in.srain.cube:ultra-ptr:1.0.8:11:5
 	android:label
 		ADDED from AndroidManifest.xml:19:9
 	android:allowBackup
@@ -123,40 +129,55 @@ ADDED from AndroidManifest.xml:44:9
 		ADDED from AndroidManifest.xml:46:13
 	android:name
 		ADDED from AndroidManifest.xml:45:13
-activity#com.hkm.taxicallandroid.CallPanel
-ADDED from AndroidManifest.xml:52:9
-	android:parentActivityName
-		ADDED from AndroidManifest.xml:54:13
-	android:name
+activity#com.hkm.taxicallandroid.PhoneBookListing
+ADDED from AndroidManifest.xml:51:9
+	android:configChanges
 		ADDED from AndroidManifest.xml:53:13
+	android:name
+		ADDED from AndroidManifest.xml:52:13
+activity#com.hkm.taxicallandroid.CallPanel
+ADDED from AndroidManifest.xml:57:9
+	android:parentActivityName
+		ADDED from AndroidManifest.xml:59:13
+	android:name
+		ADDED from AndroidManifest.xml:58:13
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from AndroidManifest.xml:55:13
+ADDED from AndroidManifest.xml:60:13
 	android:name
-		ADDED from AndroidManifest.xml:56:17
+		ADDED from AndroidManifest.xml:61:17
 	android:value
-		ADDED from AndroidManifest.xml:57:17
+		ADDED from AndroidManifest.xml:62:17
 activity#com.hkm.taxicallandroid.iotesting
-ADDED from AndroidManifest.xml:60:9
+ADDED from AndroidManifest.xml:65:9
 	android:name
-		ADDED from AndroidManifest.xml:60:19
+		ADDED from AndroidManifest.xml:65:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
-MERGED from com.android.support:appcompat-v7:21.0.3:15:5
-MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.android.support:appcompat-v7:22.0.0:20:5
+MERGED from com.android.support:support-v4:22.0.0:20:5
 MERGED from com.afollestad:material-dialogs:0.5.9:8:5
-MERGED from com.android.support:appcompat-v7:21.0.3:15:5
-MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.android.support:appcompat-v7:22.0.0:20:5
+MERGED from com.android.support:support-v4:22.0.0:20:5
 MERGED from com.daimajia.swipelayout:library:1.1.7:6:5
 MERGED from com.pnikosis:materialish-progress:1.2:7:5
-MERGED from com.android.support:appcompat-v7:21.0.3:15:5
-MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.android.support:appcompat-v7:22.0.0:20:5
+MERGED from com.android.support:support-v4:22.0.0:20:5
 MERGED from TaxiCallAndroid:libHkmCheck:unspecified:7:5
 MERGED from TaxiCallAndroid:rippleView:unspecified:7:5
 MERGED from com.google.android.gms:play-services:6.5.87:18:5
-MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.android.support:support-v4:22.0.0:20:5
 MERGED from com.androidmapsextensions:android-maps-extensions:2.1.0:3:5
 MERGED from com.ogaclejapan.arclayout:library:1.0.0:8:5
 MERGED from com.pawegio.kandroid:kandroid:0.1.8:8:5
+MERGED from com.sefford:circular-progress-drawable:1.31:7:5
+MERGED from me.grantland:autofittextview:0.2.1:7:5
+MERGED from me.alexrs:wave-drawable:1.0.0:7:5
+MERGED from com.marshalchen.ultimaterecyclerview:library:0.3.0:7:5
+MERGED from com.android.support:recyclerview-v7:21.0.3:15:5
+MERGED from com.android.support:support-v4:22.0.0:20:5
+MERGED from com.android.support:appcompat-v7:22.0.0:20:5
+MERGED from com.android.support:support-v4:22.0.0:20:5
+MERGED from in.srain.cube:ultra-ptr:1.0.8:7:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
@@ -169,3 +190,9 @@ ADDED from com.google.android.gms:play-services:6.5.87:21:9
 		ADDED from com.google.android.gms:play-services:6.5.87:22:13
 	android:value
 		ADDED from com.google.android.gms:play-services:6.5.87:23:13
+activity#android.support.v7.widget.TestActivity
+ADDED from com.android.support:recyclerview-v7:21.0.3:18:9
+	android:label
+		ADDED from com.android.support:recyclerview-v7:21.0.3:18:19
+	android:name
+		ADDED from com.android.support:recyclerview-v7:21.0.3:18:60

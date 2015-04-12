@@ -29,13 +29,11 @@ public class CallPanel extends callpanelmechanism {
     private CircularProgressDrawable drawable;
     private Animator currentAnimation;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
         setContentView(R.layout.orderconfirm);
-
 
         edtv = (TextView) findViewById(R.id._order_debug_line);
         from = (TextView) findViewById(R.id.from_spot);
@@ -45,20 +43,20 @@ public class CallPanel extends callpanelmechanism {
         rawjson = b.getString("json_order");
         Config.online_order = ConfirmCall.parse(rawjson);
         Config.c_report = new Report(Config.online_order._id);
+
         viewbindDriverIncoming = new IncomingDriver(new IncomingDriver.updateEstTimer() {
             @Override
             public void update(int time) {
                 addLeftTime(time * 60);
             }
-
             @Override
             public void onDriverWait() {
                 init_timer_task();
             }
         });
+
         dT = new DialogTools(this);
         viewbindDriverIncoming.getView(this, dT);
-
 
         from.setText(Config.online_order.pickup);
         to.setText(Config.online_order.destination);
@@ -69,9 +67,7 @@ public class CallPanel extends callpanelmechanism {
             edtv.setVisibility(View.INVISIBLE);
         }
 
-
         init_timer_task();
-
     }
 
     private boolean _debug_mode = false;
@@ -89,8 +85,7 @@ public class CallPanel extends callpanelmechanism {
 
     @Override
     protected void onDestroy() {
-      /*  if (socket != null)
-            socket.disconnect();*/
+        /*  if (socket != null) socket.disconnect(); */
         if (!exec.isShutdown()) exec.shutdown();
         super.onDestroy();
     }

@@ -7,8 +7,8 @@ android {
         applicationId "com.hkm.taxicallandroid"
         minSdkVersion 17
         targetSdkVersion 21
-        versionCode 1010
-        versionName "1.0.8"
+        versionCode 1012
+        versionName "1.1.0"
     }
 
     buildTypes {
@@ -51,6 +51,7 @@ dependencies {
     provided 'com.github.vbauer.jackdaw:jackdaw-apt:1.0.5'
     compile 'me.grantland:autofittextview:0.2.+'
     compile 'me.alexrs:wave-drawable:1.0.0'
+    compile 'com.marshalchen.ultimaterecyclerview:library:0.3.0'
     compile fileTree(dir: '../libs', include: ['*.jar'])
 }
 
