@@ -75,6 +75,9 @@ public class SlashScreen extends Activity implements
                     "Latitude = " + location.getLatitude() +
                     ", Longitude = " +
                     location.getLongitude(), illegalArgumentException);
+        } catch (Exception e) {
+            Log.e(TAG, "the location cv.");
+
         }
 
         // Handle case where no address was found.
@@ -89,8 +92,6 @@ public class SlashScreen extends Activity implements
             Config.mAddress = addresses;
             errorMessage = getString(R.string.address_found);
             Log.i(TAG, errorMessage);
-
-
         }
         result_end_here(errorMessage);
     }

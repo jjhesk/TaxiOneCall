@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="book_urban_taxi_companies">
+        <item>Hong Kong Taxi Centre, 25747311</item>
+        <item>Taxicom Vehicle Owners Association Ltd., 25298822</item>
+        <item>Chuen Lee RadioTaxi Association Ltd., 23981881</item>
+        <item>Hong Kong Taxicab Call Centre, 21866866</item>
+        <item>City Taxi O.D. Association Co. Ltd., 23433189</item>
+        <item>Fraternity Taxi Owners Association, 25276324</item>
+        <item>Royal Motors Taxi Company Ltd., 25712929</item>
+        <item>Happy Taxi Operator’s Association Ltd., 27288282</item>
+        <item>Hong Kong Kowloon Radio Car Owners Association Ltd., 27600455</item>
+    </array>
+
+    <array name="book_nt_taxi_companies">
+        <item>Association of N.T. Radio Taxicabs, 2657 2267</item>
+        <item>Fraternity Association of N.T. Taxi Merchants, 2476 2266</item>
+        <item>H.K. Tele-call Taxi Association, 2669 1088</item>
+        <item>N.T. Taxi Owners and Drivers Fraternal Association, 2457 2266</item>
+        <item>New Territories Taxi Merchants Association, 2476 4247</item>
+        <item>N.T. Taxi-call Service Centre, 2383 0168</item>
+        <item>North District Taxi Merchants Association, 2677 8888</item>
+        <item>Sai Kung Taxi Operators Association, 2729 1199</item>
+        <item>Sun Hing Taxi Radio Association, 2450 2288</item>
+    </array>
+</resources>

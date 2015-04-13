@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.hkm.taxicallandroid.list.SimpleAdapter;
@@ -22,23 +23,50 @@ public class PhoneBookListing extends Activity {
     SimpleAdapter simpleRecyclerViewAdapter;
     LinearLayoutManager linearLayoutManager;
     ItemTouchListenerAdapter itemTouchListenerAdapter;
+
+    public class DataHold {
+        public final String name;
+        public final String number;
+
+        public DataHold(String ntame, String ntumber) {
+            name = ntame;
+            number = ntumber;
+        }
+    }
+
+    protected ArrayList<DataHold> getConstructedData(int k_array_id) {
+
+        String[] xmlList = getResources().getStringArray(k_array_id);
+        Log.d("test", "1st string is: pp");
+        ArrayList<DataHold> n = new ArrayList<>();
+        for (int i = 0; i < xmlList.length; i++) {
+            String t = xmlList[i];
+            String[] r = t.split(",");
+            n.add(new DataHold(r[0], r[1]));
+        }
+        return n;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_list);
         ultimateRecyclerView = (UltimateRecyclerView) findViewById(R.id.ultimate_recycler_view);
         ultimateRecyclerView.setHasFixedSize(false);
-        List<String> stringList = new ArrayList<>();
-        simpleRecyclerViewAdapter = new SimpleAdapter(stringList);
+        //int array_id = getIntent().getExtras().getInt("startbooknumberurl", -1);
 
-        stringList.add("111");
-        stringList.add("aaa");
-        stringList.add("222");
-        stringList.add("33");
-        stringList.add("44");
-        stringList.add("55");
-        stringList.add("66");
-        stringList.add("11771");
+
+        int array_id = getIntent().getExtras().getInt("startbooknumberurl", -1);
+        int k_array_id = -1;
+        if (array_id == 1) {
+            k_array_id = R.array.book_urban_taxi_companies;
+        } else if (array_id == 2) {
+            k_array_id = R.array.book_nt_taxi_companies;
+        }
+
+
+        simpleRecyclerViewAdapter = new SimpleAdapter(getConstructedData(k_array_id));
+
 
         linearLayoutManager = new LinearLayoutManager(this);
         ultimateRecyclerView.setLayoutManager(linearLayoutManager);

@@ -1,6 +1,7 @@
 package com.hkm.taxicallandroid.life;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.asynhkm.productchecker.Util.Tool;
 import com.hkm.taxicallandroid.life.ream.phonedata;
@@ -85,6 +86,7 @@ public class LifeCycleApp extends Application {
                 if (appSettingsItem != null)
                     retend.phone = appSettingsItem;
 
+                Log.d("THisA32", "number is" + (retend.phone == null ? "found" : "not found"));
             }
         });
 

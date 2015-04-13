@@ -8,18 +8,20 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.hkm.taxicallandroid.PhoneBookListing;
 import com.hkm.taxicallandroid.R;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hesk on 4/12/2015.
  */
 public class SimpleAdapter extends UltimateViewAdapter {
-    private List<String> stringList;
+    private ArrayList<PhoneBookListing.DataHold> stringList;
 
-    public SimpleAdapter(List<String> stringList) {
+    public SimpleAdapter(ArrayList<PhoneBookListing.DataHold> stringList) {
         this.stringList = stringList;
     }
 
@@ -28,7 +30,13 @@ public class SimpleAdapter extends UltimateViewAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position < getItemCount() && (customHeaderView != null ? position <= stringList.size() : position < stringList.size()) && (customHeaderView != null ? position > 0 : true)) {
 
-            ((ViewHolder) holder).textViewSample.setText(stringList.get(customHeaderView != null ? position - 1 : position));
+            PhoneBookListing.DataHold d = stringList.get(customHeaderView != null ? position - 1 : position);
+            ((ViewHolder) holder)
+                    .textViewSample
+                    .setText(d.name);
+            ((ViewHolder) holder)
+                    .phonenumber
+                    .setText(d.number);
             // ((ViewHolder) holder).itemView.setActivated(selectedItems.get(position, false));
         }
 
@@ -48,8 +56,8 @@ public class SimpleAdapter extends UltimateViewAdapter {
     }
 
 
-    public void insert(String string, int position) {
-        insert(stringList, string, position);
+    public void insert(PhoneBookListing.DataHold object, int position) {
+        insert(stringList, object, position);
     }
 
     public void remove(int position) {
@@ -83,27 +91,14 @@ public class SimpleAdapter extends UltimateViewAdapter {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewSample;
+        TextView textViewSample, phonenumber;
         ImageView imageViewSample;
         ProgressBar progressBarSample;
 
         public ViewHolder(View itemView) {
             super(itemView);
-//            itemView.setOnTouchListener(new SwipeDismissTouchListener(itemView, null, new SwipeDismissTouchListener.DismissCallbacks() {
-//                @Override
-//                public boolean canDismiss(Object token) {
-//                    Logs.d("can dismiss");
-//                    return true;
-//                }
-//
-//                @Override
-//                public void onDismiss(View view, Object token) {
-//                   // Logs.d("dismiss");
-//                    remove(getPosition());
-//
-//                }
-//            }));
             textViewSample = (TextView) itemView.findViewById(R.id.textview);
+            phonenumber = (TextView) itemView.findViewById(R.id.number);
             imageViewSample = (ImageView) itemView.findViewById(R.id.imageview);
             progressBarSample = (ProgressBar) itemView.findViewById(R.id.progressbar);
             progressBarSample.setVisibility(View.GONE);

@@ -121,7 +121,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
-               // AnimatorUtils.rotation(0f, 720f),
+                // AnimatorUtils.rotation(0f, 720f),
                 AnimatorUtils.translationX(dx, 0f),
                 AnimatorUtils.translationY(dy, 0f)
         );
@@ -135,7 +135,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
-               // AnimatorUtils.rotation(720f, 0f),
+                // AnimatorUtils.rotation(720f, 0f),
                 AnimatorUtils.translationX(0f, dx),
                 AnimatorUtils.translationY(0f, dy)
         );
@@ -157,6 +157,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         Bundle bb = new Bundle();
         bb.putInt("startbooknumberurl", book_no);
         bb.putInt("bookapidataurl", book_no);
+        g.putExtras(bb);
         startActivity(g);
     }
 
@@ -187,13 +188,13 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         calltaxibook1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoPhoneBook(1);
+                gotoPhoneBook(2);
             }
         });
         calltaxibook2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoPhoneBook(2);
+                gotoPhoneBook(1);
             }
         });
         additional_button = (ImageButton) findViewById(R.id.additional_button);
