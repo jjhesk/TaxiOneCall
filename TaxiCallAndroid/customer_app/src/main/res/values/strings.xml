@@ -102,8 +102,8 @@
     <string name="issue_3">driver was late</string>
     <string name="issue_4">driver was impolite</string>
     <string name="issue_5">other issues</string>
-
+<!--
     <string name="baidu_api_app_id">5749550</string>
     <string name="baidu_api_key">TDsXSUTA85bDY1MbOMGDm1wS</string>
-    <string name="baidu_api_secret">KAKBNtqarhxMsuTBeqFf53gxoEbXIT0Y</string>
+    <string name="baidu_api_secret">KAKBNtqarhxMsuTBeqFf53gxoEbXIT0Y</string>-->
 </resources>
