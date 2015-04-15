@@ -12,4 +12,4 @@
 	    android:toXDelta="-50%"
 	    android:duration="@android:integer/config_longAnimTime" />
 </set>
-<!-- From: file:/Users/hesk/github/TaxiOneCall/TaxiCallAndroid/library/src/main/res/anim/out_animation.xml -->
+<!-- From: file:/F:/backupgithub/TaxiOneCall/TaxiCallAndroid/library/src/main/res/anim/out_animation.xml -->

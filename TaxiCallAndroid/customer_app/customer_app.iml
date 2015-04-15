@@ -121,8 +121,8 @@
     <orderEntry type="library" exported="" name="library-1.1.7" level="project" />
     <orderEntry type="library" exported="" name="jackdaw-apt-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
-    <orderEntry type="library" exported="" name="clog-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="robotium-solo-5.2.1" level="project" />
+    <orderEntry type="library" exported="" name="clog-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="jackdaw-core-1.0.5" level="project" />
     <orderEntry type="library" exported="" name="prettytime-3.2.7.Final" level="project" />
     <orderEntry type="module" module-name="rippleView" exported="" />

@@ -7,8 +7,8 @@ android {
         applicationId "com.hkm.taxicallandroid"
         minSdkVersion 17
         targetSdkVersion 21
-        versionCode 1013
-        versionName "1.1.1"
+        versionCode 1015
+        versionName "1.1.21"
     }
 
     buildTypes {

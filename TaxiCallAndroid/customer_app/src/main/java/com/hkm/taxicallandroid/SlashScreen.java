@@ -31,10 +31,12 @@ public class SlashScreen extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.waiting);
+
+
         geocoder = new Geocoder(getBaseContext(), Locale.getDefault());
         ParseAnalytics.trackAppOpened(getIntent());
         buildGoogleApiClient();
-        setContentView(R.layout.waiting);
     }
 
     protected synchronized void buildGoogleApiClient() {

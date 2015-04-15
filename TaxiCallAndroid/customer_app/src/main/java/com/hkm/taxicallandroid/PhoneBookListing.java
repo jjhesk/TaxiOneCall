@@ -1,6 +1,8 @@
 package com.hkm.taxicallandroid;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,9 +65,9 @@ public class PhoneBookListing extends Activity {
         } else if (array_id == 2) {
             k_array_id = R.array.book_nt_taxi_companies;
         }
+        final ArrayList<DataHold> tt = getConstructedData(k_array_id);
 
-
-        simpleRecyclerViewAdapter = new SimpleAdapter(getConstructedData(k_array_id));
+        simpleRecyclerViewAdapter = new SimpleAdapter(tt);
 
 
         linearLayoutManager = new LinearLayoutManager(this);
@@ -79,6 +81,10 @@ public class PhoneBookListing extends Activity {
                         /*  if (actionMode != null && isDrag) {
                             toggleSelection(position);
                         }*/
+                        final DataHold tth = tt.get(position);
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + tth.number));
+                        startActivity(callIntent);
                     }
 
                     @Override
