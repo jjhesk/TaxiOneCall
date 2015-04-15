@@ -7,8 +7,8 @@ android {
         applicationId "com.hkm.taxicallandroid"
         minSdkVersion 17
         targetSdkVersion 21
-        versionCode 1012
-        versionName "1.1.0"
+        versionCode 1013
+        versionName "1.1.1"
     }
 
     buildTypes {
@@ -29,14 +29,15 @@ repositories {
 }
 
 dependencies {
+    compile fileTree(dir: '../libs', include: ['*.jar'])
+    compile project(':libHkmCheck')
+    compile project(':rippleView')
     compile 'com.android.support:appcompat-v7:21.+'
-    compile 'com.afollestad:material-dialogs:0.5.9'
+    compile 'com.afollestad:material-dialogs:0.7.2.0'
     compile 'com.daimajia.swipelayout:library:1.1.7@aar'
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
     compile 'com.koushikdutta.async:androidasync:2.+'
     compile 'com.pnikosis:materialish-progress:1.2'
-    compile project(':libHkmCheck')
-    compile project(':rippleView')
     compile 'io.realm:realm-android:0.80.0'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup.picasso:picasso:2.5.0'
@@ -52,7 +53,6 @@ dependencies {
     compile 'me.grantland:autofittextview:0.2.+'
     compile 'me.alexrs:wave-drawable:1.0.0'
     compile 'com.marshalchen.ultimaterecyclerview:library:0.3.0'
-    compile fileTree(dir: '../libs', include: ['*.jar'])
 }
 
 

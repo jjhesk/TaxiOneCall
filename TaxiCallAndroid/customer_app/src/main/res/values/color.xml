@@ -14,6 +14,8 @@
     <color name="green_nt_2">#ff19881b</color>
     <color name="city_taxi">#ffb73036</color>
     <color name="city_taxi_2">#ff84242a</color>
+    <color name="yellow_1">#ff84663b</color>
+    <color name="yellow_2">#ff574327</color>
 
     <color name="route_color">#ff84663b</color>
     <color name="backgroundColor">#E8E8E0</color>

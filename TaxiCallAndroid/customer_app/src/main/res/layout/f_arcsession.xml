@@ -38,14 +38,22 @@
 
             <ImageButton
                 android:id="@+id/additional_button"
-                style="@style/Item.Path"
+                style="@style/Item.Path.yellow"
                 android:src="@drawable/ic_talkrequirements"
                 app:arc_angle="60" />
 
             <ImageButton
-                android:id="@+id/call_type"
-                style="@style/Item.Path"
+                android:id="@+id/lost_and_found"
+                android:src="@drawable/ic_lost_found"
+                style="@style/Item.Path.yellow"
                 app:arc_angle="90" />
+
+            <ImageButton
+                android:id="@+id/call_type"
+                android:src="@drawable/ic_maps_local_taxi"
+                style="@style/Item.Path.yellow"
+                app:arc_angle="120" />
+<!--
 
             <Button
                 style="@style/Item.Path"
@@ -58,6 +66,7 @@
                 android:text="E"
                 android:textColor="@color/incoming_green"
                 app:arc_angle="150" />
+-->
 
         </com.ogaclejapan.arclayout.ArcLayout>
     </com.hkm.taxicallandroid.CommonPack.ClipRevealFrame>
@@ -68,7 +77,7 @@
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="170dp"
         android:background="@drawable/path_white_oval"
         android:src="@drawable/starthere" />
 

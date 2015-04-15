@@ -60,4 +60,8 @@
     <style name="Item.Path.red" parent="imagebuttonStyle">
         <item name="android:background">@drawable/path_oval_red</item>
     </style>
+
+    <style name="Item.Path.yellow" parent="imagebuttonStyle">
+        <item name="android:background">@drawable/path_oval_yel</item>
+    </style>
 </resources>

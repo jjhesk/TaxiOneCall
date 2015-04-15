@@ -70,6 +70,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         } else {
             showMenu();
         }
+        enableLayer1(v.isSelected());
         v.setSelected(!v.isSelected());
     }
 
@@ -109,6 +110,7 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         animSet.start();
 
     }
+
 
     private Animator createShowItemAnimator(View item) {
 
@@ -301,6 +303,10 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
         applyFromCurrentLoc();
     }
 
+    public void setPhoneNumberDisplay(String n) {
+        display_number.setText(n);
+    }
+
     private void applyFromCurrentLoc() {
         if (Config.mAddress != null && Config.mAddress.size() > 0) {
             ArrayList<String> addressFragments = new ArrayList<String>();
@@ -434,16 +440,6 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
 
     private void triggerCall() {
         try {
-            /*   runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        order.checkComplete();
-                    } catch (Exception e) {
-                        dialog_collection.showSimpleMessage(e.getMessage());
-                    }
-                }
-            });*/
             order.checkComplete();
             if (!calltriggered) calltriggered = true;
             else throw new Exception("triggered");
@@ -497,23 +493,22 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
     }
 
     private void showListTypeVech() {
-
         new MaterialDialog.Builder(this)
                 .title(R.string.call_type_title)
                 .items(R.array.AutoType)
-                .itemsCallbackSingleChoice(auto_type, new MaterialDialog.ListCallback() {
+                .itemsCallbackSingleChoice(auto_type, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
-                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                         //Tool.trace(getApplicationContext(), which + " : " + text);
                         // call_type.setText(text);
                         auto_type = which;
                         mphone.saveTransportationType(text.toString());
+                        return true;
                     }
                 })
                 .positiveText(R.string.choose)
                 .show();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -539,5 +534,11 @@ public class OrderPanel extends Activity implements FolderSelectorDialog.FolderS
     @Override
     public void onFolderSelection(File folder) {
         Toast.makeText(this, folder.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void enableLayer1(boolean bool) {
+        f_start.setEnabled(bool);
+        f_destination.setEnabled(bool);
+
     }
 }

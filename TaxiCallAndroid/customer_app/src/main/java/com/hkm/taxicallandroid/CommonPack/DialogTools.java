@@ -192,9 +192,9 @@ public class DialogTools {
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.add_on)
                 .items(R.array.remarks)
-                .itemsCallbackMultiChoice(add_remarks_selected, new MaterialDialog.ListCallbackMulti() {
+                .itemsCallbackMultiChoice(add_remarks_selected, new MaterialDialog.ListCallbackMultiChoice() {
                     @Override
-                    public void onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
                         StringBuilder str = new StringBuilder();
                         for (int i = 0; i < which.length; i++) {
                             //str.append(which[i]);
@@ -206,6 +206,7 @@ public class DialogTools {
                         add_remarks_selected = which;
                         ((OrderPanel) __ctx).updateRemark(str.toString());
                         //Tool.trace(__ctx, str.toString());
+                        return true;
                     }
                 })
                 .positiveText(R.string.confirm_choices)
@@ -245,7 +246,7 @@ public class DialogTools {
         new MaterialDialog.Builder(__ctx)
                 .title(android.R.string.dialog_alert_title)
                 .content(R.string.over_time)
-                .callback(new MaterialDialog.Callback() {
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
                     public void onNegative(MaterialDialog materialDialog) {
                         materialDialog.dismiss();
@@ -267,9 +268,9 @@ public class DialogTools {
         new MaterialDialog.Builder(__ctx)
                 .title(R.string.report_issue)
                 .items(R.array.rejection_reasons)
-                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallback() {
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
-                    public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                    public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
                         if (i == -1) {
                             materialDialog.dismiss();
                         } else if (i < 4) {
@@ -281,6 +282,7 @@ public class DialogTools {
                             write_note(callbackkstack);
                         }
                         Log.d(TAG, i + "");
+                        return true;
                     }
                 })
 

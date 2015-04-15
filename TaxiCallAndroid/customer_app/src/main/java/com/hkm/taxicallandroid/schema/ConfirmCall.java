@@ -83,7 +83,7 @@ public class ConfirmCall {
 
         final NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(ctx)
-                        .setSmallIcon(R.drawable.taxi_white)
+                        .setSmallIcon(R.drawable.ic_talkrequirements)
                         .setContentTitle("Incoming Taxi")
                         .setContentText(String.format(content_f, incoming_driver_data.getLicense(), incoming_driver_data.getEstTime()));
         // Creates an explicit intent for an Activity in your app

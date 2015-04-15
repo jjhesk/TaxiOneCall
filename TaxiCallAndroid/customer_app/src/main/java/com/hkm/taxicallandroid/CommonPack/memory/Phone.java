@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asynhkm.productchecker.Util.Tool;
+import com.hkm.taxicallandroid.OrderPanel;
 import com.hkm.taxicallandroid.R;
 import com.hkm.taxicallandroid.life.ream.phonedata;
 import com.hkm.taxicallandroid.life.retend;
@@ -27,10 +28,10 @@ public class Phone {
 
     public static int hong_kong_number_limit = 8;
     private final DataCallOrder mDataCallOrder;
-    private final Context _app_context;
+    private final OrderPanel _app_context;
     private final Realm realm;
 
-    public Phone(DataCallOrder m, Context service_context) {
+    public Phone(DataCallOrder m, OrderPanel service_context) {
         _app_context = service_context;
         mDataCallOrder = m;
         realm = Realm.getInstance(_app_context);
@@ -51,7 +52,7 @@ public class Phone {
             public void execute(Realm r) {
                 try {
                     phonedata appSettingsItem = r.where(phonedata.class).findAll().last();
-                    appSettingsItem.setTransportation(num);
+                    appSettingsItem.setPhonenum(num);
                 } catch (Exception e) {
                     r.copyToRealm(retend.phone);
                 }
@@ -133,6 +134,7 @@ public class Phone {
                         save_number(num);
                         if (mcall != null)
                             mcall.phonenumber(num);
+                        _app_context.setPhoneNumberDisplay(num);
                         dialog.dismiss();
                     }
                 })
