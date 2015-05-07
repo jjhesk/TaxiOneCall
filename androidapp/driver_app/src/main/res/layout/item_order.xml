@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,105 +11,67 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:weightSum="1.0">
 
         <TextView
             android:id="@+id/order_from"
-
-            android:singleLine="true"
-            android:textStyle="bold"
-            android:text="FROM"
-            style="?android:textAppearanceMedium"
-            android:textColor="?android:textColorPrimary"
+            style="@style/TextViewOrderSpan"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/spacing"
-            android:paddingRight="@dimen/spacing"
-            android:gravity="center_vertical" />
+            android:layout_height="match_parent" />
 
         <ImageView
+            android:layout_weight="0.1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/arrowto" />
 
         <TextView
             android:textStyle="bold"
-            android:text="place"
             android:id="@+id/order_to"
-            style="?android:textAppearanceMedium"
-            android:textColor="?android:textColorPrimary"
+            style="@style/TextViewOrderSpan"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/spacing"
-            android:paddingRight="@dimen/spacing"
-            android:gravity="center_vertical" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
-
-    <com.daimajia.swipe.SwipeLayout
-        android:id="@+id/swipe_remarks"
+    <LinearLayout
+        android:background="@drawable/abc_edit_text_material"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:weightSum="1.0">
 
-        <LinearLayout
-            android:tag="Bottom1"
-            android:background="#66ddff00"
-            android:id="@+id/bottom_wrapper"
-            android:layout_width="match_parent"
-            android:weightSum="1"
-            android:layout_height="match_parent">
+        <TextView
+            android:text="remarks"
+            android:id="@+id/remarks"
+            android:textColor="@color/white_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6" />
 
-            <RelativeLayout
-                android:id="@+id/bottom_wrapper_child1"
-                android:background="#ff4e3b57"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/bottom_wrapper_child1"
+            android:background="#ff4e3b57"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4">
 
-                <ImageView
-                    android:id="@+id/hammer"
-                    android:src="@drawable/confirm"
-                    android:layout_width="@dimen/button_width"
-                    android:background="#ffcd7aff"
-                    android:paddingLeft="25dp"
-                    android:paddingRight="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:focusableInTouchMode="false" />
-            </RelativeLayout>
-
-
-            <!--     <ImageView
-                     android:id="@+id/view_history"
-                     android:src="@android:drawable/ic_menu_info_details"
-                     android:layout_width="@dimen/button_width"
-                     android:background="#FF3B30"
-                     android:paddingLeft="25dp"
-                     android:paddingRight="25dp"
-                     android:layout_height="match_parent" />
-     -->
-        </LinearLayout>
-
-        <LinearLayout
-            android:background="@drawable/abc_edit_text_material"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:text="remarks"
-                android:id="@+id/remarks"
-                android:textColor="@color/white_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-    </com.daimajia.swipe.SwipeLayout>
+            <ImageView
+                android:id="@+id/hammer"
+                android:src="@drawable/steering_wheel_xxl"
+                android:layout_width="@dimen/button_width"
+                android:background="#ffcd7aff"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="false" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/time"
         android:textColor="@color/white_color"
-        android:text="demotime" />
+        android:text="demo time assignment" />
 </LinearLayout>

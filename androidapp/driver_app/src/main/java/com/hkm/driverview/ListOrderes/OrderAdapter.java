@@ -1,21 +1,17 @@
 package com.hkm.driverview.ListOrderes;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
-import com.hkm.driverview.DriverView;
+import com.hkm.driverview.MainActivity;
 import com.hkm.driverview.R;
-import com.nineoldandroids.view.ViewHelper;
+import com.hkm.driverview.life.json.OrderCustomer;
 
 
 import java.text.ParseException;
@@ -83,13 +79,13 @@ public class OrderAdapter extends FixedRecyclerView.Adapter<OrderAdapter.ViewHol
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView viewFrom;
-        private TextView viewTo;
-        private TextView remark;
-        private TextView __time;
-        private ImageView callcustomer;
-        private View parentView;
-        private SwipeLayout swip;
+        private final TextView viewFrom;
+        private final TextView viewTo;
+        private final TextView remark;
+        private final TextView __time;
+        private final ImageView callcustomer;
+        private final View parentView;
+
         private OrderCustomer morder;
 
         public ViewHolder(View itemView) {
@@ -99,8 +95,9 @@ public class OrderAdapter extends FixedRecyclerView.Adapter<OrderAdapter.ViewHol
             remark = (TextView) itemView.findViewById(R.id.remarks);
             __time = (TextView) itemView.findViewById(R.id.time);
             callcustomer = (ImageView) itemView.findViewById(R.id.hammer);
-            swip = (SwipeLayout) itemView.findViewById(R.id.swipe_remarks);
             parentView = itemView;
+            viewFrom.setSelected(true);
+            viewTo.setSelected(true);
         }
 
         public void setOrder(OrderCustomer order) {
@@ -130,11 +127,12 @@ public class OrderAdapter extends FixedRecyclerView.Adapter<OrderAdapter.ViewHol
         }
 
         public void setCall(final String num, final String order_id) {
-            callcustomer.setOnClickListener(new View.OnClickListener() {
+            callcustomer.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onClick(View v) {
-                    ((DriverView) __ctx).inquiryOrder(num, order_id, morder);
+                public boolean onLongClick(View v) {
+                    ((MainActivity) __ctx).inquiryOrder(num, order_id, morder);
                     //triggerInquiry(num, order_id);
+                    return false;
                 }
             });
         }

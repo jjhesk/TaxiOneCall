@@ -27,7 +27,7 @@ import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
 import com.github.nkzawa.emitter.Emitter;
-import com.hkm.driverview.common.Config;
+import com.hkm.driverview.life.Config;
 import com.hkm.driverview.LoginActivity;
 import com.hkm.driverview.R;
 

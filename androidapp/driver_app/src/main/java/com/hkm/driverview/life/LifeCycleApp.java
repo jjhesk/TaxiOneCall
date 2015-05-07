@@ -2,7 +2,7 @@ package com.hkm.driverview.life;
 
 import android.app.Application;
 
-import com.asynhkm.productchecker.Util.Tool;
+import com.hkm.driverview.common.Identity;
 import com.parse.Parse;
 import com.parse.ParseCrashReporting;
 import com.squareup.picasso.Picasso;
@@ -13,27 +13,12 @@ import io.realm.Realm;
  * Created by hesk on 4/8/2015.
  */
 public class LifeCycleApp extends Application {
-    private String
-            licenseKey = "",
-            productKey = "",
-            mac_id = "",
-            login = "",
-            pass = "";
     public static String STANDARD_KEY_COOKIE = "COOKIESTD";
     protected Picasso pic;
     protected Realm realm;
+    private Identity idcard;
 
     private void initParse() {
-        /*ParsePush.subscribeInBackground("", new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    Log.d(Config.PARSETAG, "successfully subscribed to the broadcast channel.");
-                } else {
-                    Log.e(Config.PARSETAG, "failed to subscribe for push", e);
-                }
-            }
-        });*/
         // Enable Crash Reporting
         ParseCrashReporting.enable(this);
         // ENABLE PARSE IN HERE
@@ -47,9 +32,17 @@ public class LifeCycleApp extends Application {
         super.onCreate();
         initParse();
         pic = Picasso.with(this);
-        mac_id = Tool.get_mac_address(this);
         realm = Realm.getInstance(this);
         RealmGetData();
+        idcard = new Identity(this);
+    }
+
+    public boolean hasAuthenticated() {
+        return idcard.hasAuthen();
+    }
+
+    public String getDriverNumber() {
+        return idcard.getNumbr();
     }
 
     public Picasso getInstancePicasso() {
@@ -90,7 +83,6 @@ public class LifeCycleApp extends Application {
             e.printStackTrace();
         }
     }
-
 
 
     @Override

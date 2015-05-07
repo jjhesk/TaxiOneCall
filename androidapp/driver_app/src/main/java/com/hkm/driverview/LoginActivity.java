@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
-import com.hkm.driverview.common.Config;
+import com.hkm.driverview.life.Config;
 import com.parse.ParseAnalytics;
 
 import org.json.JSONException;

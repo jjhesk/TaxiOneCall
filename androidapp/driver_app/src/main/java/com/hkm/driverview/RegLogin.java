@@ -6,14 +6,12 @@ import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.asynhkm.productchecker.Model.CallTask;
 import com.daimajia.swipe.SwipeLayout;
-import com.hkm.driverview.common.Config;
+import com.hkm.driverview.life.Config;
 import com.hkm.driverview.common.Identity;
 import com.hkm.driverview.managers.PostD;
 import com.hkm.driverview.common.schema.Credential;

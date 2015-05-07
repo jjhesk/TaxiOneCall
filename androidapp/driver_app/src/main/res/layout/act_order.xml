@@ -10,10 +10,10 @@
 
     <fragment
         android:id="@+id/order_fragement"
-        class="com.hkm.driverview.singleorder.orderFragement"
+        class="com.hkm.driverview.applicationssmall.orderFragement"
         android:layout_width="match_parent"
         android:layout_height="155dp" />
 
-    <include layout="@layout/p_driver_control"></include>
+    <include layout="@layout/p_driver_control" />
 
 </LinearLayout>

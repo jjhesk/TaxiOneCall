@@ -14,11 +14,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.hkm.driverview.common.Config;
+import com.hkm.driverview.life.Config;
 import com.hkm.driverview.common.Identity;
 import com.hkm.driverview.common.schema.DealFace;
 import com.hkm.driverview.singleorder.DriverControl;
-import com.hkm.driverview.singleorder.orderFragement;
+import com.hkm.driverview.applicationssmall.orderFragement;
 import com.hkm.driverview.ui.DialogTools;
 import com.parse.ParseAnalytics;
 

@@ -3,7 +3,7 @@ package com.hkm.driverview.common.schema;
 import com.asynhkm.productchecker.Model.gsonModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.hkm.driverview.common.Config;
+import com.hkm.driverview.life.Config;
 
 /**
  * Created by hesk on 1/26/2015.
