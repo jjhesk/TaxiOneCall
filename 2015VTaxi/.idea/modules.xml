@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/2015VTaxi.iml" filepath="$PROJECT_DIR$/2015VTaxi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LayoutCollections/LayoutCollections.iml" filepath="$PROJECT_DIR$/LayoutCollections/LayoutCollections.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taxisdk/taxisdk.iml" filepath="$PROJECT_DIR$/taxisdk/taxisdk.iml" />
+    </modules>
+  </component>
+</project>

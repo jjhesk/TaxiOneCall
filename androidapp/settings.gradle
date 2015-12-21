@@ -1,2 +1,1 @@
-include ':customer_app', ':libHkmCheck', ':rippleView', ':driver_app', ':processbuttonadvanced'
-include ':library'
+include ':customer_app',  ':driver_app', ':library'

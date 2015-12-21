@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="colors">
+        <item>#3F51B5</item>
+        <item>#9E9E9E</item>
+        <item>#424242</item>
+        <item>#1F1F1F</item>
+        <item>#607D8B</item>
+        <item>#795548</item>
+        <item>#D32F2F</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#5E35B1</item>
+        <item>#1E88E5</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FFC107</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+    </array>
+
+    <array name="remarks">
+        <item>@string/round_trip</item>
+        <item>@string/five_ppl</item>
+        <item>@string/pets</item>
+        <item>@string/extra_tips</item>
+        <item>@string/handicap</item>
+        <item>@string/manyluggage</item>
+    </array>
+
+    <array name="pin">
+        <item>@string/map_hospital</item>
+        <item>@string/map_airport</item>
+        <item>@string/map_parks</item>
+        <item>@string/map_c_parks</item>
+        <item>@string/beaches</item>
+        <!--
+        <item>@string/hongkong</item>
+        <item>@string/kowloon</item>
+        <item>@string/newterr</item>-->
+    </array>
+
+    <array name="rejection_reasons">
+        <item>@string/issue_1</item>
+        <item>@string/issue_2</item>
+        <item>@string/issue_3</item>
+        <item>@string/issue_4</item>
+        <item>@string/issue_5</item>
+    </array>
+
+</resources>

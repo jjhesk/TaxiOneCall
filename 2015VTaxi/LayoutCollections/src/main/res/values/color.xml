@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white_tab">#aae6e6e6</color>
+    <color name="custom_tab_icon">#aae65152</color>
+    <color name="theme_inactive">#afafaf</color>
+    <color name="theme_active">#000000</color>
+   <!-- <color name="main_bottom_tab_textcolor_selected">#006fbb</color>-->
+    <color name="main_fab_background">#f0f0f0</color>
+    <color name="main_fab_press_background">#d2d2d2</color>
+    <color name="white_screen">#bceeeeee</color>
+    <color name="overlay_network">#b7000000</color>
+    <color name="filter_background">#DDFFFFFF</color>
+</resources>

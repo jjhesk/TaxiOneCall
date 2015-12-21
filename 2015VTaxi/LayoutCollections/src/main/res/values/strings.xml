@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Layout Collections</string>
+    <string name="search_hint">Search on HBX</string>
+    <string name="exit_alert">Do you want to quit this application now?</string>
+    <string name="button_try_again">Try Again</string>
+    <string name="button_confirm">OK</string>
+</resources>

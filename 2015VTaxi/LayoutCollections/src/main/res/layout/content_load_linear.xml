@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/lylib_before"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:id="@id/lylib_ui_loading_circle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true" />
+
+    <View
+        android:id="@+id/head_c"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/double_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/head_c">
+
+        <TableLayout
+            android:id="@id/lylib_list_uv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="0" />
+    </ScrollView>
+
+</RelativeLayout>
+
+

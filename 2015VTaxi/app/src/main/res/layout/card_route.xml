@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/card_bk"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    android:id="@+id/linearLayout">
+
+    <TextView
+        android:id="@+id/from_spot"
+        android:layout_width="@dimen/fromto_text"
+        android:layout_height="match_parent"
+        android:textColor="@color/route_color"
+        android:text="edit text and review"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="@dimen/route_font_size"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_p" />
+
+    <TextView
+        android:id="@+id/to_spot"
+        android:layout_width="@dimen/fromto_text"
+        android:layout_height="match_parent"
+        android:textColor="@color/route_color"
+        android:text="edit text and review"
+        android:textSize="@dimen/route_font_size"
+        android:gravity="center_vertical|center_horizontal" />
+
+</LinearLayout>

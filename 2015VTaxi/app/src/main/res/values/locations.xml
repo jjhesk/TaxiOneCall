@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="map_hospital">Hospitals</string>
+    <string name="map_police">Police Stations</string>
+    <string name="map_parks">City Parks</string>
+    <string name="map_c_parks">Country Parks</string>
+    <string name="map_mtr">MTR stations</string>
+    <string name="map_airport">Airport</string>
+    <string name="beaches">Beaches</string>
+
+
+    <!--exttra requirements-->
+    <string name="round_trip">Round Trip</string>
+    <string name="five_ppl">five people</string>
+    <string name="pets">Bring pets</string>
+    <string name="extra_tips">extra tips</string>
+    <string name="handicap">handicap</string>
+    <string name="manyluggage">Heavy Luggage</string>
+
+    <!--exttra requirements-->
+    <string name="hongkong">Hong Kong</string>
+    <string name="kowloon">Kowloon</string>
+    <string name="newterr">New Territories</string>
+</resources>

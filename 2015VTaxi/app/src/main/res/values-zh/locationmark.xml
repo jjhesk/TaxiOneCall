@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <string-array name="airport_locations">
+        <item>機場行李區</item>
+        <item>機場上機區</item>
+    </string-array>
+
+    <string-array name="parks_locations">
+        <item>Hong Kong Ocean Park</item>
+        <item>Hong Kong Disneyland</item>
+        <item>Great European Carnival</item>
+        <item>The peak</item>
+        <item>Avenue of Stars</item>
+        <item>Woemn Street</item>
+        <item>Temple Street Night</item>
+        <item>Golden Bauhinia Square</item>
+        <item>Kai Tak Cruise Terminal</item>
+
+        <item>柴灣公園</item>
+        <item>香港公園-香港中區</item>
+        <item>香港動植物公園</item>
+        <item>鰂魚涌公園</item>
+        <item>中山紀念公園</item>
+        <item>添馬公園</item>
+        <item>維多利亞公園</item>
+        <item>佐敦谷公園</item>
+        <item>啓德郵輪碼頭公園</item>
+        <item>九龍公園</item>
+        <item>九龍仔公園</item>
+        <item>九龍寨城公園</item>
+        <item>觀塘海濱花園</item>
+        <item>荔枝角公園</item>
+        <item>南蓮園池</item>
+        <item>牛池灣公園</item>
+        <item>蒲崗村道公園</item>
+        <item>石硤尾公園</item>
+        <item>園圃街雀鳥花園</item>
+        <item>中葵涌公園</item>
+        <item>馬鞍山公園</item>
+        <item>馬鞍山海濱長廊</item>
+        <item>北區公園</item>
+        <item>寶康公園</item>
+        <item>寶翠公園</item>
+        <item>沙田公園</item>
+        <item>城門谷公園</item>
+        <item>大埔海濱公園</item>
+        <item>天水圍公園</item>
+        <item>青衣公園</item>
+        <item>青衣東北公園</item>
+        <item>荃灣公園</item>
+        <item>屯門公園</item>
+        <item>東涌北公園</item>
+        <item>元朗公園 百鳥塔</item>
+        <item>香港單車館公園</item>
+        <item>東涌北公園</item>
+
+    </string-array>
+
+    <string-array name="public_hospital">
+
+        <item>明愛醫院-深水埗</item>
+        <item>香港佛教醫院-樂富</item>
+        <item>香港眼科醫院-九龍</item>
+        <item>紅十字會輸血服務中心</item>
+        <item>九龍醫院-九龍</item>
+        <item>廣華醫院-九龍</item>
+        <item>聖母醫院-黃大仙</item>
+        <item>伊利沙伯醫院-九龍</item>
+        <item>復康專科及資源中心-九龍</item>
+        <item>東華三院黃大仙醫院-黃大仙</item>
+        <item>基督教聯合醫院-觀塘</item>
+
+        <item>雅麗氏何妙齡那打素醫院</item>
+        <item>白普理寧養中心-沙田</item>
+        <item>青山醫院-屯門</item>
+        <item>沙田慈氏護養院-沙田</item>
+        <item>靈實醫院-將軍澳</item>
+        <item>葵涌醫院-葵涌</item>
+        <item>北區醫院-上水</item>
+        <item>博愛醫院-元朗</item>
+        <item>威爾斯親王醫院-沙田</item>
+        <item>瑪嘉烈醫院-葵涌</item>
+        <item>沙田醫院-沙田</item>
+        <item>小欖醫院-屯門</item>
+        <item>大埔醫院-大埔</item>
+        <item>將軍澳醫院-將軍澳</item>
+        <item>屯門醫院-屯門</item>
+        <item>仁濟醫院-荃灣</item>
+
+        <item>舂磡角慈氏護養院-舂磡角</item>
+        <item>葛量洪醫院-香港仔</item>
+        <item>麥理浩復康院-薄扶林</item>
+        <item>東區尤德夫人那打素醫院</item>
+        <item>瑪麗醫院-薄扶林</item>
+        <item>律敦治醫院-灣仔</item>
+        <item>鄧肇堅醫院-灣仔</item>
+        <item>根德公爵夫人兒童醫院</item>
+        <item>贊育醫院-西營盤</item>
+        <item>東華東院-銅鑼灣</item>
+        <item>東華醫院-上環</item>
+        <item>東華三院馮堯敬醫院</item>
+        <item>黃竹坑醫院-黃竹坑</item>
+        <item>長洲醫院-長洲</item>
+
+        <item>嘉諾撒醫院-山頂</item>
+        <item>播道醫院-九龍</item>
+        <item>香港浸信會醫院-九龍</item>
+        <item>港中醫院-中環</item>
+        <item>養和醫院-跑馬地</item>
+        <item>明德國際醫院-山頂</item>
+        <item>寶血醫院-深水埗</item>
+        <item>聖保祿醫院-銅鑼灣</item>
+        <item>聖德肋撒醫院-九龍</item>
+        <item>荃灣港安醫院-荃灣</item>
+        <item>仁安醫院-沙田</item>
+
+    </string-array>
+
+    <string-array name="lst_beaches">
+        <item>蝴蝶灣-屯門</item>
+        <item>青山灣-屯門</item>
+        <item>加多利灣-屯門</item>
+        <item>舊咖啡灣-屯門</item>
+        <item>新咖啡灣-屯門</item>
+        <item>黃金-屯門</item>
+        <item>釣魚灣-汀九</item>
+        <item>雙仙灣-汀九</item>
+        <item>海美灣-汀九</item>
+        <item>更生灣-汀九</item>
+        <item>麗都灣-汀九</item>
+        <item>汀九灣-汀九</item>
+        <item>近水灣-汀九</item>
+        <item>東灣-馬灣</item>
+        <item>三星灣-西貢</item>
+
+        <item>銀線灣-清水灣</item>
+        <item>清水灣第一灣-清水灣</item>
+        <item>清水灣第二灣-清水灣</item>
+        <item>深水灣-南區</item>
+        <item>淺水灣-南區</item>
+        <item>中灣-南區</item>
+        <item>南灣-南區</item>
+        <item>舂坎灣-南區</item>
+        <item>赤柱正灘-赤柱</item>
+        <item>夏萍灣-赤柱</item>
+        <item>聖士提反灣-赤柱</item>
+        <item>龜背灣-石澳</item>
+        <item>石澳-石澳</item>
+        <item>石澳灣-石澳</item>
+        <item>大浪灣-石澳</item>
+
+    </string-array>
+    <string-array name="lst_map_c_parks">
+
+        <item>薄扶林郊野公園-香港</item>
+        <item>龍虎山郊野公園-香港</item>
+        <item>香港仔郊野公園-香港</item>
+        <item>大潭郊野公園-香港</item>
+        <item>大潭（鰂魚涌擴建部分）郊野公園-香港</item>
+        <item>石澳郊野公園-香港</item>
+
+        <item>八仙嶺郊野公園-新界東</item>
+        <item>船灣郊野公園-新界東</item>
+        <item>船灣（擴建部分）郊野公園-新界東</item>
+        <item>金山郊野公園-新界東</item>
+        <item>獅子山郊野公園-新界東</item>
+        <item>馬鞍山郊野公園-新界東</item>
+        <item>大帽山郊野公園-新界東</item>
+        <item>西貢東郊野公園-新界東</item>
+        <item>西貢西郊野公園-新界東</item>
+        <item>西貢西郊野公園(南風半島)-新界東</item>
+        <item>清水灣郊野公園-新界東</item>
+        <item>橋咀郊野公園-新界東</item>
+        <item>紅花嶺郊野公園-新界東</item>
+
+        <item>城門郊野公園-新界西</item>
+        <item>林村郊野公園-新界西</item>
+        <item>大欖郊野公園-新界西</item>
+        <item>南大嶼郊野公園-新界西</item>
+        <item>南大嶼郊野公園-靈會山</item>
+        <item>南大嶼郊野公園-石壁</item>
+        <item>南大嶼郊野公園-十塱</item>
+        <item>北大嶼郊野公園-大山</item>
+        <item>北大嶼郊野公園-大東山</item>
+        <item>北大嶼郊野公園-二東山</item>
+        <item>北大嶼郊野公園-蓮花山</item>
+        <item>北大嶼郊野公園-鳳凰山北坡</item>
+        <item>北大嶼郊野公園-彌勒山</item>
+        <item>北大嶼郊野公園-黃龍坑郊遊徑</item>
+        <item>北大嶼郊野公園-昂平</item>
+        <item>北大嶼郊野公園-犁壁山</item>
+        <item>北大嶼郊野公園-老虎頭北陂</item>
+        <item>北大嶼郊野公園-萬角咀</item>
+        <item>北大嶼郊野公園-婆髻山</item>
+        <item>北大嶼郊野公園-薄刀屻</item>
+        <item>北大嶼郊野公園-石獅山</item>
+        <item>北大嶼郊野公園-石門甲</item>
+        <item>北大嶼郊野公園-彌勒山北陂</item>
+        <item>北大嶼郊野公園-沙螺灣</item>
+
+    </string-array>
+</resources>

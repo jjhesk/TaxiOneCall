@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Street Taxi</string>
+
+    <string name="message_check">check this license if this is working now!</string>
+    <string name="check_now">check</string>
+    <string name="order_now">Send Order</string>
+    <string name="current_position">My Current Position</string>
+    <string name="action_settings">Settings</string>
+    <string name="about">About</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree</string>
+    <string name="more_info">More Info</string>
+    <string name="get_number">What is your phone number</string>
+    <string name="login_title">Login</string>
+    <string name="login_button_text_face">Login or Apply new account</string>
+    <string name="get_server_number">To better match your request please enter your phone number to create an account.</string>
+    <string name="addresshintstart">->>>-</string>
+    <string name="addresshintend">->>>-</string>
+    <string name="over_time">You do not have any drivers to respond your order. Do you want to make a new order and try again or keep waiting?</string>
+    <string name="service_not_available">GPS is not available</string>
+    <string name="invalid_lat_long_used">invalid location</string>
+    <string name="no_address_found">No address was found</string>
+    <string name="address_found">The address is found</string>
+
+
+    <string name="basic">Basic</string>
+    <string name="stacked">Stacked Buttons</string>
+    <string name="neutral">Neutral Button</string>
+    <string name="callbacks">Callbacks</string>
+    <string name="list">Basic List</string>
+    <string name="singleChoice">Single Choice</string>
+    <string name="multiChoice">Multi Choice</string>
+    <string name="customView">Custom View</string>
+    <string name="themed">Themed</string>
+    <string name="signalStrength">Signal strength</string>
+    <string name="excellent">Excellent</string>
+    <string name="security">Security</string>
+    <string name="securityType">802.1x EAP</string>
+    <string name="password">Password</string>
+    <string name="showPassword">Show password</string>
+    <string name="useGoogleLocationServices">Use Google\'s Location Services?</string>
+    <string name="useGoogleLocationServicesPrompt">Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</string>
+    <string name="socialNetworks">Social Networks</string>
+    <string name="choose">Choose</string>
+    <string name="confirm_choices">confirm additional</string>
+    <string name="speedBoost">Turn on speed boost now!</string>
+    <string name="noThanks">No thanks</string>
+    <string name="googleWifi">Google Wifi</string>
+    <string name="connect">Connect</string>
+    <string name="making_calls">Calling...</string>
+    <string name="call_notice">Looking for your taxi now...\nPlease notice that your call will be cancelled if there is no driver taking your request within 60 secs.</string>
+    <string name="wait">one moment.</string>
+    <string name="add_on">Additional requirements</string>
+    <string-array name="AutoType">
+        <item>Taxi</item>
+        <!--        <item>Van</item>
+                <item>Limo</item>-->
+    </string-array>
+    <string name="call_type_title">Transportation Type</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="call_type">Transportation</string>
+    <string name="extra_requirement">Extra</string>
+    <string name="number_field">Order Number</string>
+    <string name="status_new_taxi">You just have a taxi driver taken your order.</string>
+    <string name="status_taxi_withdrawn">Your taxi driver has withdrawn your order. Please be patient and wait for the next driver to take your order.</string>
+    <string name="status_complete_prompt">The taxi driver has arrived at your location. Press the green button to confirm this pick and complete the call.</string>
+
+
+    <string name="about_body"><![CDATA[
+        material-dialogs, a library  designed by <b>Aidan Follestad</b>.<br/>
+        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
+        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
+        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    ]]></string>
+
+
+    <string name="shareLocationPrompt">This app wants to access your location.</string>
+    <string name="getLocationOnce">The location service will turn on for getting your current location.</string>
+    <string name="basic_list_long">Basic Long List</string>
+    <string name="states">States</string>
+    <string name="list_suggestion">List of Choices</string>
+    <string name="custom_listitem_button">A button!</string>
+    <string name="custom_adapter">Custom Adapter</string>
+    <string name="basic_longContent">Basic (Long Content)</string>
+    <string name="basic_icon">Basic (Icon)</string>
+    <string name="basic_list_notitle">Basic List (No Title)</string>
+    <string name="folder_chooser">Folder Chooser</string>
+    <string name="showCancelDismissCallbacks">Show/Cancel/Dismiss Callbacks</string>
+    <string name="changelog">Changelog</string>
+    <string name="customView_webView">Custom View No Scroll #1</string>
+    <string name="customView_colorChooser">Custom View No Scroll #2</string>
+    <string name="ssid">SSID</string>
+    <string name="ssidLit">Material Dialogs</string>
+    <string name="color_chooser">Color Chooser</string>
+    <string name="prefer_locations">Collections</string>
+    <string name="report_issue">Report issues</string>
+    <string name="note">We do not take out the reported drivers in the database.</string>
+    <string name="issue_1">no driver contact me</string>
+    <string name="issue_2">driver did not take pick me up</string>
+    <string name="issue_3">driver was late</string>
+    <string name="issue_4">driver was impolite</string>
+    <string name="issue_5">other issues</string>
+<!--
+    <string name="baidu_api_app_id">5749550</string>
+    <string name="baidu_api_key">TDsXSUTA85bDY1MbOMGDm1wS</string>
+    <string name="baidu_api_secret">KAKBNtqarhxMsuTBeqFf53gxoEbXIT0Y</string>-->
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/card_yellow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/panel_session"
+    android:baselineAligned="false"
+    android:layout_alignParentBottom="true"
+    android:padding="@dimen/padding_card">
+
+    <TextView
+        android:id="@+id/taxi_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_dark_material_dark"
+        android:text=""
+        android:textSize="@dimen/license" />
+
+    <TextView
+        android:id="@+id/license_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/switch_thumb_normal_material_dark"
+        android:text=""
+        android:textSize="@dimen/driver_name" />
+
+    <TextView
+        android:id="@+id/time_est"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/material_yellow_timer"
+        android:text=""
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/est_time" />
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/confirm_ordered"
+            android:src="@drawable/check1"
+            android:layout_width="@dimen/button_width"
+            android:background="@drawable/item_big_button_green"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/wait"
+            android:src="@drawable/cross1"
+            android:layout_width="@dimen/button_width"
+            android:background="@drawable/item_big_button_red"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+</LinearLayout>

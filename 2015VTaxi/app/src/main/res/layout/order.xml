@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/f_number"
+            layout="@layout/top_display_bar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <include
+            android:id="@+id/f_setstart"
+            layout="@layout/f_setstart"
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+        <include
+            android:id="@+id/f_destination"
+            layout="@layout/f_destination"
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/order_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/card_bk"
+        android:gravity="center"
+        android:padding="35dp"
+        android:text="@string/order_now"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <include
+        layout="@layout/f_arcsession"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>
