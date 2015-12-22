@@ -14,8 +14,8 @@
     <string name="login_title">Login</string>
     <string name="login_button_text_face">Login or Apply new account</string>
     <string name="get_server_number">To better match your request please enter your phone number to create an account.</string>
-    <string name="addresshintstart">->>>-</string>
-    <string name="addresshintend">->>>-</string>
+    <string name="addresshintstart">Enter your start location</string>
+    <string name="addresshintend">Enter your destination</string>
     <string name="over_time">You do not have any drivers to respond your order. Do you want to make a new order and try again or keep waiting?</string>
     <string name="service_not_available">GPS is not available</string>
     <string name="invalid_lat_long_used">invalid location</string>

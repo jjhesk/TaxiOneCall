@@ -77,4 +77,16 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="indication_icon">
+        <item name="android:tint">@color/green_nt</item>
+        <item name="android:padding">6dp</item>
+    </style>
+
+    <style name="start_location" parent="indication_icon">
+        <item name="android:src">@drawable/loc_flag</item>
+    </style>
+
+    <style name="to_location" parent="indication_icon">
+        <item name="android:src">@drawable/loc_pass</item>
+    </style>
 </resources>

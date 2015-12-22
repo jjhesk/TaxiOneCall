@@ -79,7 +79,7 @@ dependencies {
     //AdvancedMaterialDrawer
     compile 'de.madcyph3r:materialDrawer:1.1.0@aar'
     // compile 'com.sothree.slidinguppanel:library:3.0.0'
-    compile project(':processbuttonadvanced')
     compile 'com.hkm:advancedmaterialtabs:1.0.0@aar'
     compile 'com.sothree.slidinguppanel:library:3.0.0'
+    compile project(':processbuttonadvanced')
 }

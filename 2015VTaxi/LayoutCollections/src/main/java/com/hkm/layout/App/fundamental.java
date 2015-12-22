@@ -28,7 +28,8 @@ public abstract class fundamental<F> extends AppCompatActivity {
      * - overlayactionbar : there is consist of layout resource IDs of +id(main_frame_body) and +id(mxtoolbar)
      */
     public enum BODY_LAYOUT {
-        weixin(R.layout.template_wei_xin, true),
+        weixin(R.layout.template_wei_xin_status_translucence, true),
+        weixin_solid(R.layout.template_wei_xin_solid, true),
         weixindual(R.layout.template_wei_xin_dual, true),
         weixindualtabhot_trans_status(R.layout.template_wx_host_status_translucence, true),
         weixindualtabhot_solid_status(R.layout.template_wx_host_solid, true),

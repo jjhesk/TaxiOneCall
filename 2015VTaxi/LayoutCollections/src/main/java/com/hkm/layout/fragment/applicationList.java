@@ -62,7 +62,6 @@ public abstract class applicationList extends Fragment {
 
 
     protected void doneInitialLoading() {
-
         loadingbar.animate().alpha(0).withEndAction(new Runnable() {
             @Override
             public void run() {

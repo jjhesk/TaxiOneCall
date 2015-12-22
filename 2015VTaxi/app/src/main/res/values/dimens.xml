@@ -13,6 +13,8 @@
     <dimen name="route_font_size">20dp</dimen>
 
     <dimen name="route_item_height">70dp</dimen>
+    <dimen name="route_item_height_font_tv">30dp</dimen>
+    <dimen name="route_item_height_loc_tv">40dp</dimen>
 
 
     <dimen name="layout_radius_large">192dp</dimen>

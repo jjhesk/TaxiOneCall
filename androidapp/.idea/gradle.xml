@@ -6,6 +6,17 @@
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/customer_app" />
+            <option value="$PROJECT_DIR$/driver_app" />
+            <option value="$PROJECT_DIR$/libHkmCheck" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/processbuttonadvanced" />
+            <option value="$PROJECT_DIR$/rippleView" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

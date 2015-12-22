@@ -4,14 +4,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.view.ViewPager;
-import android.widget.TextView;
 
-import com.hkm.layout.Dialog.BottomSheetDialogFragment;
-import com.hkm.layout.Menu.TabIconView;
-import com.hkm.layout.WeiXinTabHost;
-import com.hkm.layout.WeiXinTabLayout;
+import com.hkm.layout.ControllableFrame;
 import com.hkm.layout.NonSwipe;
 import com.hkm.layout.R;
+import com.hkm.layout.WeiXinTabHost;
+import com.hkm.layout.WeiXinTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItems;
 
@@ -22,6 +20,7 @@ public abstract class WeiXinLayout<f> extends fundamental<f> {
     protected NonSwipe mViewPager;
     protected WeiXinTabLayout mSmartTabLayout;
     protected WeiXinTabHost mStartTabHost;
+    protected ControllableFrame mExtraFrame;
     private int mScrollState;
 
 
@@ -114,11 +113,16 @@ public abstract class WeiXinLayout<f> extends fundamental<f> {
         if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.weixindual.getResID()) {
             mViewPager = (NonSwipe) findViewById(R.id.lylib_main_frame_body);
             mSmartTabLayout = (WeiXinTabLayout) findViewById(R.id.lylib_bottom_tab_smart_layout);
+            mExtraFrame = (ControllableFrame) findViewById(R.id.lylib_main_frame_body_secondary);
         } else if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.weixindualtabhot_trans_status.getResID()) {
             mStartTabHost = (WeiXinTabHost) findViewById(R.id.lylib_bottom_tab_smart_layout);
-        }else if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.weixindualtabhot_solid_status.getResID()) {
+        } else if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.weixindualtabhot_solid_status.getResID()) {
             mStartTabHost = (WeiXinTabHost) findViewById(R.id.lylib_bottom_tab_smart_layout);
+        } else if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.weixin_solid.getResID()) {
+            mSmartTabLayout = (WeiXinTabLayout) findViewById(R.id.lylib_bottom_tab_smart_layout);
+            mViewPager = (NonSwipe) findViewById(R.id.lylib_main_frame_body);
         }
+
         if (mSmartTabLayout != null && mViewPager != null) {
             FragmentPagerItems mCreate = addFragmentsToStack(FragmentPagerItems.with(this)).create();
             // mSmartTabLayout.setCustomTabView(this);
@@ -129,7 +133,9 @@ public abstract class WeiXinLayout<f> extends fundamental<f> {
             mSmartTabLayout.setAnimationOnTabTouch(true);
             mViewPager.addOnPageChangeListener(new InternalViewPagerListener());
             mSmartTabLayout.setRetouchListener(setTabLayoutRetouchListen());
-        } else if (mStartTabHost != null) {
+        }
+
+        if (mStartTabHost != null) {
             mStartTabHost.setInitialPosition(0);
             mStartTabHost.setRetouchListener(setHostRetouchListner());
             mStartTabHost.build();

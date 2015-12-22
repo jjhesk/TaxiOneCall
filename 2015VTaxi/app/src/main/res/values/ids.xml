@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- indication section sidebar -->
+    <item name="nxi_indication" type="id" />
+    <item name="nxi_label_box" type="id" />
+    <item name="nxi_label_top" type="id" />
+    <item name="nxi_location_bottom" type="id" />
+    <item name="nxi_section_close_button" type="id" />
+</resources>

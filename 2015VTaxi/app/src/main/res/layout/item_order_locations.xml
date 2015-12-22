@@ -4,17 +4,44 @@
     android:layout_height="@dimen/route_item_height"
     android:elevation="@dimen/loading_bar_size">
 
+
     <ImageView
-        android:id="@+id/indication"
+        android:id="@id/nxi_indication"
+        style="@style/start_location"
         android:layout_width="50dp"
         android:layout_height="@dimen/route_item_height"
-        android:src="@drawable/loc" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@id/indication">
+        android:id="@id/nxi_label_box"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/route_item_height"
+        android:layout_toLeftOf="@id/nxi_section_close_button"
+        android:layout_toRightOf="@id/nxi_indication">
 
+        <TextView
+            android:id="@id/nxi_label_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/route_item_height_font_tv" />
 
+        <TextView
+            android:id="@id/nxi_location_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/route_item_height_loc_tv"
+            android:layout_below="@id/nxi_label_top" />
     </RelativeLayout>
+
+    <ImageButton
+        android:id="@id/nxi_section_close_button"
+        style="@style/rippleButton"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/route_item_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_close_24dp"
+        android:tint="@color/backgroundColorPress" />
+
 </RelativeLayout>

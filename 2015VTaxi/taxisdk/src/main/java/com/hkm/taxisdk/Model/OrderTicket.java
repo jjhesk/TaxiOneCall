@@ -1,5 +1,8 @@
 package com.hkm.taxisdk.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by hesk on 22/12/15.
  */
@@ -7,21 +10,30 @@ public class OrderTicket {
     private long userId;
     private long ticketId;
 
-
     public static String
             TAXI_RED = "redtaxi",
             TAXI_GREEN = "greentaxi",
             YELLOW_CAB = "yellow_cab",
             PRIVATE_CAB = "private_car";
+
     private String
             remarks = "no special requirements",
             cellphone = "",
             gps = "00000,0000",
             type = "",
-            destination = "",
             city = "",
             mylocation = "",
             vechicle_type = "";
+
+    private List<String> destinations = new ArrayList<>();
+
+    public List<String> getDestinations() {
+        return destinations;
+    }
+
+    public void setDestinations(List<String> destinations) {
+        this.destinations = destinations;
+    }
 
     public String getCellphone() {
         return cellphone;
@@ -37,14 +49,6 @@ public class OrderTicket {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
     }
 
     public String getGps() {

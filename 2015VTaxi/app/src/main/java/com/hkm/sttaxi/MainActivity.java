@@ -1,11 +1,14 @@
 package com.hkm.sttaxi;
 
-import android.app.Fragment;
-
-import com.hkm.layout.App.WeiXinDouble;
+import com.hkm.layout.App.WeiXinNonSwipFrame;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItems;
 
-public class MainActivity extends WeiXinDouble<Fragment> {
+public class MainActivity extends WeiXinNonSwipFrame {
+
+    @Override
+    protected void onDaPageSelected(int position) {
+
+    }
 
     @Override
     protected FragmentPagerItems.Creator addFragmentsToStack(FragmentPagerItems.Creator creator) {
@@ -13,8 +16,6 @@ public class MainActivity extends WeiXinDouble<Fragment> {
                 .add(R.string.order_now, OrderPhrase.class)
                 .add(R.string.login_title, OrderPhrase.class)
         ;
-
-
         return creator;
     }
 
