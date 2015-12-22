@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.marshalchen.ultimaterecyclerview.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:background="@drawable/item_selector">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:id="@+id/bottom_wrapper"
         android:layout_width="160dp"
         android:layout_height="match_parent"
         android:background="#66ddff00"
+        android:orientation="horizontal"
         android:tag="Bottom1"
         android:weightSum="1">
 
@@ -27,34 +27,34 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/startloc">
+        android:background="@color/startloc"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <me.grantland.widget.AutofitTextView
-                android:singleLine="true"
-                autofit:minTextSize="@dimen/minswipetextsize"
                 android:id="@+id/display_start_location"
                 style="@style/swipebarTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:singleLine="true"
                 android:text="@string/addresshintstart"
-                android:layout_margin="10dp" />
+                autofit:minTextSize="@dimen/minswipetextsize" />
 
             <ImageView
                 android:id="@+id/speak_button"
                 android:layout_width="@dimen/button_width"
                 android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:background="@color/ripple_material_light"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
-                android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha"
-                android:layout_alignParentRight="true" />
+                android:src="@drawable/abc_ic_voice_search_api_mtrl_alpha" />
         </RelativeLayout>
     </LinearLayout>
-</com.daimajia.swipe.SwipeLayout>
+</com.marshalchen.ultimaterecyclerview.swipe.SwipeLayout>

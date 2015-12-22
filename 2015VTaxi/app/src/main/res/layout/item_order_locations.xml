@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/route_item_height"
+    android:elevation="@dimen/loading_bar_size">
+
+    <ImageView
+        android:id="@+id/indication"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/route_item_height"
+        android:src="@drawable/loc" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/indication">
+
+
+    </RelativeLayout>
+</RelativeLayout>

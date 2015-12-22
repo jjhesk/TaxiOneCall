@@ -10,11 +10,13 @@ public class MainActivity extends WeiXinDouble<Fragment> {
     @Override
     protected FragmentPagerItems.Creator addFragmentsToStack(FragmentPagerItems.Creator creator) {
         creator
-
-
-                .add(R.string.order_now, MainActivityFragment.class);
+                .add(R.string.order_now, OrderPhrase.class)
+                .add(R.string.login_title, OrderPhrase.class)
+        ;
 
 
         return creator;
     }
+
+
 }

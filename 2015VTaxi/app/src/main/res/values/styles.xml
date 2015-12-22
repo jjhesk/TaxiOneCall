@@ -43,7 +43,7 @@
         <item name="android:textColor">@color/material_pink_500</item>
     </style>
 
-    <style name="Item.Path">
+    <style name="Item.Path" parent="rippleButton">
         <item name="android:layout_width">@dimen/item_circle_size_tumblr</item>
         <item name="android:layout_height">@dimen/item_circle_size_tumblr</item>
         <item name="android:textSize">@dimen/item_font_size_path</item>
@@ -68,4 +68,13 @@
     <style name="Item.Path.yellow" parent="imagebuttonStyle">
         <item name="android:background">@drawable/path_oval_yel</item>
     </style>
+
+    <style name="rippleButton" parent="android:style/Widget.Holo.ActionButton">
+        <item name="paddingStart">5dp</item>
+        <item name="paddingEnd">5dp</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@mipmap/ic_action_find</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

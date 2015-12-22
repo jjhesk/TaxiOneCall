@@ -12,6 +12,8 @@
     <dimen name="padding_card">8dp</dimen>
     <dimen name="route_font_size">20dp</dimen>
 
+    <dimen name="route_item_height">70dp</dimen>
+
 
     <dimen name="layout_radius_large">192dp</dimen>
     <dimen name="layout_radius_medium">168dp</dimen>

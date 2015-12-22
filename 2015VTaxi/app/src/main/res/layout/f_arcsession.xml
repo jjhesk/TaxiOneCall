@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.hkm.taxicallandroid.CommonPack.ClipRevealFrame
+    <com.hkm.layout.ClipRevealFrame
         android:id="@+id/menu_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,35 +44,36 @@
 
             <ImageButton
                 android:id="@+id/lost_and_found"
-                android:src="@drawable/ic_lost_found"
                 style="@style/Item.Path.yellow"
+                android:src="@drawable/ic_lost_found"
                 app:arc_angle="90" />
 
             <ImageButton
                 android:id="@+id/call_type"
-                android:src="@drawable/ic_maps_local_taxi"
                 style="@style/Item.Path.yellow"
+                android:src="@drawable/ic_maps_local_taxi"
                 app:arc_angle="120" />
-<!--
+            <!--
 
-            <Button
-                style="@style/Item.Path"
-                android:text="D"
-                android:textColor="@color/incoming_green"
-                app:arc_angle="120" />
+                        <Button
+                            style="@style/Item.Path"
+                            android:text="D"
+                            android:textColor="@color/incoming_green"
+                            app:arc_angle="120" />
 
-            <Button
-                style="@style/Item.Path"
-                android:text="E"
-                android:textColor="@color/incoming_green"
-                app:arc_angle="150" />
--->
+                        <Button
+                            style="@style/Item.Path"
+                            android:text="E"
+                            android:textColor="@color/incoming_green"
+                            app:arc_angle="150" />
+            -->
 
         </com.ogaclejapan.arclayout.ArcLayout>
-    </com.hkm.taxicallandroid.CommonPack.ClipRevealFrame>
+    </com.hkm.layout.ClipRevealFrame>
 
     <ImageButton
         android:id="@+id/start_here"
+        style="@style/rippleButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"

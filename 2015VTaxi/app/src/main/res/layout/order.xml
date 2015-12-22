@@ -4,34 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".order">
 
-    <LinearLayout
+
+    <com.marshalchen.ultimaterecyclerview.UltimateRecyclerView
+        android:id="@id/lylib_list_uv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/f_number"
-            layout="@layout/top_display_bar"
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-        <include
-            android:id="@+id/f_setstart"
-            layout="@layout/f_setstart"
-            android:layout_width="match_parent"
-            android:layout_height="80dp" />
-
-        <include
-            android:id="@+id/f_destination"
-            layout="@layout/f_destination"
-            android:layout_width="match_parent"
-            android:layout_height="80dp" />
-
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
     <ImageButton
         android:id="@+id/order_send"
+        style="@style/rippleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -50,5 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
+    <ProgressBar
+        android:id="@id/lylib_ui_loading_circle"
+        android:layout_width="@dimen/loading_bar_size"
+        android:layout_height="@dimen/loading_bar_size"
+        android:layout_centerInParent="true" />
 </RelativeLayout>

@@ -3,12 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/androidapp.iml" filepath="$PROJECT_DIR$/androidapp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/customer_app/customer_app.iml" filepath="$PROJECT_DIR$/customer_app/customer_app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/driver_app/driver_app.iml" filepath="$PROJECT_DIR$/driver_app/driver_app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" filepath="$PROJECT_DIR$/libHkmCheck/libHkmCheck.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/processbuttonadvanced/processbuttonadvanced.iml" filepath="$PROJECT_DIR$/processbuttonadvanced/processbuttonadvanced.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rippleView/rippleView.iml" filepath="$PROJECT_DIR$/rippleView/rippleView.iml" />
     </modules>
   </component>
 </project>
