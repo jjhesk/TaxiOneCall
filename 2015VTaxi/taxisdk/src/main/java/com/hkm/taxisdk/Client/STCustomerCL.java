@@ -9,6 +9,7 @@ import com.hkm.taxisdk.api.gson.GsonFactory;
 import com.hkm.taxisdk.api.gson.RealmExclusion;
 import com.hkm.taxisdk.api.gson.WordpressConversion;
 import com.hkm.taxisdk.api.resources.gov_api;
+import com.squareup.okhttp.OkHttpClient;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -22,16 +23,21 @@ public class STCustomerCL extends Client {
 
     @Override
     protected void registerAdapter() {
+
+
+// Add the interceptor to OkHttpClient
+        OkHttpClient client = new OkHttpClient();
+        client.interceptors().add(interceptor);
+
+
         gov_public_api = new Retrofit.Builder()
                 .baseUrl(Constants.HKGOV_ADDRESS_QUERY_API)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gsonsetup))
+                .client(client)
                 .build();
     }
 
-    @Override
-    protected String get_USER_AGENT() {
-        return "";
-    }
+
 
     public gov_api generateGovApi() {
         return gov_public_api.create(gov_api.class);

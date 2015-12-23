@@ -20,7 +20,7 @@ public class detailAddress {
     public Estate eng_estate;
     @SerializedName("ChiStreet")
     public Street chi_street;
-    @SerializedName("ChiStreet")
+    @SerializedName("EngStreet")
     public Street eng_street;
     @SerializedName("ChiBlock")
     public Block chi_block;

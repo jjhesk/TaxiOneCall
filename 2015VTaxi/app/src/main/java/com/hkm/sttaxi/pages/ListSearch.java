@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hkm.advancedtoolbar.Util.ErrorMessage;
 import com.hkm.layout.Module.easyAdapter;
 import com.hkm.layout.fragment.catelog;
 import com.hkm.sttaxi.GenModule.Util;
@@ -19,10 +20,12 @@ import com.hkm.taxisdk.api.model.LocationChoice;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
@@ -152,6 +155,7 @@ public class ListSearch extends catelog {
     protected STCustomerCL client;
     protected int level = 0;
     private HashMap<Integer, List<LocationChoice>> save_data = new HashMap<>();
+    private Call<HKGovAddressRes> handle;
 
     protected void setMap(List<LocationChoice> list) {
         if (!save_data.containsKey(level)) {
@@ -163,30 +167,53 @@ public class ListSearch extends catelog {
     protected void selection_location(LocationChoice choice) {
         if (level > 0) {
             //got this location and issue an return
-            getActivity().finish();
+            ErrorMessage.alert(choice.district, getChildFragmentManager(),
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            getActivity().finish();
+                        }
+                    });
             return;
         }
         level++;
         client = STCustomerCL.getInstance(getActivity());
-        try {
-            client.generateGovApi().getAddressQuery(choice.getDistrict(), new Callback<HKGovAddressRes>() {
-                @Override
-                public void onResponse(Response<HKGovAddressRes> response, Retrofit retrofit) {
-                    if (level == 1) {
-                        madapter.removeAll();
-                        List<LocationChoice> l = Util.resultFromLevel1(response);
-                        setMap(l);
-                        madapter.addList(l);
-                    }
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-
-                }
-            });
-        } catch (ApiException e) {
-            e.printStackTrace();
+        if (handle != null) {
+            handle.cancel();
         }
+
+        String request_address = choice.getDistrict();
+        handle = client.generateGovApi().getAddressQuery(request_address);
+        handle.enqueue(
+                new Callback<HKGovAddressRes>() {
+                    @Override
+                    public void onResponse(Response<HKGovAddressRes> response, Retrofit retrofit) {
+                        if (level == 1) {
+                            madapter.removeAll();
+                            List<LocationChoice> l = Util.resultFromLevel1(response);
+                            setMap(l);
+                            madapter.addList(l);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        //Log.d("err", t.)
+                        ErrorMessage.alert(t.getMessage(), getChildFragmentManager());
+                    }
+                });
+
+    }
+
+    /**
+     * Called when the fragment is no longer in use.  This is called
+     * after {@link #onStop()} and before {@link #onDetach()}.
+     */
+    @Override
+    public void onDestroy() {
+        if (handle != null) {
+            handle.cancel();
+        }
+        super.onDestroy();
     }
 }

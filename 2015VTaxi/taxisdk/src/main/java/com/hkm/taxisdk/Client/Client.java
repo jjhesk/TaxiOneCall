@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import org.xml.sax.ErrorHandler;
 
@@ -19,10 +22,9 @@ public abstract class Client {
     protected Context context;
     protected boolean cache_supported;
     protected Cache mCache;
+    protected Interceptor interceptor;
 
     protected abstract void registerAdapter();
-
-    protected abstract String get_USER_AGENT();
 
     protected abstract void jsonCreate();
 
@@ -32,20 +34,26 @@ public abstract class Client {
     public Client(Context context) {
         cache_supported = false;
         this.context = context;
+        createIntercept();
         jsonCreate();
         registerAdapter();
         createInterfaces();
     }
 
+    protected void createIntercept() {
+        interceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("User-Agent", "St-Taxi")
+                        .addHeader("Accept", "application/json")
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        };
 
-    @Deprecated
-    public Client() {
-        cache_supported = false;
-        jsonCreate();
-        registerAdapter();
-        createInterfaces();
+
     }
-
 
 
     public void removeAllCache() {
