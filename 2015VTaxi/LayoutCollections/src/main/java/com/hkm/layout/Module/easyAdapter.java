@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 import com.marshalchen.ultimaterecyclerview.UltimateViewAdapter;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -65,15 +66,14 @@ public abstract class easyAdapter<T, BINDHOLDER extends UltimateRecyclerviewView
         insert(currentlistsource, object, currentlistsource.size());
     }
 
-    @Deprecated
     public void removeAll() {
         //making sure it is linear starting from zero
         try {
+            final int sizeold = currentlistsource.size();
             while (currentlistsource.size() > 0) {
                 currentlistsource.remove(0);
-                notifyItemRemoved(currentlistsource.size() - 1);
-                Log.d("removeItem", "success @" + currentlistsource.size());
             }
+            notifyItemRangeRemoved(0, sizeold);
         } catch (ArrayIndexOutOfBoundsException e) {
             Log.d("removeItem", e.getMessage());
         }
@@ -89,6 +89,13 @@ public abstract class easyAdapter<T, BINDHOLDER extends UltimateRecyclerviewView
             Log.d("removeItem", "success @" + sizeold);
         } catch (ArrayIndexOutOfBoundsException e) {
             Log.d("removeItem", e.getMessage());
+        }
+    }
+
+    public void addList(List<T> list) {
+        Iterator<T> h = list.iterator();
+        while (h.hasNext()) {
+            insert(currentlistsource, h.next(), currentlistsource.size());
         }
     }
 

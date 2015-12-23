@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by hesk on 22/9/15.
  */
-public abstract class WeiXinDouble<f> extends WeiXinLayout<f> {
+public abstract class WeiXinDouble<f> extends LayoutBundles<f> {
     protected ControllableFrame controllingframe;
     protected MaterialSearchView searchView;
 

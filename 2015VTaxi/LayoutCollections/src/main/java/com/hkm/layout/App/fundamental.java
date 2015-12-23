@@ -36,7 +36,9 @@ public abstract class fundamental<F> extends AppCompatActivity {
         bottomslideupmenuoverlay(R.layout.template_bottom_menu_slide_up, true),
         bottommenuoverlay(R.layout.template_bottom_menu_overlaytb, true),
         bottommenu(R.layout.template_bottom_menu, true),
-        singelsimple(R.layout.template_plane_basic, true);
+        singelsimple(R.layout.template_plane_basic, true),
+        tabsolidsearchadvanced(R.layout.template_full_top_tab_solid, false),
+        tabtranssearchadvanced(R.layout.template_full_top_tab_translucence, false);
 
         private int id;
         private boolean mhastoolbar;

@@ -1,4 +1,4 @@
-package com.hkm.taxisdk.Model;
+package com.hkm.taxisdk.api.model;
 
 import java.util.ArrayList;
 import java.util.List;

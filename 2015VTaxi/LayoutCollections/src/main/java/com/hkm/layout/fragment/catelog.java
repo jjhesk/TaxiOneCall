@@ -3,9 +3,11 @@ package com.hkm.layout.fragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -13,11 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.hkm.layout.Module.easyAdapter;
 import com.hkm.layout.R;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
+import com.marshalchen.ultimaterecyclerview.divideritemdecoration.HorizontalDividerItemDecoration;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -80,7 +84,7 @@ public abstract class catelog<adapter extends easyAdapter, binder extends Ultima
      */
     protected abstract void loadDataInitial(final adapter confirmAdapter);
 
-    protected GridLayoutManager mLayoutManager;
+    protected LinearLayoutManager mLayoutManager;
     protected adapter madapter;
     protected ProgressBar mProgress;
 
@@ -93,9 +97,46 @@ public abstract class catelog<adapter extends easyAdapter, binder extends Ultima
         getProgressbar(view);
         setUltimateRecyclerViewExtra(listview_layout, madapter);
         if (mLayoutManager == null) {
-            mLayoutManager = new GridLayoutManager(view.getContext(), getColumn(), LinearLayoutManager.VERTICAL, false);
+            if (isLinearRVLayout()) {
+                mLayoutManager = new LinearLayoutManager(getActivity());
+            } else {
+                mLayoutManager = new GridLayoutManager(view.getContext(), getColumn(), LinearLayoutManager.VERTICAL, false);
+            }
         }
+        final HorizontalDividerItemDecoration decor = new HorizontalDividerItemDecoration
+                .Builder(getActivity())
+                .paint(getsolid())
+                .showLastDivider()
+                .build();
+
+        if (listHeaderPadding()) {
+            RelativeLayout height_rv = (RelativeLayout) view.findViewById(R.id.lylib_before);
+            ViewGroup.LayoutParams m = height_rv.getLayoutParams();
+            m.height = getActivity().getResources().getDimensionPixelSize(R.dimen.photoMarginTop);
+        }
+        if (withDecor()) listview_layout.addItemDecoration(decor);
         listview_layout.setLayoutManager(mLayoutManager);
+    }
+
+    protected boolean listHeaderPadding() {
+        return false;
+    }
+
+    protected Paint getsolid() {
+        Paint paint = new Paint();
+        int color_i = ContextCompat.getColor(getActivity(), R.color.title_default_color);
+        float fl = getResources().getDimension(R.dimen.divider_stroke_width_treelist_view);
+        paint.setColor(color_i);
+        paint.setStrokeWidth(fl);
+        return paint;
+    }
+
+    protected boolean withDecor() {
+        return false;
+    }
+
+    protected boolean isLinearRVLayout() {
+        return false;
     }
 
     protected void getProgressbar(View view) {

@@ -12,6 +12,8 @@
     <string name="more_info">More Info</string>
     <string name="get_number">What is your phone number</string>
     <string name="login_title">Login</string>
+    <string name="list_search">Listing</string>
+    <string name="map_search">Map</string>
     <string name="login_button_text_face">Login or Apply new account</string>
     <string name="get_server_number">To better match your request please enter your phone number to create an account.</string>
     <string name="addresshintstart">Enter your start location</string>
@@ -102,8 +104,8 @@
     <string name="issue_3">driver was late</string>
     <string name="issue_4">driver was impolite</string>
     <string name="issue_5">other issues</string>
-<!--
-    <string name="baidu_api_app_id">5749550</string>
-    <string name="baidu_api_key">TDsXSUTA85bDY1MbOMGDm1wS</string>
-    <string name="baidu_api_secret">KAKBNtqarhxMsuTBeqFf53gxoEbXIT0Y</string>-->
+    <!--
+        <string name="baidu_api_app_id">5749550</string>
+        <string name="baidu_api_key">TDsXSUTA85bDY1MbOMGDm1wS</string>
+        <string name="baidu_api_secret">KAKBNtqarhxMsuTBeqFf53gxoEbXIT0Y</string>-->
 </resources>

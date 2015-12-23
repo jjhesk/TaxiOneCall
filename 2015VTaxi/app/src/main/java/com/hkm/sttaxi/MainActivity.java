@@ -1,6 +1,7 @@
 package com.hkm.sttaxi;
 
 import com.hkm.layout.App.WeiXinNonSwipFrame;
+import com.hkm.sttaxi.pages.OrderPhrase;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItems;
 
 public class MainActivity extends WeiXinNonSwipFrame {

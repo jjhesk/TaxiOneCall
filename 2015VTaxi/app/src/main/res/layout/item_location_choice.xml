@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/lylib_main_screen"
+    style="@style/rippleButton"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/route_item_height"
+    android:elevation="@dimen/loading_bar_size">
+
+    <ImageView
+        android:id="@id/nxi_indication"
+        style="@style/start_location"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/route_item_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <RelativeLayout
+        android:id="@id/nxi_label_box"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/route_item_height"
+        android:layout_toRightOf="@id/nxi_indication">
+
+        <TextView
+            android:id="@+id/nxi_label_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pin_bigger_label_height"
+            android:layout_alignParentTop="true"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@id/nxi_location_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pin_smaller_label_height"
+            android:layout_below="@id/nxi_label_top"
+            android:textSize="8sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

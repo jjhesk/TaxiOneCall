@@ -5,22 +5,26 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.view.ViewPager;
 
+import com.hkm.advancedtoolbar.materialsearch.MaterialSearchView;
 import com.hkm.layout.ControllableFrame;
 import com.hkm.layout.NonSwipe;
 import com.hkm.layout.R;
 import com.hkm.layout.WeiXinTabHost;
 import com.hkm.layout.WeiXinTabLayout;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItems;
 
 /**
  * Created by hesk on 21/9/15.
  */
-public abstract class WeiXinLayout<f> extends fundamental<f> {
+public abstract class LayoutBundles<f> extends fundamental<f> {
     protected NonSwipe mViewPager;
     protected WeiXinTabLayout mSmartTabLayout;
     protected WeiXinTabHost mStartTabHost;
     protected ControllableFrame mExtraFrame;
+    protected SmartTabLayout mTabTab;
+    protected MaterialSearchView mFixedSearch;
     private int mScrollState;
 
 
@@ -121,6 +125,19 @@ public abstract class WeiXinLayout<f> extends fundamental<f> {
         } else if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.weixin_solid.getResID()) {
             mSmartTabLayout = (WeiXinTabLayout) findViewById(R.id.lylib_bottom_tab_smart_layout);
             mViewPager = (NonSwipe) findViewById(R.id.lylib_main_frame_body);
+        } else if (getDefaultMainActivityLayoutId() == BODY_LAYOUT.tabtranssearchadvanced.getResID() || getDefaultMainActivityLayoutId() == BODY_LAYOUT.tabsolidsearchadvanced.getResID()) {
+            mTabTab = (SmartTabLayout) findViewById(R.id.lylib_bottom_tab_smart_layout);
+            mFixedSearch = (MaterialSearchView) findViewById(R.id.lylib_search_view);
+            mViewPager = (NonSwipe) findViewById(R.id.lylib_main_frame_body);
+        }
+        if (mTabTab != null && mViewPager != null) {
+            FragmentPagerItems mCreate = addFragmentsToStack(FragmentPagerItems.with(this)).create();
+            // mSmartTabLayout.setCustomTabView(this);
+            FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(getFragmentManager(), mCreate);
+            mViewPager.setAdapter(adapter);
+            mViewPager.setOffscreenPageLimit(4);
+            mTabTab.setViewPager(mViewPager);
+            mViewPager.addOnPageChangeListener(new InternalViewPagerListener());
         }
 
         if (mSmartTabLayout != null && mViewPager != null) {

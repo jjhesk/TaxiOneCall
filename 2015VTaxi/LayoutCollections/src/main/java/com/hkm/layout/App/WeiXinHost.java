@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 
 import com.hkm.advancedtoolbar.materialsearch.MaterialSearchView;
-import com.hkm.layout.App.WeiXinDouble;
 import com.hkm.layout.ControllableFrame;
 import com.hkm.layout.R;
 import com.ogaclejapan.smarttablayout.utils.v13.FragmentPagerItems;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by hesk on 17/12/15.
  */
-public class WeiXinHost<f> extends WeiXinLayout<f> {
+public class WeiXinHost<f> extends LayoutBundles<f> {
     protected ControllableFrame controllingframe;
     protected MaterialSearchView searchView;
 

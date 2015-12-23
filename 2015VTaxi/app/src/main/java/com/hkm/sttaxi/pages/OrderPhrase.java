@@ -1,17 +1,21 @@
-package com.hkm.sttaxi;
+package com.hkm.sttaxi.pages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hkm.layout.Module.easyAdapter;
 import com.hkm.layout.fragment.applicationList;
 import com.hkm.sttaxi.GenModule.Util;
-import com.hkm.taxisdk.Model.OrderTicket;
+import com.hkm.sttaxi.LocationApp;
+import com.hkm.sttaxi.R;
+import com.hkm.taxisdk.api.model.OrderTicket;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerView;
 import com.marshalchen.ultimaterecyclerview.UltimateRecyclerviewViewHolder;
 
@@ -36,6 +40,7 @@ public class OrderPhrase extends applicationList {
         public final ImageView im;
         public final TextView label, location_label;
         public final ImageButton close_btn;
+        public final RelativeLayout hit;
 
         public binder(View itemView) {
             super(itemView);
@@ -43,6 +48,7 @@ public class OrderPhrase extends applicationList {
             label = (TextView) itemView.findViewById(R.id.nxi_label_top);
             location_label = (TextView) itemView.findViewById(R.id.nxi_location_bottom);
             close_btn = (ImageButton) itemView.findViewById(R.id.nxi_section_close_button);
+            hit = (RelativeLayout) itemView.findViewById(R.id.nxi_label_box);
         }
     }
 
@@ -82,7 +88,7 @@ public class OrderPhrase extends applicationList {
 
         @Override
         protected void withBindHolder(final binder holder, final String data, final int position) {
-            holder.im.setOnClickListener(new View.OnClickListener() {
+            holder.hit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onClickItem(position);
@@ -118,30 +124,24 @@ public class OrderPhrase extends applicationList {
                 });
             }
             //if the destination for target is more then one
-            if (position > 0 && target_ticket.getDestinations().get(position - 1).equalsIgnoreCase("")) {
-                holder.close_btn.setImageResource(R.drawable.ic_search);
-                holder.close_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CallGPSLocation(position - 1);
-                    }
-                });
+            if (position > 0) {
+                if (target_ticket.getDestinations().get(position - 1).equalsIgnoreCase("")) {
+                    holder.close_btn.setImageResource(R.drawable.ic_search);
+                    holder.close_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CallGPSLocation(position - 1);
+                        }
+                    });
+                } else {
+                    holder.close_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            clearDataPosition(position - 1);
+                        }
+                    });
+                }
             }
-
-            if (position == 0 && !target_ticket.getDestinations().get(position - 1).equalsIgnoreCase("")) {
-
-            }
-
-            if (position > 0 && !target_ticket.getDestinations().get(position - 1).equalsIgnoreCase("")) {
-                holder.close_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        clearDataPosition(position - 1);
-                    }
-                });
-            }
-
-
         }
 
         @Override
@@ -203,11 +203,36 @@ public class OrderPhrase extends applicationList {
 
     }
 
+    protected String getLabelByPosition(int id) {
+        if (id == 0) {
+            return target_ticket.getMylocation();
+        } else {
+            return target_ticket.getDestinations().get(id);
+        }
+    }
+
     @Override
     protected void onClickItem(long id) {
-        int position = (int) id;
 
     }
 
+    protected void onClickItem(int id) {
+        Bundle h = new Bundle();
+        h.putInt("loc_id", id);
+        h.putString("label", getLabelByPosition(id));
+        Intent i = new Intent(getActivity(), LocationApp.class);
+        i.putExtras(h);
+        getActivity().startActivityForResult(i, 9001, h);
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

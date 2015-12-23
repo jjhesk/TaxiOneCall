@@ -1,4 +1,4 @@
-package com.hkm.taxisdk.Model;
+package com.hkm.taxisdk.api.model;
 
 /**
  * Created by Hesk on 1/12/2014.
